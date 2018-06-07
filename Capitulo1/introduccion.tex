@@ -1,0 +1,98 @@
+
+% this file is called up by thesis.tex
+% content in this file will be fed into the main document
+%----------------------- introduction file header -----------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Capítulo 1: Introducción- DEFINIR OBJETIVOS DE LA TESIS              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introducción}
+
+%: ----------------------- HELP: latex document organisation
+% the commands below help you to subdivide and organise your thesis
+%    \chapter{}       = level 1, top level
+%    \section{}       = level 2
+%    \subsection{}    = level 3
+%    \subsubsection{} = level 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Presentación                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Resumen} % section headings are printed smaller than chapter names
+El trabajo de esta tesis consiste en el desarrollo de la Instrumentación de un acelerador de partículas en modalidad haz de partículas. Basado en el diseño de acelerador lineal de corriente directa (CD). Dicho trabajo se centra en varias etapas de desarrollo para su correcta conclusión, la primera es el desarrollo de un diseño de fuente de alto voltaje (HPS, por sus siglas en ingles), capaz de suministrar más de 20 KV a su salida en CA, y utilizando el sistema Crockoft-Walton (CW) amplificarlo y convertirlo en CD. Dicha HPS puede ser controlada manualmente mediante una LCD indicadora y un encoder rotativo, en dicha interface se despliega un menú para la configuración, así como también es posible configurar la HPS mediante comunicación SERIAL, PC-HPS, utilizando un programa diseñado en MatLab, también desarrollado en el proyecto. \\
+Durante el desarrollo de se ha analizado los sistemas crockoft-walton combinado con un transformador de ignición, el cual puede elevar el voltaje en proporción 1:1000, perfecto para los requerimientos necesarios para el proyecto. \\
+
+\section{Antecedentes y justificación}
+
+
+Uno de los mayores avances tecnológicos de la humanidad ha sido el desarrollo de los aceleradores de partículas, entre los tantos ejemplos que se pueden mencionar de las aplicaciones de estas tecnologías, podemos hacer referencia, en medicina, a un echo actual, el veinte por ciento de los fármacos radioactivos que se inyectan en los pacientes son producidos en aceleradores del tipo cyclotrone. Los ciclotrones aceleran los protones típicamente a energías de 40 MeV. Estos aceleradores son diseñados para funcionar de manera confiable y producir haces de alta intensidad con un mínimo de intervención humana.\\
+%agregar referencia
+
+En el pasado la radio terapia hacia uso extendido de agujas de radio o rayos gamma de cobalto radioactivo, la desventaja de este tipo de maquinaria es que no se puede interrumpir su funcionamiento, y con el pasar del tiempo su energia decae y es necesario cambiar la fuente radioactiva. Actualmente se usan aceleradores de electrones en un rango de 15 a 20 MeV que producen rayos x, que a su vez se dirigen a los tumores.\\
+
+
+Otro ejemplo claro de la importancia de los aceleradores de partículas para la sociedad son las fuentes de luz compacta, los aceleradores de partículas que producen la luz de sincrotón con longitudes de onda del orden de angstroms son máquinas de gran tamaño. Existen algunas docenas en el mundo. Recientemente, un grupo de físicos logró construir una fuente compacta de luz capaz de producir esta radiación de manera óptima. Para lograrlo, se ha construido un pequeño acelerador de electrones. Cuando los electrones han alcanzado una energía de alrededor de 25 MeV se lo hace chocar con un haz de luz láser. En el choque se da un proceso conocido por los físicos como dispersión Compton (en honor al físico que describió por primera vez el comportamiento de la radiación en procesos de colisión de luz con electrones, Arthur Compton, 1892-1962), lo que produce radiación con longitudes de onda similares a las que se obtienen en los aceleradores más grandes. (Andrade, Instituto de física UNAM).\\
+
+
+Bajo la premisa de la ventaja del desarrollo tecnológico de los aceleradores de partículas para nuestro país, es necesario comenzar los estudios en estos temas, ya que las posibilidades de aplicación son bastas y de suma importancia. Con el pasar del tiempo los aplicaciones han aumentado considerablemente, desde ramas de la medicina como ya lo mencionamos, hasta sistemas de aislamiento por campo magnético de plasmas y sistemas para aumentar temperaturas hasta puntos de fusión para sistemas de generación de energía en plantas de fusión nuclear.\\
+
+
+Este trabajo mostrara el desarrollo de la instrumentación de un acelerador de electrones lineal, el cual se divide en varias etapas de desarrollo, la primera es el sistema de fuentes, nos basaremos en el desarrollo echo por Crockoft-Walton (CW) (1932)combinado con un oscilador PWM incidente en un embobinado de ignición controlado digital mente mediante un microcontrolador, el cual cuenta con una comunicación PC-Microcontrolador, permitiendo al usuario, mediante una retroalimentación, configurar la fuente de voltaje a los parámetros deseados, así como también guardar un registro en las variaciones de corriente y voltaje a la que nuestra fuente es sometida. \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Planteamiento del problema                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Planteamiento del problema}
+Hoy en día el desarrollo de tecnologías que involucran aceleradores de partículas esta
+cada vez mas presentes en la vida diaria, en México ya existe participación en desarrollo
+de gran nivel, como lo es el Instituto de Investigaciones Nucleares (ININ) y distintos
+laboratorios de gran importancia en nuestro país, lo cual brinda la posibilidad a los investigadores
+de involucrarse en este tipo de desarrollo para poder satisfacer las necesidades
+que se requieren.\\
+
+El uso de aceleradores de partículas para aplicaciones medicas ha tenido gran auge en
+los últimos años, ya que las ventajas que tienen sobre las fuentes radioactivas son bastas,
+este echo da la oportunidad a las universidades de preparar expertos en estos temas y
+diseñar maquinaria a medida, que cumpla las exigencias de la región. Aunque ya existen
+trabajos referentes a fuentes de alto voltaje, generación de electrones mediante telurio y
+detectores de estos mismos, la curva de aprendizaje necesaria para especializarse en estos
+temas es grande y dejar un precedente en nuestro país es necesaria y muy útil, es por ello que estas
+investigaciones son de gran importancia.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Hipotesis y objetivos                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hipótesis y objetivos}
+
+\subsection{Objetivo General}
+
+Este trabajo tiene por objetivo desarrollar una fuente de alto voltaje de hasta 20 KV y 180 W de potencia, capaz de trabajar con los requerimientos necesarios para un acelerador de partículas lineal.
+
+\subsection{Objetivo Particular}
+
+
+\begin{itemize}
+\item Desarrollo de fuente estable de alto voltaje.
+\begin{itemize}
+\item Instrumentación para control de Microcontrolador ATMEGA328
+\item Instrumentación para generación de primera etapa de voltaje.
+\item Instrumentación para generación de oscilador controlado por PWM incidente en transformador de alto voltaje.
+\item Tercera etapa amplificadora de voltaje mediante arreglo Cockoft-walton de media onda.
+\item Control de sistema de voltaje mediante comunicación UART.
+\item Control manual mediante encoder rotativo y LCD indicadora.
+\
+\end{itemize}  
+\end{itemize}
+
+\subsection{Hipótesis}
+El diseño adecuando de un sistema de generación de alto voltaje nos permite llevar acabo experimentos y diseño de maquinaria necesaria en aceleradores de partículas, con el cual se podrá desarrollar tecnología aplicada en esta área.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Estructura de la tesis                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Estructura de la tesis}
+
+Este trabajo está dividido en XX capítulos. Al principio se encuentra 
+\\\\
+Finalmente se encuentra la parte de 
