@@ -1,7 +1,7 @@
-Tesis UNAM
+Tesis Juan Francisco Verdugo Arredondo
 =============
 
-Plantilla de Tesis en LaTeX para las facultades de la UNAM.
+Se a utilizado una plantilla de Tesis en LaTeX de la facultad de la UNAM.
 
 UNAM's Thesis' LaTeX template.
 
