@@ -4,11 +4,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Metodología}
-En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en cuestión, diseño del sistema, fabricación del sistema, diseño del firmware del micro controlador, implementación y por último el método experimental. 
+En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en cuestión, diseño del sistema, fabricación del sistema, diseño del firmware del micro controlador, implementación y por último el método experimental.\\
+
+El sistema esta compuesto por tres partes, hardware y firmware, el hardware se compone de tres partes como vemos en la figura 3.1: parte digital de control, inversor de voltaje y rectificador multiplicador. \\
+
+Por otro lado el firmware consiste en los programas que realizan el control de la generación de alto voltaje por medio de dos micro-controladores, el primero se encarga del ambiente gráfico al que el usuario tiene acceso, el segundo realiza un senseo de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un DAC (Digital Analog Converter) el cual inside en el driver del inversor y controla la salida de alto voltaje. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=14cm]{Capitulo3/figs/figura1.png}
+\includegraphics[width=12
+cm]{Capitulo3/figs/figura1.png}
 \caption{Topologia de fuente de alto voltaje}
 \end{figure}
 
@@ -32,68 +37,420 @@ En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                          Descripción de la planta                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Sección}
-El sistema blah, blah. Ejemplo de cita \citep{texbook}
-La figura (\ref{planta})                     %hace referencia a la imagen "planta" el número se inserta automáticamente
- ilustra los componentes de la planta.
+\section{Diseño del hardware}
+El sistema de generación de alto voltaje esta dividido en una serie de subsistemas los cuales tienen una función especifica, dichos subsistemas se muestran en la figura 3.1.\\
 
-\begin{figure}
-  \centering
-    \includegraphics[scale=0.5]{Capitulo3/figs/planta.jpg}      %Ruta completa de la imagen, porque se compila desde el archivo tesis.tex
-  \caption{Descripción de la planta}            %Pie de imagen
-  \label{planta}                            %nombre de referencia
+la figura 3.1 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también de el control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
+
+\subsection{Hardware de interface}
+Para el desarrollo de la interface gráfica se a utilizado un microcontrolador ATMEGA2560, implementado por la facilidad de programación y los tiempos cortos para la conclusión de este proyecto. Mediante su placa de desarrollo de prototipos se ha utilizado el hardware de dicha placa y ahorrado tiempo de desarrollo. \\
+
+Para la parte del segundo micro-controlador se ha trabajado en el ATMEGA328, el cual mediante un sensor de corriente, una sonda de alto voltaje y un DAC7565 se controla el inversor de voltaje. 
+
+\subsection{Hardware de inversor de voltaje}
+
+Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de paso.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{Capitulo3/figs/fuente.png}
+\caption{Topologia de fuente de alto voltaje}
+\end{figure}
+
+Se ha simulado esta fuente de voltaje en el programa LTSPICE con la finalidad de encontrar el voltaje RMS teórico en nuestra salida con diferentes cargas, ya que se busca el menor riso posible en nuestra salida final. Podemos observar en las figuras nuestra distribución de error y mediante ellas podemos hacer una comparación con el sistema en físico.\\
+
+Mediante ROOT CERN se ha creado una distribución gaussiana del voltaje RMS para tres cargas diferentes, sin carga, a 9.6W y a 19.2w mediante estas mediciones podemos calcular la eficiencia de nuestra fuente de voltaje con la ecuacion XXX.\\
+
+[Poner aquí las ecuaciones y evaluarlas con los resultados de las simulaciones y de las mediciones]
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{Capitulo3/figs/sim.png}
+\caption{Topologia de fuente de alto voltaje}
 \end{figure}
 
 
+\section{Firmware}
+\subsection{Interface gráfica}
+Para el desarrollo de la interface grafica se ha realizado en el ambiente de programación de Arduino, intentando la utilizacion de la menor cantidad de librerias de autoria no propia y siguiendo algunas reglas de programacion basicas para micro-controladores como lo es la no utilizacion de los comandos delay. Dicho código se divide en varias secciones, para el cual solo se utilizaron las siguientes librerías:
+
+\begin{verbatim}
+
+#include <UTFT.h>
+#include <URTouch.h>
+
+\end{verbatim}
+
+En la siguiente figura podemos observar la topologia del firmware que se ha desarrollado.\\
+
+Todo el código esta dividido en funciones, las cuales llamamos en nuestro LOOP, tratando siempre de cumplir con las siguientes características: no utilización de la función delay, no utilización de ciclos que dependa de alguna condición externa, utilizar el menor código posible para una acción. Las funciones que se utilizaron para la el despliegue de información de la primera pantalla fue el siguiente:
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                          Modelado                                     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textcolor{Azul}{Sección en color azul}}
-\subsection{Subsección}
-Antes de comenzar, se definen  en la tabla ~\ref{tab:tabla} los parámetros y variables utilizadas
+\begin{verbatim}
 
-%%%%%%%%Tabla Nombres de parámetros
-\begin{table}[ht]                             %Inicia el entorno table debajo del texto
-\centering\                                     %   centra la tabla
-\begin{tabular}{||c | c ||}                     %inicia entorno tabular con doble línea en las orillas, 2 columnas con el contenido centrado (c)
-\hline                                          %inserta línea horizontal
-\hline
-Nombre Parámetro/Variable & Símbolo\\
-\hline
-\hline
-Masa del péndulo & $m$ \\
-\hline
-Masa del carro & $M$\\
-\hline
-Distancia del eje de giro al centro de masa & $l$ \\
-\hline
-Aceleración gravitatoria & $g$ \\
-\hline
-Momento de inercia péndulo respecto del eje de giro& $J$ \\
-\hline
-Ángulo del péndulo respecto del eje vertical & $\theta$\\
-\hline
-Velocidad angular del péndulo & $\dot{\theta}$, $\omega$\\
-\hline
-Distancia del carro respecto al centro del riel & x\\
-\hline
-Velocidad del carro & $\dot{x}$, $v$\\
-\hline
-\hline
-\end{tabular}
-\caption[Parámetros dinámicos del carro-péndulo]{\textbf{Parámetros dinámicos del carro-péndulo} - Estos son los valores de parámetros utilizados en el diseño y las simulaciones, corresponden a los valores reales.}
-\label{tab:tabla}                              %etiqueta para referencia
-\end{table}
+ 
+void botones1(){ 
+  myGLCD.setFont(BigFont); 
+  for (x=0; x<3; x++)
+  {
+    myGLCD.setColor(0, 0, 255);
+    myGLCD.fillRoundRect (200, 10+(x*55), 310, 60+(x*55));
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (200, 10+(x*55), 310, 60+(x*55));
+  }
+for (x=0; x<2; x++)
+  {
+    myGLCD.setColor(0, 0, 255);
+    myGLCD.fillRoundRect (10+(x*155), 175, 155+(x*155), 225);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (10+(x*155), 175, 155+(x*155), 225);
+  }
+  myGLCD.setBackColor(0, 0, 255);
+  myGLCD.print("ON 2", 220 , 30);
+  myGLCD.print("ON 3", 220 , 85);
+  myGLCD.print("ON 1", 220 , 140);
+  //myGLCD.print("UART ON", 185 , 195);
+  myGLCD.print("V SET", 40 , 190);
+  myGLCD.print("CONFIG", 190 , 190);
+  }
+  
+void marco1(int x1, int y1, int x2, int y2){ 
+  myGLCD.setColor(255, 0, 0);
+  myGLCD.drawRoundRect (x1, y1, x2, y2);
+  while (myTouch.dataAvailable())
+  myTouch.read();
+  myGLCD.setColor(255, 255, 255);
+  myGLCD.drawRoundRect (x1, y1, x2, y2);
+}
+\end{verbatim}
 
-\blindtext
+Mediante el código anterior podemos, con ciertas variables, dibujar nuestra área de trabajo en la pantalla, obteniendo como resultado el dibujo de la figura XXX.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{Capitulo3/figs/pantalla1.jpg}
+\caption{Pantalla 1}
+\end{figure}
+
+Mediante esta configuración de dibujo partimos para el código de configuración del TOUCH para lo que llamamos la "pantalla 1".
+
+\begin{verbatim}
+void touch1(){ 
+      myTouch.read();
+      x=myTouch.getX();
+      y=myTouch.getY();
+      if((x>=200) && (x<=310))
+      {
+        if((y>=10) && (y<=60)){ //boton ON 2
+          marco1(200,10,310,60);
+        }
+        if((y>=65) && (y<=115)){ //boton ON 3
+          marco1(200,65,310,115);
+        }
+        if((y>=120) && (y<=170)){ //boton ON 1
+          marco1(200,120,310,170);
+        }
+      }
+      if((y>=175) && (y<=225))
+      {
+        if((x>=10) && (x<=155)){ //boton V SET
+          marco1(10,175,155,225);
+          pantalla =2;
+        }
+      
+        if((x>=165) && (x<=310)){ //boton config
+          marco1(165,175,310,225);
+        }
+}
+}
+\end{verbatim}
+
+Observamos que el despliegue de estas funciones solo están conformadas por elementos "if" y el llamado a funciones descritas por nosotros se despliegan de la misma manera, resaltando esto debido a que se desarrollo un código lo mas eficientemente posible en cuestión de tiempos de ejecución. \\
+
+Dividimos el dibujo de la "pantalla 2" y las funciones para el touch de la pantalla dos en los siguientes codigos:\\
+
+Funciones dibujo pantalla 2
+
+\begin{verbatim}
+void botones2(){
+  myGLCD.setBackColor(0,0,255);
+  for (x=0; x<4; x++) //botones +
+  {
+    myGLCD.setColor(0, 0, 255);
+    myGLCD.fillRoundRect (10+(x*60), 10, 60+(x*60), 60);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (10+(x*60), 10, 60+(x*60), 60);
+    myGLCD.print("+", 27+(x*60), 27);
+  }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                          Subsección
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  for (x=0; x<4; x++) //botones -
+  {
+    myGLCD.setColor(0, 0, 255);
+    myGLCD.fillRoundRect (10+(x*60), 170, 60+(x*60), 220);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (10+(x*60), 170, 60+(x*60), 220);
+    myGLCD.print("-", 27+(x*60), 190);
+  }
 
-\subsection{Otra subsección}
+  for (x=0; x<4; x++) //blanco 
+  {
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.fillRoundRect (10+(x*60), 70, 60+(x*60), 160);
+    myGLCD.setColor(255, 0, 0);
+    myGLCD.drawRoundRect (10+(x*60), 70, 60+(x*60), 160);
+  //  myGLCD.print(p, 27+(x*60), 170);
+  }
 
-\Blindtext
+  myGLCD.setColor(0, 0, 255); /// boton set
+   myGLCD.fillRoundRect(250,70,310,160);
+   myGLCD.setColor(255, 255, 255);
+   myGLCD.drawRoundRect(250,70,310,160);
+   myGLCD.print("set" , 255,105);
+  }
+\end{verbatim}
+
+Podemos observar el resultado del dibujo en la figura XXX.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{Capitulo3/figs/pantalla2.jpg}
+\caption{Pantalla 2}
+\end{figure}
+
+ Funciones TOUCH pantalla 2:
+\begin{verbatim}
+void touch2(){
+    myTouch.read();
+      x=myTouch.getX();
+      y=myTouch.getY();
+
+      if((y>=10) && (y<=60)){ /////////////botones +
+        if((x>=10) && (x<=60)){ //boton + kilos
+          marco1(10,10,60,60);
+          
+          myGLCD.setFont(SevenSegNumFont); 
+          suma(1,0,0,0,0,0);
+        }
+
+        if((x>=70) && (x<=120)){ //boton + centena
+          marco1(70,10,120,60);
+          suma(0,1,0,0,0,0);
+          
+          
+        }
+
+        if((x>=130) && (x<=180)){ //boton + decena
+          marco1(130,10,180,60); 
+          suma(0,0,1,0,0,0);
+          
+        }
+
+        if((x>=190) && (x<=240)){ //boton + unidad
+          marco1(190,10,240,60);
+          suma(0,0,0,1,0,0);
+          
+        }
+        }
+        if((y>=170) && (y<=220)){ ////////////botones -
+          
+        if((x>=10) && (x<=60)){ //boton + kilos
+          marco1(10,170,60,220);
+          suma(1,0,0,0,0,1);
+        }
+
+        if((x>=70) && (x<=120)){ //boton + centena
+          marco1(70,170,120,220);
+          suma(0,1,0,0,0,1);
+        }
+
+        if((x>=130) && (x<=180)){ //boton + decena
+          marco1(130,170,180,220);
+          suma(0,0,1,0,0,1);
+        }
+
+        if((x>=190) && (x<=240)){ //boton + unidad
+          marco1(190,170,240,220);
+          suma(0,0,0,1,0,1);
+        }
+        }
+
+        if((x>=250) && (x<=310)){ // boton SET
+
+          if((y>=70) && (y<=160)){
+            marco1(250,70,310,160);
+            pantalla =1;
+            if(vout >=0 && vout <=1000){
+            Serial.println(vout);
+            }
+            }    
+        }
+    }
+\end{verbatim}
+
+Una vez que definimos las funciones a utilizar para estas dos primeras pantallas proseguimos a las funciones de cálculos y procesamiento de datos. Para ello hemos creado una funcion capaz de configurar el voltaje de salida, manteniendo una comunicación UART hacia un micro-controlador. 
+
+\begin{verbatim}
+void suma(int x1,int x2,int x3,int x4, int k, int w){ 
+          myGLCD.setFont(SevenSegNumFont);
+          myGLCD.setColor(0, 0, 0);
+          myGLCD.setBackColor(255,255,255);
+          int q;  
+          if(x1 == 1){//algoritmo kilos
+            if(w==0 && p<9){
+            vout=vout+1000;
+            p=p+1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+            }
+            if(w==1 && p>0){
+            vout=vout-1000;
+            p=p-1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+              
+              }
+            myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
+          }
+          if(x2 == 1){//algoritmo centena
+            if(w==0 && p1<9){
+            vout=vout+100;
+            p1=p1+1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+            }
+            if(w==1 && p1>0){
+            vout=vout-100;
+            p1=p1-1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+              
+              }
+            myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
+          }
+          if(x3 == 1){//algoritmo decenas
+            if(w==0 && p2<9){
+            vout=vout+10;
+            p2=p2+1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+            }
+            if(w==1 && p2>0){
+            vout=vout-10;
+            p2=p2-1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+              
+              }
+            myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
+            //Serial.println(vout);
+          }
+          if(x4 == 1){//algoritmo unidades
+            if(w==0 && p3<9){
+            vout=vout+1;
+            p3=p3+1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+            }
+            if(w==1 && p3>0){
+            vout=vout-1;
+            p3=p3-1;
+            q=p*x1+p1*x2+p2*x3+p3*x4;
+            sprintf(dato,"%d",q);
+              
+              }
+            myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
+          }
+          
+          if(k==1){
+            for(x=0 ; x<4 ; x++){
+              sprintf(dato,"%d",p);
+              myGLCD.print(dato,20,90);
+              sprintf(dato,"%d",p1);
+              myGLCD.print(dato,80,90);
+              sprintf(dato,"%d",p2);
+              myGLCD.print(dato,140,90);
+              sprintf(dato,"%d",p3);
+              myGLCD.print(dato,200,90);
+              }
+            }
+    }
+\end{verbatim}
+
+Una segunda funcion es la encargada de recibir los datos procedentes del segundo micro-controlador, encargado de leer los datos de sensores y preparar el funcionamiento del inversor. 
+
+\begin{verbatim}
+void vinput(){
+  
+      str = Serial.readStringUntil('\n');
+      for (int i = 0; i < dataLength ; i++)
+      {
+         int index = str.indexOf(separator);
+         data[i] = str.substring(0, index).toInt();
+         str = str.substring(index + 1);
+      }
+      
+      for (int i = 0; i < sizeof(data) / sizeof(data[0]); i++)    
+      {
+        Serial.print(data[i]); 
+      Serial.print('\t');} 
+      Serial.println();
+      
+                  myGLCD.setFont(BigFont);
+                  sprintf(vin, "%d",data[0]);
+                  sprintf(current, "%d", data[1]);
+                  myGLCD.print("     " ,10,50);
+                  myGLCD.print("     " ,10,70);
+                  myGLCD.setBackColor(0,0,0);
+                  myGLCD.setColor(255,255,255);
+                  myGLCD.print(vin ,10,50);
+                  myGLCD.print(current ,10,70);
+  }
+\end{verbatim}
+
+Mediante las funciones anteriores podemos mantener una comunicacion INPUT y OUTPUT mediante UART, con el segundo micro-controlador, y mantener un senseo de las variables necesarias para el correcto funcionamiento de la fuente de alto voltaje. Ahora mostramos en cuerpo del programa principal, encargado del control de cada una de las funciones anteriores.
+
+\begin{verbatim}
+void loop(){
+
+//pantalla 1
+if(pantalla == 1){
+    myGLCD.fillScr(VGA_BLACK);
+    botones1();
+    myGLCD.setFont(BigFont); 
+    char set[25];
+    sprintf(set, "%d",vout);
+    myGLCD.setBackColor(0,0,0);
+    myGLCD.print(set ,10,100);
+    myGLCD.print("V set" ,100,100);
+    myGLCD.print("V out" ,100,50);
+    myGLCD.print("mA out" ,100,70);
+    myGLCD.print(vin ,10,50);
+    myGLCD.print(current ,10,70);
+    while(true)
+         {
+          if(myTouch.dataAvailable())touch1();
+          if(pantalla == 2 )break;
+
+      if (Serial.available()>0){vinput();}
+            }
+            }
+          
+        
+//pantalla 2
+if(pantalla == 2){
+  myGLCD.fillScr(VGA_BLACK);
+  
+  botones2();
+  
+  suma(0,0,0,0,1,0);
+  while(true)
+    {
+      if(myTouch.dataAvailable())touch2();
+      if(pantalla == 1)break;
+    }
+  }
+
+
+  }
+\end{verbatim}
