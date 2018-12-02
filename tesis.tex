@@ -24,7 +24,6 @@
 % "fi_negro" Facultad de ingenieria en color negro
 % "fc_azul" Facultad de ciencias en color azul
 % "fc_negro" Facultad de ciencias en color negro
-% Se agradecen sus aportaciones de escudos a jebus.velazquez@gmail.com
 
 \degree{Licenciado en Electrónica}       % Carrera
 \director{Carlos Duarte Galván \\ Christian Valerio Lizárraga}                  % Director de tesis
@@ -100,13 +99,13 @@
 %                   APÉNDICES                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\include{Apendice1/Apendice1}               % Colocar los circuitos, manuales, código fuente, pruebas de teoremas, etc.
+%\include{Apendice1/Apendice1}               % Colocar los circuitos, manuales, código fuente, pruebas de teoremas, etc.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   REFERENCIAS                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % existen varios estilos de bilbiografía, pueden cambiarlos a placer
-\bibliographystyle{apalike} % otros estilos pueden ser abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
+%\bibliographystyle{apalike} % otros estilos pueden ser abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
 
 %El formato trae otros estilos, o pueden agregar uno que les guste:
 %\bibliographystyle{Latex/Classes/PhDbiblio-case} % title forced lower case
@@ -114,7 +113,15 @@
 %\bibliographystyle{Latex/Classes/PhDbiblio-url} % bold + www link if provided
 %\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
 
-\bibliography{Bibliografia/referencias}             % Archivo .bib
+%\include{referencia2}% Archivo .bib
+\begin{thebibliography}{2}
+  \bibitem{ProyectoLNLS5} Línea de luz Sincrotrón en México
+Acelerador lineal de electrones. \url{https://www.fis.cinvestav.mx/~sincrotron/downloads/ProyectoLNLS5.pdf}
+
+\bibitem{ININ}Instituto Nacional de Investigaciones Nucleares. FUSIÓN NUCLEAR. \url{http://www.inin.gob.mx/temasdeinteres/fusionnuclear.cfm}
+
+\bibitem{IPC 2152}Standard for Determining Current-Carrying Capacity In Printed Board Design. \url{http://electronica.ugr.es/~amroldan/cursos/2014/pcb/modulos/temas/IPC2152.pdf}
+\end{thebibliography}
 
 
 \end{document}

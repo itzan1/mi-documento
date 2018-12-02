@@ -20,13 +20,13 @@
 
 \chapter{Resumen} % section headings are printed smaller than chapter names
 
-El trabajo de esta tesis consiste en el desarrollo de una fuente de alto voltaje y bajo ruido para la implementación en un acelerador de partículas tipo lineal, mediante la utilización  de un sistema de inversor de voltaje y un rectificador del tipo multiplicador, Cockcroft–Walton, así como también un control del sistema con lazo cerrado e interfaces gráficas para el usuario.\\
+El trabajo de esta tesis consiste en el desarrollo de una fuente de alto voltaje y bajo ruido para la implementación en un acelerador de partículas tipo lineal, mediante la utilización  de un sistema de inversor de voltaje y un rectificador del tipo multiplicador, Cockcroft–Walton, así como también la introducción a un control del sistema con lazo cerrado e interfaces gráficas para el usuario.\\
 
 Durante el desarrollo del sistema de alto voltaje se realizo el diseño, la simulación, la fabricación y la validación de los datos proporcionados por el sistema, tomando en cuenta la optimización en el uso de componentes para obtener una reducción en el costo de la fabricación del sistema de alto voltaje.\\
 
 Obteniendo como resultado un sistema de bajo costo, el cual puede generar alto voltaje de mediana potencia y bajo ruido, obteniendo una comparación entre fuentes de alto voltaje comerciales implementadas en aceleradores de partículas y reactores nucleares de baja potencia. \\
 
-Como resultado de esta tesis se muestra una comparación entre el diseño realizado y una fuente de alto voltaje comercial llamada... las cuales han sido sometidas a cargas similares a las utilizadas en aceleradores de partículas.\newpage
+Como resultado de esta tesis se muestra una comparación entre el diseño realizado y una fuente de alto voltaje comercial de la marca ``CAEN'' las cuales han sido sometidas a cargas similares a las utilizadas en aceleradores de partículas.\newpage
 
 
 
@@ -34,15 +34,15 @@ Como resultado de esta tesis se muestra una comparación entre el diseño realiz
 \section{Antecedentes y justificación}
 
 
-Uno de los mayores avances tecnológicos de la humanidad ha sido el desarrollo de aceleradores de partículas, ya que tienen grandes aplicaciones en las áreas médicas, militares y alimentarias. Podemos hacer referencia, en medicina, a un echo actual, el veinte porciento de los fármacos radiactivos que se inyectan en los pacientes son producidos en aceleradores del tipo Ciclotrones. Los cuales aceleran los protones típicamente a energías de 40 MeV. Estos aceleradores son diseñados para funcionar de manera confiable produciendo haces de alta intensidad con un mínimo de intervención humada, he allí la meta en esta tesis.\\
+Uno de los mayores avances tecnológicos de la humanidad ha sido el desarrollo de aceleradores de partículas, ya que tienen grandes aplicaciones en las áreas médicas, militares y alimentarias. Podemos hacer referencia, en medicina, a un echo actual, el veinte porciento de los fármacos radiactivos que se inyectan en los pacientes son producidos en aceleradores del tipo sincrotrón \cite{ProyectoLNLS5}. Los cuales aceleran los protones típicamente a energías de 40 MeV. Estos aceleradores son diseñados para funcionar de manera confiable produciendo haces de alta intensidad con un mínimo de intervención humada, he allí la meta en esta tesis.\\
 
-En el pasado la radio terapia hacia uso extendido de agujas de radio o rayos gamma de cobalto radioactivo, la desventaja de este tipo de maquinaria es que tienen que tener un funcionamiento ininterrumpido, y con el pasar del tiempo su energia decae y es necesario cambiar la fuente radioactiva y resguardarla del medio ambiente, la cual representa un peligro para la humanidad y un problema sin solución actual, ya que la contaminación es latente.\\
+En el pasado la radio terapia utilizaba agujas de radio o rayos gamma de cobalto radioactivo, la desventaja de este tipo de maquinaria es que tienen que tener un funcionamiento ininterrumpido, y con el pasar del tiempo su energía decae y es necesario cambiar la fuente radioactiva y resguardarla del medio ambiente, la cual representa un peligro para la humanidad y un problema sin solución actual, ya que la contaminación es latente.\\
 
-Otro de los tantos ejemplos de las aplicaciones de estas tecnologías es en la rama de la fusión nuclear, ya que estas requieren fuentes de alto voltaje para su funcionamiento, en Mexico existe desarrollo en esta área. En la parte experimental, en 1978 se inició un proyecto mexicano de fusión termonuclear y, en 1983, se propuso el diseño de una pequeña máquina experimental llamada “Novillo”. Este (pequeño) Tokamak fue diseñado y construido por trabajadores mexicanos del ININ en el Centro Nuclear de Salazar, México. La continuación de los trabajos de investigación en el Tokamak Novillo, permitirá que el país se reincorpore a una de las áreas de investigación en Física de Plasmas más prometedoras para el futuro energético. La infraestructura existente y la experiencia adquirida, permitirán contribuir al desarrollo de una futura aplicación de la energía nuclear de fusión, la cual será una fuente alterna de energía en el presente siglo. La continuación de las investigaciones en fusión permitirá a los investigadores del ININ, el ingreso a programas bajo el auspicio del Organismo Internacional de Energía Atómica y a un futuro mediano, el ingreso a los trabajos relacionados con los proyectos ITER e IGNITOR. (fuente: http://www.inin.gob.mx/temasdeinteres/fusionnuclear.cfm).\\
+Otro de los tantos ejemplos de las aplicaciones de estas tecnologías es en la rama de la fusión nuclear, ya que estas requieren fuentes de alto voltaje para su funcionamiento, en Mexico existe desarrollo en esta área. En la parte experimental, en 1978 se inició un proyecto mexicano de fusión termonuclear y, en 1983, se propuso el diseño de una pequeña máquina experimental llamada “Novillo”. Este (pequeño) Tokamak fue diseñado y construido por trabajadores mexicanos del ININ en el Centro Nuclear de Salazar, México. La continuación de los trabajos de investigación en el Tokamak Novillo, permitirá que el país se reincorpore a una de las áreas de investigación en Física de Plasmas más prometedoras para el futuro energético. La infraestructura existente y la experiencia adquirida, permitirán contribuir al desarrollo de una futura aplicación de la energía nuclear de fusión, la cual será una fuente alterna de energía en el presente siglo. La continuación de las investigaciones en fusión permitirá a los investigadores del ININ, el ingreso a programas bajo el auspicio del Organismo Internacional de Energía Atómica y a un futuro mediano, el ingreso a los trabajos relacionados con los proyectos ITER e IGNITOR.\cite{ININ}.\\
 
 Bajo la premisa de la ventaja del desarrollo tecnológico de los aceleradores de partículas para nuestro país, es necesario comenzar los estudios en estos temas, ya que las posibilidades de aplicación son bastas y de suma importancia. Con el pasar del tiempo las aplicaciones han aumentado considerablemente, desde ramas de la medicina como ya lo mencionamos, hasta sistemas de aislamiento por campo magnético de plasmas y sistemas para aumentar temperaturas hasta puntos de fusión para sistemas de generación de energía en plantas de fusión nuclear, los mexicanos han apostado por la participación en el desarrollo de estas tecnologías.\\
 
-Este trabajo de tesis pretende dar un pequeño acercamiento a temas relacionados con los ya antes mencionados, mediante el desarrollo de la instrumentación de una fuente de alto voltaje para un acelerador de electrones lineal, el cual se divide en varias etapas de desarrollo, la primera es el sistema de fuentes, nos basaremos en el desarrollo echo por Cockroft-Walton (CW) (1932) combinado con un inversor de voltaje a alta frecuencia incidente en un embobinado de ignición controlado digital mente mediante un microcontrolador a lazo cerrado, el cual cuenta con una comunicación PC-HPW (HIGH POWER SUPPLY), permitiendo al usuario, mediante una retroalimentación, configurar la fuente de voltaje a los parámetros deseados, así como también guardar un registro en las variaciones de corriente y voltaje a la que nuestra fuente es sometida. \\
+Este trabajo de tesis pretende dar un pequeño acercamiento a temas relacionados con los ya antes mencionados, mediante el desarrollo de la instrumentación de una fuente de alto voltaje para un acelerador de electrones lineal, el cual se divide en varias etapas de desarrollo, la primera es el sistema de fuentes, nos basaremos en el desarrollo echo por Cockroft-Walton (CW) (1932) combinado con un inversor de voltaje a alta frecuencia incidente en un embobinado de ignición controlado digital mente mediante un microcontrolador a lazo cerrado, el cual cuenta con una comunicación PC-HPS (HIGH POWER SUPPLY), permitiendo al usuario, mediante una retroalimentación, configurar la fuente de voltaje a los parámetros deseados, así como también guardar un registro en las variaciones de corriente y voltaje a la que nuestra fuente es sometida. \\
 \newpage
 
 
@@ -51,8 +51,7 @@ Este trabajo de tesis pretende dar un pequeño acercamiento a temas relacionados
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Planteamiento del problema}
-Hoy en día el desarrollo de tecnologías que involucran aceleradores de partículas esta cada vez mas presentes en la vida diaria, en México ya existe participación en desarrollo de gran nivel, como lo es el Instituto de Investigaciones Nucleares (ININ) y distintos laboratorios de gran importancia en nuestro país, lo cual brinda la posibilidad a los investigadores
-de involucrarse en este tipo de desarrollo para poder satisfacer las necesidades
+Hoy en día el desarrollo de tecnologías que involucran aceleradores de partículas esta cada vez mas presentes en la vida diaria, en México ya existe participación en desarrollo de gran nivel, como lo es el Instituto de Investigaciones Nucleares (ININ) y distintos laboratorios de gran importancia en nuestro país, lo cual brinda la posibilidad a los investigadores de involucrarse en este tipo de desarrollo para poder satisfacer las necesidades
 que se requieren.\\
 
 El uso de aceleradores de partículas para aplicaciones medicas ha tenido gran auge en los últimos años, ya que las ventajas que tienen sobre las fuentes radioactivas son bastas, este echo da la oportunidad a las universidades de preparar expertos en estos temas y diseñar maquinaria a medida, que cumpla las exigencias de la región. Aunque ya existen trabajos referentes a fuentes de alto voltaje, generación de electrones mediante telurio y detectores de estos mismos, la curva de aprendizaje necesaria para especializarse en estos temas es grande y dejar un precedente en nuestro país es necesaria y muy útil, es por ello que estas
@@ -64,7 +63,7 @@ investigaciones son de gran importancia.
 
 \subsection{Objetivo General}
 
-Este trabajo tiene por objetivo desarrollar una fuente de alto voltaje de hasta 20 KV y 180 W de potencia, capaz de trabajar con los requerimientos necesarios para un acelerador de partículas lineal.
+Este trabajo tiene por objetivo desarrollar una fuente de alto voltaje de hasta 2 KV y 10 W de potencia, capaz de trabajar con los requerimientos necesarios para alimentar fotomultiplicadores utilizados en un acelerador de partículas lineal.
 
 \subsection{Objetivo Particular}
 
@@ -75,11 +74,12 @@ Este trabajo tiene por objetivo desarrollar una fuente de alto voltaje de hasta 
 \item Diseño de fuente de voltaje a 12V, 180W y bajo ruido.
 \item Simulación de fuente de voltaje a 12V.
 \item Construcción de fuente de voltaje 12V.
-\item Interfaces gráficas para control de inversor.
 \item Diseño de driver generador de PWM bipolar para inversor.
 \item Simulación de driver generador de PWM bipolar
 \item Construcción de driver generador PWM bipolar.
-\item Diseño de interfaces graficas para control de inversor
+\item Diseño de interfaces gráficas para control de inversor
+\item Mediciones y comparaciones entre fuentes comerciales.
+\item Análisis de costos
 \end{itemize}  
 \end{itemize}
 
