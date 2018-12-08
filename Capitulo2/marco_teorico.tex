@@ -70,12 +70,64 @@ La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el c
  
  De manera independiente podemos analizar cada aspecto presentado en la imagen, el cual, de uno en uno se va realizando un análisis para definir los valores y topologias que satisfacen las necesidades requeridas. Tomando en cuenta lo mencionado podemos comenzar a definir las ecuaciones y modelos existentes.
 
+\subsection{Etapa de transformador monofasico}
+
+Esta etapa consta básicamente de un transformador que esta formado por un bobinado primario y uno o varios bobinados secundario, que tiene como función principal
+convertir la energía eléctrica alterna de la red, en energía alterna de otro nivel de voltaje, por medio de la acción de un campo magnético. Ademas provee una aislación galvánica entre la entrada y la salida.\\
+
+Los transformadores son máquinas estáticas con dos devanados, de corriente alterna enrollados sobre un núcleo magnético. El devanado por donde entra energía al transformador se denomina primario y el devanado por donde sale energía hacia las cargas que son alimentadas por el transformador se denomina secundario. El devanado primario tiene $N_{1}$ espiras y el secundario tiene $N_{2}$ espiras. El circuito magnético de esta máquina lo constituye un núcleo magnético sin entrehierros, el cual no está realizado con hierro macizo sino con chapas de acero al silicio apiladas y aisladas entre sí. De esta manera se reducen las pérdidas magnéticas del transformador.\\
+
+Al inducir una corriente sobre cualquiera de los dos devanados se genera un flujo alterno en el núcleo magnético. Este flujo magnético se describe mediante la Ley de Faraday y produce una fuerza electromotriz que da lugar a una tensión $V_{2}$ en los bornes de dicho devanado.\\
+
+Normalmente, para un transformador reductor o un transformador elevador tienen dos devanados que se denominan de alta tension y de baja tensión, siendo bobina primaria y bobina secundaria respectivamente. El transformador es una maquina reversible. Un mismo transformador puede alimentarse por el lado A.T. y funcionar como transformador reductor o alimentarse por el lado de B.T. y actuar como un transformador elevador.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{capitulo3/figs/trans.png}
+\caption{ Principio de funcionamiento de un transformador monofásico.}
+\end{figure}
+
+En la figura 2.5 podemos observar los símbolos mas comunes que representan al transformador. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{capitulo3/figs/simbolos.png}
+\caption{ Principio de funcionamiento de un transformador monofásico.}
+\end{figure}
+
+Ahora podemos definir los valores asignados o nominales para el diseño de un transformador.\\
+
+Las \textbf{tensiones asignadas o nominales} ($V_{1}$, $V_{2}$) son aquellas para las que se ha diseñado el transformador, estas tenciones son proporcionales al numero de espiras ($N_{1}$,$N_{2}$) de cada devanado.\\
+
+La \textbf{potencia asignada o nominal} ($S_{N}$) la cual permite un funcionamiento sin calentamientos peligrosos en su funcionamiento normal. Cabe mencionar que los dos devanados siempre tendrán la misma potencia asignada.\\
+
+Las \textbf{corrientes nominales o asignadas} ($I_{1N}$,$I_{2N}$) se obtienen a partir de las tensiones asignadas y de la potencia asignada. Así, en un transformador monofásico se tiene que:
+
+\begin{equation}\label{eq:ej}
+S_{N}=V_{1N}*I_{1N}=V_{2N}*I_{2N}
+\end{equation}
+La \textbf{relación de transformación} (m) es el cociente entre las tensiones asignadas del primario y del secundario: 
+
+\begin{equation}\label{eq:ej}
+m=\dfrac{V_{1N}}{V_{2N}}
+\end{equation}
+
+Estudiando superficialmente los aspectos de construcción de un transformador, mediante estas ecuaciones podemos comenzar con la construcción y diseño. Debemos de considerar las potencias necesarias para nuestro proyecto y mediante ellas calcular el ancho del cobre y el tamaño del entre-hierro.
+
+\subsection{Rectificador monofasico de onda completa}
+\subsection{Filtros}
+El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectifcado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de riso o variación de voltaje de CA.\\
+
+Para calcular el voltaje de riso podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de cd leera solo el nivel promedio. El medidor de ca (RMS)leera solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el riso como:\\
+
+\begin{equation}
+r=\frac{voltaje\:  de\:  riso\:  (rms)}{voltaje\:  de\:  DC}=V_{cd}\cdot 100\%
+\end{equation}
+
 \newpage
 
 \section{Inversores de voltaje}
 
-\section{Bobina de ignición}
-das
 \section{Fuentes de alto voltaje mas comunes}
 
 
