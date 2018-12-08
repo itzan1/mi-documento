@@ -92,7 +92,7 @@ En la figura 2.5 podemos observar los símbolos mas comunes que representan al t
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{capitulo3/figs/simbolos.png}
-\caption{ Principio de funcionamiento de un transformador monofásico.}
+\caption{ Simbologia de un transformador monofásico.}
 \end{figure}
 
 Ahora podemos definir los valores asignados o nominales para el diseño de un transformador.\\
@@ -112,17 +112,72 @@ La \textbf{relación de transformación} (m) es el cociente entre las tensiones 
 m=\dfrac{V_{1N}}{V_{2N}}
 \end{equation}
 
-Estudiando superficialmente los aspectos de construcción de un transformador, mediante estas ecuaciones podemos comenzar con la construcción y diseño. Debemos de considerar las potencias necesarias para nuestro proyecto y mediante ellas calcular el ancho del cobre y el tamaño del entre-hierro.
+Estudiando superficialmente los aspectos de construcción de un transformador, mediante estas ecuaciones podemos comenzar con la construcción y diseño. Debemos de considerar las potencias necesarias para nuestro proyecto y mediante ellas calcular el ancho del cobre y el tamaño del entre-hierro.\cite{transformador}
 
 \subsection{Rectificador monofasico de onda completa}
-\subsection{Filtros}
-El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectifcado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de riso o variación de voltaje de CA.\\
 
-Para calcular el voltaje de riso podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de cd leera solo el nivel promedio. El medidor de ca (RMS)leera solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el riso como:\\
+El circuito rectificador de onda completa enera una señal de corriente directa (D.C.) a partir de una señal de corriente alterna
+(A.C.) con todos los semiciclos de la señal, invirtiendo todos los semiciclos de una misma polaridad, para convertirlos a la otra. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{capitulo3/figs/puente.png}
+\caption{ Simbologia de un transformador monofásico.}
+\end{figure}
+
+Para calcular el voltaje de D.C. que obtendremos podemos utilizar la siguiente ecuación\cite{rectificador}
+
+
+\begin{equation}\label{eq:ej}
+V_{cd}=2*0.636V_{m}
+\end{equation}
+
+
+\subsection{Filtros}
+El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectificado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de riso o variación de voltaje de CA.\\
+
+Para calcular el voltaje de riso podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de cd leerá solo el nivel promedio. El medidor de ca (RMS) leerá solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el riso como:\\
 
 \begin{equation}
 r=\frac{voltaje\:  de\:  riso\:  (rms)}{voltaje\:  de\:  DC}=V_{cd}\cdot 100\%
 \end{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{capitulo3/figs/risado.png}
+\caption{ Forma de onda de un voltaje filtrado que muestra voltajes de dc y de rizo.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{capitulo3/figs/filtro.png}
+\caption{ Forma de onda de un voltaje filtrado que muestra voltajes de dc y de rizo.}
+\end{figure}
+
+Para nuestro caso utilizaremos un filtro de capacitor. Se conecta un capacitor en la salida del rectificador y se obtiene un voltaje de dc a través del capacitor como se muestra en la figura 2.7 y 2.8. Podemos calcular el \textbf{voltaje del riso} que obtendremos mediante la ecuación:
+
+\begin{equation}
+V_{r}(rms)=\dfrac{I_{cd}}{4\sqrt{3}fC}=\dfrac{2.4V_{cd}}{R_{L}C}
+\end{equation}
+
+Con la ecuación 2.4 podemos intuir y definir la expresion para el \textbf{rizo} de la forma de onda de salida de un rectificador de onda completa y el circuito de capacitor de filtrado:
+
+\begin{equation}
+r=\dfrac{V_{r}I_{cd}}{CV_{cd}}*100\%=\dfrac{2.4}{R_{L}C}
+\end{equation}
+\subsection{Regulador}
+
+Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto al a salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de dc cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
+
+
+$$regulación de voltaje = \dfrac{Voltaje sin carga - Voltaje con carga}{voltaje con carga}$$
+\begin{equation} 
+ \%V.R. = \dfrac{V_{NL}-V_{FL}}{V_{FL}}*100\%
+\end{equation}
+
+
+
+
 
 \newpage
 
