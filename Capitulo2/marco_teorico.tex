@@ -167,10 +167,10 @@ r=\dfrac{V_{r}I_{cd}}{CV_{cd}}*100\%=\dfrac{2.4}{R_{L}C}
 \end{equation}
 \subsection{Regulador}
 
-Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto al a salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de dc cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
+Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto a la salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de dc cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
 
 
-$$regulación de voltaje = \dfrac{Voltaje sin carga - Voltaje con carga}{voltaje con carga}$$
+$$regulacion de voltaje = \dfrac{Voltaje sin carga - Voltaje con carga}{voltaje con carga}$$
 \begin{equation} 
  \%V.R. = \dfrac{V_{NL}-V_{FL}}{V_{FL}}*100\%
 \end{equation}
@@ -183,8 +183,83 @@ $$regulación de voltaje = \dfrac{Voltaje sin carga - Voltaje con carga}{voltaje
 
 \section{Inversores de voltaje}
 
+Los convertidores cd a ca se conocen como inversores. La función de un inversor es cambiar un voltaje de entrada de cd a un voltaje simétrico de salida de ca de magnitud y frecuencia deseada. El voltaje de salida podría ser fijo o variable a una frecuencia fija o variable. se puede obtener un voltaje de salida variable si se varia el voltaje de cd de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de cd es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varié, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de ca al voltaje de entrada de cd.\\
+
+Los inversores se pueden clasificar amplia mente en dos tipos: inversores monofasicos e inversores trifasicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo BJT, MOSFET, BJT, IGBT, SIT, GTO. Por lo general estos inversores utilizan señales de control de PWM para producir un voltaje de salida de CA. Un inversor se conoce como inversor alimentado por voltaje (VFI) si el voltaje de entrada permanece constante; inversor alimentado por corriente (CFI) si el voltaje de entrada permanece constante, e inversor enlazado en cd variable si el voltaje de entrada es controlable. Si al voltaje o a la corriente de salida del inversor se le hace pasar a través de cero al crear un circuito LC resonante, a este tipo de inversores se le conoce como inversor de pulso resonante, y tiene vastas aplicaciones en la electrónica de potencia. \\
+
+\subsection{Parametros de desempeño de un inversor}
+
+El voltaje de entrada a un inversor es de cd y el voltaje de salida de ca. Idealmente la salida debiera de ser una onda sinusoidal pura, pero el voltaje de salida de un inversor practico contiene armónicos o rizos como se muestra en l figura 2.7. El inversor consume corriente de la fuente de entrada de cd solo cuando el inversor conecta la carga a la fuente de suministro y a corriente de entrada no es de cd pura, sino que contiene armónicos. Por lo común la calidad de un inversor se evalúa en función de los siguientes parámetros de desempeño:\\
+
+La potencia de salida esta dada por \begin{equation}
+P_{ca}=I_{0}V_{0}COS\theta
+\end{equation}
+\begin{equation}
+= I_{0}^{2}R
+\end{equation}
+
+Donde $V_{0}$ e $I_{0}$ son el voltaje y corriente rms de la carga, $\theta$ es en angulo de la impedancia de la carga y R es la resistencia de la carga.\\
+
+La potencia de entrada de ca del inversor es:\\
+
+\begin{equation}
+P_{S}=I_{S}V_{S}
+\end{equation}
+
+donde $V_{S}$ e $I_{S}$ son el voltaje y la corriente promedio de entrada.\\
+
+El contenido de riso rms de la corriente de entrada es:
+
+\begin{equation}
+I_{R}=\sqrt{I_{I}^{2}-I_{S}^{2}}
+\end{equation}
+
+donde $I_{I}$ e $I_{S}$ son los valores rms y promedio de la corriente de suministro de cd.
+El factor de rizo de la corriente de entrada es: 
+
+\begin{equation}
+RF_{s}=\dfrac{I_{r}}{I_{s}}
+\end{equation}
+
+La eficiencia de potencia, la cual es la relación de la potencia de salida a la potencia de entrada, dependerá de las perdidas por conmutación, que a su vez dependen de la frecuencia de conmutación del inversor.\\
+
+Factor armonico del n-ésimo armonico (H$F_{n}$). El factor armonico (del n-ésimo armonico) que mide la contibuciónarmonca individual, se define como \begin{equation}
+HF_{n}=\dfrac{V_{on}}{V_{o1}}, \: para\; n>1
+\end{equation}
+
+donde $V_{O1}$ es el valor rms del componente fundamental y $V_{ob}$ es el valor rms del n-ésimo componente armónico.\\
+
+Distorsion armonica total (THD). La distorsion armonica total, que mide la cercaia en cuanto a forma de onda y su componente fundamental, se define como: \begin{equation}
+THD=\dfrac{1}{V_{O1}}(\sum_{n=2,3,...}^{\infty }V_{on}^{2})
+\end{equation}
+
+Factor de distorsión (DF). 
 \section{Fuentes de alto voltaje mas comunes}
 
 
 \section{Multiplicador de voltaje Cockcroft-Walton}
-fgdgf
+Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en corriente directa (CD) mediante una entrada de de voltaje en corriente alterna (CA). El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 1.  
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{capitulo2/figs/circ.png}
+\caption{ Circuito en cascada Cockroft-walton de media onda.}
+\end{figure}
+El sistema multiplicador es bastante sencillo pero existen algunos temas imprescindibles los cuales tenemos que estudiar a profundidad, ya que el funcionamiento fundamental de un capacitor es la carga y descarga del mismo, es por ello que los parámetros del componente deben de ser calculados metódicamente.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{capitulo2/figs/riso.png}
+\caption{ Reproducción del voltaje $V_{o}$ y el riso $\delta$V en la carga del circuito.}
+\end{figure}
+
+\begin{equation}
+\delta V=\frac{i}{fC}\frac{n(n+1)}{4}
+\end{equation}
+
+\begin{equation}
+V\approx 2nV-\frac{2n^{3}}{3fC}
+\end{equation}
+
+Es por ello que mediante un análisis matemático debemos de hacer el calculo de la respectiva $\delta$ del mismo.\\
+No solamente la calidad de la salida depende de lo antes mencionado, ya que, para un correcto funcionamiento necesitamos realizar un sistema de entrada estable y constante. De aquí el siguiente estudio.

@@ -4,18 +4,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Metodología}
-En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en cuestión, diseño del sistema, fabricación del sistema, diseño del firmware del micro controlador, implementación y por último el método experimental.\\
+En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en cuestión; diseño del sistema, fabricación del sistema, diseño del firmware del micro controlador, implementación y por último el método experimental.\\
 
-El sistema esta compuesto por tres partes, hardware y firmware, el hardware se compone de tres partes como vemos en la figura 3.1: parte digital de control, inversor de voltaje y rectificador multiplicador. \\
+El sistema esta compuesto por dos partes, hardware y firmware, el hardware se compone de tres partes como vemos en la figura 3.1: parte digital de control, inversor de voltaje y rectificador multiplicador. \\
 
-Por otro lado el firmware consiste en los programas que realizan el control de la generación de alto voltaje por medio de dos micro-controladores, el primero se encarga del ambiente gráfico al que el usuario tiene acceso, el segundo realiza un senseo de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un DAC (Digital Analog Converter) el cual inside en el driver del inversor y controla la salida de alto voltaje. 
+Por otro lado el firmware consiste en los programas que realizan el control completo de la generación de alto voltaje por medio del desarrollo de un ambiente gráfico al que el usuario tiene acceso,  control para el senseo de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un ADC ( Analog to Digital Converter) a la salida de una devanado de baja en el transformador de alto voltaje el cual controla la salida de alto voltaje. Observemos de manera gráfica la topologia del sistema en la figura 3.1. 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=12
-cm]{Capitulo3/figs/figura1.png}
-\caption{Topologia de fuente de alto voltaje}
-\end{figure}
 
 
  % The \cite command functions as follows:
@@ -38,18 +32,29 @@ cm]{Capitulo3/figs/figura1.png}
 %                          Descripción de la planta                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diseño del hardware}
-El sistema de generación de alto voltaje esta dividido en una serie de subsistemas los cuales tienen una función especifica, dichos subsistemas se muestran en la figura 3.1.\\
 
-la figura 3.1 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también de el control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
 
+La figura 3.1 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también de el control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12
+cm]{Capitulo3/figs/diagrama.png}
+\caption{Topologia de fuente de alto voltaje}
+\end{figure}
 \subsection{Hardware de interface}
-Para el desarrollo de la interface gráfica se a utilizado un microcontrolador ATMEGA2560, implementado por la facilidad de programación y los tiempos cortos para la conclusión de este proyecto. Mediante su placa de desarrollo de prototipos se ha utilizado el hardware de dicha placa y ahorrado tiempo de desarrollo. \\
+Para el desarrollo de la interface gráfica se a utilizado un microcontrolador ATMEGA2560, implementado por la facilidad de programación y los tiempos cortos para la conclusión de este proyecto, así como también la implementación de una pantalla TFT-LCD ( Pantalla de cristal líquido de transistores de película fina) y comunicación UART como interfaces gráfica al usuario. Se ha utilizado el hardware de dicha placa y ahorrado tiempo de desarrollo. \\
 
-Para la parte del segundo micro-controlador se ha trabajado en el ATMEGA328, el cual mediante un sensor de corriente, una sonda de alto voltaje y un DAC7565 se controla el inversor de voltaje. 
 
-\subsection{Hardware de inversor de voltaje}
+\begin{figure}[H]
+\centering
+\includegraphics[width=9
+cm]{Capitulo3/figs/pantalla0.jpg}
+\caption{LCD-TFT para interface gráfica}
+\end{figure}
+\subsection{Hardware de fuente de voltaje 180w}
 
-Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de paso.
+Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de regulación positiva.
 
 \begin{figure}[H]
 \centering
@@ -57,8 +62,12 @@ Esta sección consiste en varias etapas de desarrollo, para ello primero se ha d
 \caption{Topologia de fuente de alto voltaje}
 \end{figure}
 
-Se ha simulado esta fuente de voltaje en el programa LTSPICE con la finalidad de encontrar el voltaje RMS teórico en nuestra salida con diferentes cargas, ya que se busca el menor riso posible en nuestra salida final. Podemos observar en las figuras nuestra distribución de error y mediante ellas podemos hacer una comparación con el sistema en físico.\\
-
+Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en la figura 3.4 con la finalidad de encontrar el voltaje RMS teórico en nuestra salida con diferentes cargas, ya que se busca el menor riso posible en nuestra salida final, ya que, en este punto el ruido sera amplificado cientos de veces. \\
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/SIMFUENTE.png}
+\caption{Simulación en LTSPICE fuente 180w}
+\end{figure}
 Mediante ROOT CERN se ha creado una distribución gaussiana del voltaje RMS para tres cargas diferentes, sin carga, a 9.6W y a 19.2w mediante estas mediciones podemos calcular la eficiencia de nuestra fuente de voltaje con la ecuacion XXX.\\
 
 [Poner aquí las ecuaciones y evaluarlas con los resultados de las simulaciones y de las mediciones]
