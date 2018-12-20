@@ -11,7 +11,7 @@
 
 Antes de comenzar con la fabricación de un diseño de PCBs se debe de considerar el tamaño de pistas necesarios para el manejo de corrientes para cada circuito desarrollado, por esa razón mediante un análisis se debe avanzar en el diseño.\\
 
-En la actualidad los requerimientos de corriente llevan a reducir el ancho de las pistas y espacios debido a que se desarrollan componentes cada vez más pequeños y sistemas igualmente más compactos, esto obliga al desarrollador a adaptarse a estos nuevos requerimientos.\\
+En la actualidad los desarrolladores llevan a reducir el ancho de las pistas y espacios, debido a que se desarrollan componentes cada vez más pequeños y sistemas igualmente más compactos, esto obliga a adaptarse a estos nuevos requerimientos.\\
 
 Para encontrar una solución a esta eventualidad es necesario recurrir a estudios en estos temas que nos permita acercarnos al límite y para ello debemos de considerar todos los parámetros que influyan en nuestro sistema, obteniendo así resultados más precisos. En nuestro caso nos basaremos en los gráficos publicados en el IPC2152 \cite{IPC 2152} ``Standard for Determining Current Carry Capacity in Printed Board Design'' en 2009, este estándar es ampliamente utilizado en muchos proyectos que requieran este tipo de análisis. \\
 
@@ -65,7 +65,7 @@ La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el c
 \begin{figure}[H]
  \centering
  \includegraphics[width=12cm]{capitulo2/figs/fuentelineal.jpg}
- \caption{estructura fuente lineal}
+ \caption{Estructura fuente lineal}
  \end{figure}
  
  De manera independiente podemos analizar cada aspecto presentado en la imagen, el cual, de uno en uno se va realizando un análisis para definir los valores y topologias que satisfacen las necesidades requeridas. Tomando en cuenta lo mencionado podemos comenzar a definir las ecuaciones y modelos existentes.
@@ -75,11 +75,11 @@ La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el c
 Esta etapa consta básicamente de un transformador que esta formado por un bobinado primario y uno o varios bobinados secundario, que tiene como función principal
 convertir la energía eléctrica alterna de la red, en energía alterna de otro nivel de voltaje, por medio de la acción de un campo magnético. Ademas provee una aislación galvánica entre la entrada y la salida.\\
 
-Los transformadores son máquinas estáticas con dos devanados, de corriente alterna enrollados sobre un núcleo magnético. El devanado por donde entra energía al transformador se denomina primario y el devanado por donde sale energía hacia las cargas que son alimentadas por el transformador se denomina secundario. El devanado primario tiene $N_{1}$ espiras y el secundario tiene $N_{2}$ espiras. El circuito magnético de esta máquina lo constituye un núcleo magnético sin entrehierros, el cual no está realizado con hierro macizo sino con chapas de acero al silicio apiladas y aisladas entre sí. De esta manera se reducen las pérdidas magnéticas del transformador.\\
+Los transformadores son máquinas estáticas con dos devanados, de corriente alterna enrollados sobre un núcleo magnético. El devanado por donde entra energía al transformador se denomina primario y el devanado por donde sale energía hacia las cargas que son alimentadas por el transformador se denomina secundario. El devanado primario tiene $N_{1}$ espiras y el secundario tiene $N_{2}$ espiras. El circuito magnético de esta máquina lo constituye un núcleo magnético sin entrehierros, el cual no está realizado con hierro macizo sino con chapas de acero silicio apiladas y aisladas entre sí. De esta manera se reducen las pérdidas magnéticas del transformador.\\
 
 Al inducir una corriente sobre cualquiera de los dos devanados se genera un flujo alterno en el núcleo magnético. Este flujo magnético se describe mediante la Ley de Faraday y produce una fuerza electromotriz que da lugar a una tensión $V_{2}$ en los bornes de dicho devanado.\\
 
-Normalmente, para un transformador reductor o un transformador elevador tienen dos devanados que se denominan de alta tension y de baja tensión, siendo bobina primaria y bobina secundaria respectivamente. El transformador es una maquina reversible. Un mismo transformador puede alimentarse por el lado A.T. y funcionar como transformador reductor o alimentarse por el lado de B.T. y actuar como un transformador elevador.
+Normalmente, para un transformador reductor o un transformador elevador tienen dos devanados que se denominan de alta tension y de baja tensión, siendo bobina primaria y bobina secundaria respectivamente. Un mismo transformador puede alimentarse por el lado A.T. y funcionar como transformador reductor o alimentarse por el lado de B.T. y actuar como un transformador elevador.
 
 \begin{figure}[H]
 \centering
@@ -167,10 +167,10 @@ r=\dfrac{V_{r}I_{cd}}{CV_{cd}}*100\%=\dfrac{2.4}{R_{L}C}
 \end{equation}
 \subsection{Regulador}
 
-Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto a la salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de dc cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
+Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto a la salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de DC cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
+ 
 
-
-$$regulacion de voltaje = \dfrac{Voltaje sin carga - Voltaje con carga}{voltaje con carga}$$
+$$Regulaci\acute{o}n\:de\: voltaje = \dfrac{Voltaje\: sin \:carga \:-\: Voltaje\: con\: carga}{voltaje\: con\: carga}$$
 \begin{equation} 
  \%V.R. = \dfrac{V_{NL}-V_{FL}}{V_{FL}}*100\%
 \end{equation}
@@ -183,13 +183,14 @@ $$regulacion de voltaje = \dfrac{Voltaje sin carga - Voltaje con carga}{voltaje 
 
 \section{Inversores de voltaje}
 
-Los convertidores cd a ca se conocen como inversores. La función de un inversor es cambiar un voltaje de entrada de cd a un voltaje simétrico de salida de ca de magnitud y frecuencia deseada. El voltaje de salida podría ser fijo o variable a una frecuencia fija o variable. se puede obtener un voltaje de salida variable si se varia el voltaje de cd de entrada y se mantiene constante la ganancia del inversor. Por otra parte, si el voltaje de entrada de cd es fijo y no es controlable, se puede obtener un voltaje de salida variable si se hace que la ganancia del inversor varié, lo que normalmente se consigue mediante el control de modulación por ancho de pulso (PWM) dentro del inversor. La ganancia del inversor se puede definir como la relación del voltaje de salida de ca al voltaje de entrada de cd.\\
+Los convertidores DC a AC se conocen como inversores. La función de un inversor es cambiar un voltaje de entrada de DC a un voltaje simétrico de salida de AC de magnitud y frecuencia deseada. 
+Los inversores se pueden clasificar ampliamente en dos tipos: inversores monofasicos e inversores trifasicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo transistor de unión bipolar (BJT), transistor de efecto de campo metal-óxido-semiconductor(MOSFET),transistor bipolar de puerta aislada (IGBT), etc. Por lo general estos inversores utilizan señales de control de PWM para producir un voltaje de salida de CA.
 
-Los inversores se pueden clasificar amplia mente en dos tipos: inversores monofasicos e inversores trifasicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo BJT, MOSFET, BJT, IGBT, SIT, GTO. Por lo general estos inversores utilizan señales de control de PWM para producir un voltaje de salida de CA. Un inversor se conoce como inversor alimentado por voltaje (VFI) si el voltaje de entrada permanece constante; inversor alimentado por corriente (CFI) si el voltaje de entrada permanece constante, e inversor enlazado en cd variable si el voltaje de entrada es controlable. Si al voltaje o a la corriente de salida del inversor se le hace pasar a través de cero al crear un circuito LC resonante, a este tipo de inversores se le conoce como inversor de pulso resonante, y tiene vastas aplicaciones en la electrónica de potencia. \\
+Existen diferentes tipos de inversores, un inversor se conoce como inversor alimentado por voltaje (VFI) si el voltaje de entrada permanece constante; inversor alimentado por corriente (CFI) si el voltaje de entrada permanece constante, e inversor enlazado en cd variable si el voltaje de entrada es controlable. Si al voltaje o a la corriente de salida del inversor se le hace pasar a través de cero al crear un circuito LC resonante, a este tipo de inversores se le conoce como inversor de pulso resonante, y tiene vastas aplicaciones en la electrónica de potencia. \\
 
 \subsection{Parametros de desempeño de un inversor}
 
-El voltaje de entrada a un inversor es de cd y el voltaje de salida de ca. Idealmente la salida debiera de ser una onda sinusoidal pura, pero el voltaje de salida de un inversor practico contiene armónicos o rizos como se muestra en l figura 2.7. El inversor consume corriente de la fuente de entrada de cd solo cuando el inversor conecta la carga a la fuente de suministro y a corriente de entrada no es de cd pura, sino que contiene armónicos. Por lo común la calidad de un inversor se evalúa en función de los siguientes parámetros de desempeño:\\
+El voltaje de entrada a un inversor es de DC y el voltaje de salida de AC. Idealmente la salida debe de ser una onda sinusoidal pura, pero contiene armónicos o rizos como se muestra en l figura 2.7. El inversor consume corriente de la fuente de entrada de DC solo cuando se conecta la carga al sistema, afectando la calidad de la señal de salida, es por ello que una medición variara conforme se conecte una carga diferente. Por lo común la calidad de un inversor se evalúa en función de los siguientes parámetros de desempeño:\\
 
 La potencia de salida esta dada por \begin{equation}
 P_{ca}=I_{0}V_{0}COS\theta
@@ -238,7 +239,7 @@ Factor de distorsión (DF).
 
 
 \section{Multiplicador de voltaje Cockcroft-Walton}
-Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en corriente directa (CD) mediante una entrada de de voltaje en corriente alterna (CA). El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 1.  
+Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares \cite{CERN}. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en corriente directa (CD) mediante una entrada de de voltaje en corriente alterna (CA). El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 1.  
 
 \begin{figure}[H]
 \centering
