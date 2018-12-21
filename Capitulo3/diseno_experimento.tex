@@ -52,36 +52,52 @@ Para el desarrollo de la interface gráfica se a utilizado un microcontrolador A
 cm]{Capitulo3/figs/pantalla0.jpg}
 \caption{LCD-TFT para interface gráfica}
 \end{figure}
-\subsection{Hardware de fuente de voltaje 180w}
+\subsection{Hardware de fuente de voltaje a 180w}
 
-Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de regulación positiva.
+Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de regulación positiva.\\
 
+Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en la figura 3.4, en este punto se busca el menor riso posible en nuestra salida final, ya que, en este punto el ruido sera amplificado cientos de veces. Podemos observar en la figura 3.5 que nuestra simulación se acerca bastante a lo buscado, una señal de 12v en corriente directa, teniendo una señal estabilizada en un tiempo de 24ms, suficientemente pequeño para la inicialización de nuestro proyecto. El diseño del PCB se encuentra en la figura 3.6, el cual fue diseñado en el programa EAGLE.\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm]{Capitulo3/figs/fuente.png}
 \caption{Topologia de fuente de alto voltaje}
 \end{figure}
 
-Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en la figura 3.4 con la finalidad de encontrar el voltaje RMS teórico en nuestra salida con diferentes cargas, ya que se busca el menor riso posible en nuestra salida final, ya que, en este punto el ruido sera amplificado cientos de veces. \\
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{Capitulo3/figs/SIMFUENTE.png}
 \caption{Simulación en LTSPICE fuente 180w}
 \end{figure}
-Mediante ROOT CERN se ha creado una distribución gaussiana del voltaje RMS para tres cargas diferentes, sin carga, a 9.6W y a 19.2w mediante estas mediciones podemos calcular la eficiencia de nuestra fuente de voltaje con la ecuacion XXX.\\
 
-[Poner aquí las ecuaciones y evaluarlas con los resultados de las simulaciones y de las mediciones]
+
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{Capitulo3/figs/sim.png}
-\caption{Topologia de fuente de alto voltaje}
+\includegraphics[width=12cm]{Capitulo3/figs/12v.png}
+\caption{Simulación fuente regulable en LTSPICE}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/pcb.png}
+\caption{Diseño placa de fuente de regulable de 180w}
+\end{figure}
+
+\subsection{Hardware inversor}
+
+Para el inversor se ha implementado una topologia del tipo puente H, ya que es una de las mas utilizadas por los desarrolladores. El integrado BTS7960B es un mosfet de potencia bastante robusto y con una comunidad de desarrollo bastante grande, es por ello que se ha seleccionado este modelo entre los miles que existen en el mercado. Podemos observar el diagrama implementado en la figura y partiendo de el se ha utilizado la placa de desarrollo IBT2 por cuestión de costos. \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm]{Capitulo3/figs/ibt2.png}
+\caption{diagrama puente H}
+\end{figure}
 
 \section{Firmware}
 \subsection{Interface gráfica}
-Para el desarrollo de la interface grafica se ha realizado en el ambiente de programación de Arduino, intentando la utilizacion de la menor cantidad de librerias de autoria no propia y siguiendo algunas reglas de programacion basicas para micro-controladores como lo es la no utilizacion de los comandos delay. Dicho código se divide en varias secciones, para el cual solo se utilizaron las siguientes librerías:
+Para el desarrollo de la interface gráfica se ha realizado en el ambiente de programación de Arduino, intentando la utilización de la menor cantidad de librerías de autoria no propia y siguiendo algunas reglas de programación básicas para micro-controladores como lo es la no utilización de los comando delay. Dicho código se divide en varias secciones, para el cual solo se utilizaron las siguientes librerías:
 
 \begin{verbatim}
 
@@ -133,7 +149,7 @@ void marco1(int x1, int y1, int x2, int y2){
 }
 \end{verbatim}
 
-Mediante el código anterior podemos, con ciertas variables, dibujar nuestra área de trabajo en la pantalla, obteniendo como resultado el dibujo de la figura XXX.
+Mediante el código anterior podemos, con ciertas variables, dibujar nuestra área de trabajo en la pantalla, obteniendo como resultado el dibujo de la figura 3.6.
 
 \begin{figure}[H]
 \centering
