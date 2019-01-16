@@ -4,6 +4,72 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Marco teórico}
+\section{Fuentes de voltaje en aceleradores de partículas}
+
+Después de la construcción del primer acelerador, en la misma década de los
+30, se inventaron otros tipos de aceleradores tales como el ciclotrón, los
+aceleradores lineales y los aceleradores tipo Van de Graaff. Debido a que los
+primeros aceleradores de partículas se construyeron con el fin de estudiar
+experimentalmente la estructura del núcleo atómico, por medio de colisiones las que
+podían originar transmutaciones o reacciones nucleares, fue la razón por lo que al
+hablar de un acelerador se asociaba automáticamente con un laboratorio de física
+nuclear. La importancia de estos instrumentos de física nuclear es similar a la del
+telescopio en astronomía o al microscopio en bacteriología.\\
+
+ Actualmente el uso de
+los aceleradores se ha extendido a otras áreas de investigación básica como la
+física atómica el mundo de los electrones y en las partículas elementales. Los
+aceleradores en medicina se usan tanto en los departamentos de radiología, para
+destruir tumores malignos, como para producir radioisótopos que se utilizan en el
+diagnóstico de enfermedades (medicina nuclear). El uso de los aceleradores en
+aplicaciones tecnológicas es muy variado y el más conocido es en las industria de
+los semiconductores y de la núcleo-electrónica, las cuales se usan un tipo especial
+de aceleradores conocidos como implantadores con los que es posible producir
+los chips electrónicos, circuitos integrados, etc\\
+
+Los aceleradores son instrumentos relativamente complejos y su diseño y
+construcción requiere de alta tecnología e intervienen muchos campos de la
+ingeniería. Una forma de clasificar los aceleradores es por la energía de los
+proyectiles y los de alta energía o superaceleradorores están instalados, por
+ejemplo en algunos laboratorios nacionales de los EUA, tal como, en Los Alamos,
+BrookHaven, FermiLab y en Europa en el CERN. \\
+
+Las instalaciones de estos superaceleradores son impresionantes por su gran
+tamaño y los cientos de toneladas de materiales que se requirieron para su
+construcción. Por ejemplo, el acelerador en el FermiLab es circular y tiene un radio de 1 Km. Sin embargo los conceptos sobre los principios de operación de los
+superaceleradores y de los pequeños aceleradores son los mismos y son simples y
+se describen a continuación.\\
+
+Un diagrama simplificado de un acelerador de partículas se muestra
+esquemáticamente en la figura 2.1 y cuyos elementos básicos son:\\
+
+1) Fuente de voltaje\\
+2) Fuente de iones (en el esquema es un filamento)\\
+3) Electrodos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{capitulo2/figs/acelerador.png}
+\caption{Diagrama esquemático de las componentes principales de un acelerador de
+partículas.}
+\end{figure}
+
+El principio de funcionamiento del cualquier tipo de acelerador, se basa en la
+interacción de los campos eléctricos producidos por fuentes de voltaje sobre la
+carga eléctrica de las partículas generadas en la fuente de iones y esta es la razón por la que no se pueden acelerar partículas neutras.\\
+
+Otras partes importantes asociadas a un acelerador son equipos periféricos
+tales como: sistemas de vacío, líneas de transporte de haz, cámaras de
+experimentación, etc. Un tubo de rayos X y el cinescopio de una TV doméstica según la definición
+anterior son aceleradores de partículas, sin embargo, en la práctica no se les refiere con este nombre.\\
+
+Como se sabe, las unidades que se usan para la energía en física son los julios
+y/o ergios. Sin embargo, para cuantificar la energía de los proyectiles acelerados se acostumbra usar unidades de electrón-volt (eV) o sus múltiples: el keV= 1 000 eV, el $MeV= 1 000 000 eV$, el TeV= $10^{12} eV$, etc. El uso de estas unidades de energía
+es debido a la relación simple de la ecuación anterior, en la cual la energía es
+numéricamente igual al voltaje. De acuerdo con la ecuación anterior, una energía
+de 1 eV es el cambio de energía cinética que experimenta una partícula con carga
+en valor absoluto igual a la del electrón, después de pasar por una diferencia de
+potencial de un volt. \cite{acelerado}
 
 \section{Calculo de capacidad de corriente en pistas de circuitos impresos}
 
@@ -196,7 +262,7 @@ La potencia de salida esta dada por \begin{equation}
 P_{ca}=I_{0}V_{0}COS\theta
 \end{equation}
 \begin{equation}
-= I_{0}^{2}R
+P_{ca}= I_{0}^{2}R
 \end{equation}
 
 Donde $V_{0}$ e $I_{0}$ son el voltaje y corriente rms de la carga, $\theta$ es en angulo de la impedancia de la carga y R es la resistencia de la carga.\\
@@ -231,7 +297,7 @@ HF_{n}=\dfrac{V_{on}}{V_{o1}}, \: para\; n>1
 donde $V_{O1}$ es el valor rms del componente fundamental y $V_{ob}$ es el valor rms del n-ésimo componente armónico.\\
 
 Distorsion armonica total (THD). La distorsion armonica total, que mide la cercaia en cuanto a forma de onda y su componente fundamental, se define como: \begin{equation}
-THD=\dfrac{1}{V_{O1}}(\sum_{n=2,3,...}^{\infty }V_{on}^{2})
+THD=\dfrac{1}{V_{O1}}\left( \sum_{n=2,3,...}^{\infty }V_{on}^{2}\right)
 \end{equation}
 
 Factor de distorsión (DF). 

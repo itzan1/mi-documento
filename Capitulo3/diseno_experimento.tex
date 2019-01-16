@@ -3,13 +3,15 @@
 %           Capítulo 3: Metodologia                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \chapter{Metodología}
 En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en cuestión; diseño del sistema, fabricación del sistema, diseño del firmware del micro controlador, implementación y por último el método experimental.\\
 
 El sistema esta compuesto por dos partes, hardware y firmware, el hardware se compone de tres partes como vemos en la figura 3.1: parte digital de control, inversor de voltaje y rectificador multiplicador. \\
 
 Por otro lado el firmware consiste en los programas que realizan el control completo de la generación de alto voltaje por medio del desarrollo de un ambiente gráfico al que el usuario tiene acceso,  control para el senseo de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un ADC ( Analog to Digital Converter) a la salida de una devanado de baja en el transformador de alto voltaje el cual controla la salida de alto voltaje. Observemos de manera gráfica la topologia del sistema en la figura 3.1. 
-
+\newpage
 
 
  % The \cite command functions as follows:
@@ -42,6 +44,7 @@ La figura 3.1 muestra un diagrama a bloques de la estructura general del hardwar
 cm]{Capitulo3/figs/diagrama.png}
 \caption{Topologia de fuente de alto voltaje}
 \end{figure}
+\newpage
 \subsection{Hardware de interface}
 Para el desarrollo de la interface gráfica se a utilizado un microcontrolador ATMEGA2560, implementado por la facilidad de programación y los tiempos cortos para la conclusión de este proyecto, así como también la implementación de una pantalla TFT-LCD ( Pantalla de cristal líquido de transistores de película fina) y comunicación UART como interfaces gráfica al usuario. Se ha utilizado el hardware de dicha placa y ahorrado tiempo de desarrollo. \\
 
@@ -52,6 +55,7 @@ Para el desarrollo de la interface gráfica se a utilizado un microcontrolador A
 cm]{Capitulo3/figs/pantalla0.jpg}
 \caption{LCD-TFT para interface gráfica}
 \end{figure}
+\newpage
 \subsection{Hardware de fuente de voltaje a 180w}
 
 Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de regulación positiva.\\
@@ -85,15 +89,65 @@ Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en 
 \caption{Diseño placa de fuente de regulable de 180w}
 \end{figure}
 
+\newpage
+
 \subsection{Hardware inversor}
 
-Para el inversor se ha implementado una topologia del tipo puente H, ya que es una de las mas utilizadas por los desarrolladores. El integrado BTS7960B es un mosfet de potencia bastante robusto y con una comunidad de desarrollo bastante grande, es por ello que se ha seleccionado este modelo entre los miles que existen en el mercado. Podemos observar el diagrama implementado en la figura 3.7 \cite{ibt} y partiendo de el se ha utilizado la placa de desarrollo IBT2 por cuestión de costos. \\
+Para el inversor se ha implementado una topologia del tipo puente H, ya que es una de las mas utilizadas por los desarrolladores. El integrado BTS7960B es un mosfet de potencia bastante robusto y con una comunidad de desarrollo bastante grande, es por ello que se ha seleccionado este modelo entre los miles que existen en el mercado. Podemos observar el diagrama implementado en la figura 3.7 \cite{ibt} y partiendo de el se ha utilizado la placa de desarrollo IBT2 (figura 3.8) por cuestión de costos. \\
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=6cm]{Capitulo3/figs/ibt2.png}
 \caption{diagrama puente H}
 \end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm]{Capitulo3/figs/bts.jpg}
+\caption{diagrama puente H}
+\end{figure}
+
+\newpage
+
+
+\subsection{Multiplicador de voltaje Cockroft Walton}
+Mediante el motor de simulación de LTSPICE se ha realizado el diseño del multiplicador a utilizar. Contando con valores de capacitores de 0.1 $\mu$-Faradios, diodos MUR4100, voltaje de entrada de 1KV y una frecuencia variable de 10KHZ. Podemos observar en la figura 3.9 el diseño planteado, con la finalidad de tener un punto de referencia al momento de realizar el experimento. \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/multi.png}
+\caption{Multiplicador de voltaje 2 niveles}
+\end{figure}
+
+Se han realizado corridas en el simulador con cargas que exigen 1 mA, 10 mA y pruebas sin carga. Podemos observar en la figura 3.10 la salida de CD que se obtiene cuando no tenemos carga alguna, como vemos la salida esta aparentemente libre de riso y este es el punto de referencia para medir la eficiencia de nuestra fuente. El voltaje en color rojo es la primera etapa de nuestro multiplicador, en color azul tenemos la segunda etapa y en color verde la entrada de corriente alterna. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/4kv.png}
+\caption{Multiplicador de voltaje sin carga}
+\end{figure}
+
+
+Para una carga con una exigencia de 1 mA podemos observar la figura 3.11. Como vemos ahora el riso y la caída en el voltaje es perceptible a simple vista.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/1ma.png}
+\caption{Multiplicador de voltaje con 1 mA de carga}
+\end{figure}
+
+Para una carga con una exigencia de 10 mA podemos observar la figura 3.12. Tenemos una caída de voltaje bastante significativa y un riso bastante pronunciado.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/10ma.png}
+\caption{Multiplicador de voltaje con 10 mA de carga}
+\end{figure}
+
+Tenemos un voltaje $V_{1mA}=3.9KV$, $V_{10mA}=3.2KV$ y $V_{NL}=4KV$ ahora utilizando la ecuación 2.7 podemos calcular la eficiencia de nuestra fuente y utilizar este punto de referencia para la construcción de nuestro proyecto. Para una carga de 1 mA tenemos $VR_{1mA}=2.5\%$ Y para una carga de 10 mA $VR_{10mA}=20\%$ valor limite para nuestro circuito.
+\newpage
 
 \section{Firmware}
 \subsection{Interface gráfica}
@@ -107,6 +161,49 @@ Para el desarrollo de la interface gráfica se ha realizado en el ambiente de pr
 \end{verbatim}
 
 En la siguiente figura podemos observar la topologia del firmware que se ha desarrollado.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/diagramafir.png}
+\caption{Multiplicador de voltaje con 10 mA de carga}
+\end{figure}
+
+
+El microcontrolador cuenta con múltiples salidas que permiten una comunicación con el Hardware desarrollado, se han definido las siguientes variables, salidas y entradas del micro controlador.
+
+\begin{verbatim}
+
+void setup(){
+  myGLCD.InitLCD();
+  myGLCD.clrScr();
+  myTouch.InitTouch();
+  myTouch.setPrecision(PREC_HI);
+  Serial.begin(9600);
+  Serial.setTimeout(50);
+  }
+
+//Definimos fuentes que utilizaremos
+extern uint8_t SmallFont[];
+extern uint8_t BigFont[];
+extern uint8_t SevenSegNumFont[];
+
+//variables que estaremos utilizando
+int x,y,pantalla=1,k,voltaje=1,p=0,p1=0,p2=0,p3=0,vout=0;
+char dato[20];
+
+//variables para tomar datos de UART
+
+String str = "";
+const char separator = ',';
+const int dataLength = 2;
+int data[dataLength];
+char vin[20];
+      char current[20];
+
+\end{verbatim}
+
+Como vemos se ha utilizado la función setTimeout, configuración de la comunicación serial, necesaria en el proyecto para mantener un enseo de datos sin riesgos a perdida de informacion debido a los subprocesos que se realizan dentro del firmware diseñado. SetTimeout() establece los milisegundos máximos para esperar los datos de transmisión, por defecto es de 1000 milisegundos. Esta función es parte de la clase Stream y es llamada por cualquier clase que hereda de ella (Wire, Serial, etc.). \cite{settime}\\
+
 
 Todo el código esta dividido en funciones, las cuales llamamos en nuestro LOOP, tratando siempre de cumplir con las siguientes características: no utilización de la función delay, no utilización de ciclos que dependa de alguna condición externa, utilizar el menor código posible para una acción. Las funciones que se utilizaron para la el despliegue de información de la primera pantalla fue el siguiente:
 
@@ -235,7 +332,7 @@ void botones2(){
   }
 \end{verbatim}
 
-Podemos observar el resultado del dibujo en la figura XXX.
+Podemos observar el resultado del dibujo en la figura 3.14.
 
 \begin{figure}[H]
 \centering
@@ -313,7 +410,7 @@ void touch2(){
     }
 \end{verbatim}
 
-Una vez que definimos las funciones a utilizar para estas dos primeras pantallas proseguimos a las funciones de cálculos y procesamiento de datos. Para ello hemos creado una funcion capaz de configurar el voltaje de salida, manteniendo una comunicación UART hacia un micro-controlador. 
+Una vez que definimos las funciones a utilizar para estas dos primeras pantallas proseguimos a las funciones de cálculos y procesamiento de datos. Para ello hemos creado una función capaz de configurar el voltaje de salida, manteniendo una comunicación UART hacia un micro-controlador. 
 
 \begin{verbatim}
 void suma(int x1,int x2,int x3,int x4, int k, int w){ 
@@ -402,7 +499,7 @@ void suma(int x1,int x2,int x3,int x4, int k, int w){
     }
 \end{verbatim}
 
-Una segunda funcion es la encargada de recibir los datos procedentes del segundo micro-controlador, encargado de leer los datos de sensores y preparar el funcionamiento del inversor. 
+Una segunda función es la encargada de recibir los datos procedentes del segundo micro-controlador, encargado de leer los datos de sensores y preparar el funcionamiento del inversor. 
 
 \begin{verbatim}
 void vinput(){
@@ -479,3 +576,88 @@ if(pantalla == 2){
 
   }
 \end{verbatim}
+
+\section{Implementación del Hardware}
+
+Una vez obtenido el diseño de todas las etapas, así como también la programación del firmware se prosigue a la fabricación de los PCB de la fuente de corriente directa a 180W, el acondicionamiento de la parte digital a la etapa de potencia. Se aisló mediante una caja que solo da acceso al usuario a la parte de salidas y entradas como vemos en la imagen 3.15 Evitando así riesgos al usuario. \\
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/noimagen.png}
+\caption{Multiplicador de voltaje sin carga}
+\end{figure}
+
+Una vez terminado el Hardware se hicieron pruebas de cada modulo desarrollado, con la finalidad de indicar las condiciones optimas para el sistema en general, haciendo pruebas con diferentes cargas y observando el ruido obtenido de ellos. 
+
+\subsection{Fuente de 180W}
+
+Se ha terminado la maquinación de la fuente de voltaje en el router LPKF y realizado el ensamble. Se tienen 180 W que pueden ser peligrosos si no se tiene el cuidado necesario, es por ello que se ha optado de aislar el circuito y dejar solamente las salidas y entradas necesarias como podemos ver en la imagen 1.17.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
+\caption{Multiplicador de voltaje sin carga}
+\end{figure}
+
+Se ha optado hacer pruebas a 12V y cargas de 7.5 OHMS, 15 OHMS y una prueba sin carga, esperando obtener el menor ruido posible. La configuración para el experimento se puede observar en la figura 3.17. Mediante estos resultados se ha echo una gráfica gaussiana para determinar el voltaje RMS en cada experimento. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/exfuente.png}
+\caption{Arreglo para experimento de fuente de 12V}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/sincarga.png}
+\caption{Fuente 12V sin carga}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/75ohms.png}
+\caption{Fuente 12V con carga a 7.5 OHMS}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/15ohms.png}
+\caption{Fuente 12V con carga a 15 OHMS}
+\end{figure}
+
+
+\subsection{Inversor de voltaje}
+
+Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (figura XXX) debido a los riesgos que conlleva si no se tiene el cuidado pertinente. Ahora implementando la fuente desarrollada por nosotros se alimenta al inversor y se hace un arreglo similar al experimento anterior, analizando en el osciloscopio la salida sin carga, con cargas de 15 OHMS y de 7.5 OHMS, variando en este caso la frecuencia de salida.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
+\caption{Implementación inversor.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
+\caption{Implementacion experimento inversor.}
+\end{figure}
+
+Mediante estas configuraciones se obtuvieron las mediciones que se pueden ver en las figuras XXX para cada configuración respectivamente. 
+
+\subsection{Multiplicador de voltaje}
+
+Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar el circuito desarrollado (figura XXX) y mediante mediciones sin carga se observa el voltaje de salida con el osciloscopio (figura XXX)
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
+\caption{Implementación inversor}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
+\caption{Implementación inversor}
+\end{figure}
+

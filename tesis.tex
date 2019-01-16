@@ -1,7 +1,8 @@
 
-\documentclass[twoside,11pt]{Latex/Classes/thesisUMSNH}
+\documentclass[twoside,16pt]{Latex/Classes/thesisUMSNH}
 %         PUEDEN INCLUIR EN ESTE ESPACIO LOS PAQUETES EXTRA, O BIEN, EN EL ARCHIVO "PhDthesisPSnPDF.cls" EN "./Latex/Classes/"
 \usepackage{blindtext}                        % Para insertar texto dummy, de ejemplo, pues.
+\usepackage{setspace}
 \usepackage[round, sort, numbers]{natbib}  % Personalizar la bibliografía a gusto de cada quien
 % Note:
 % The \blindtext or \Blindtext commands throughout this template generate dummy text
@@ -88,7 +89,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the main text starts here with the introduction, 1st chapter,...
 \mainmatter
-\def\baselinestretch{1.5}                   % Interlineado de 1.5
+\def\baselinestretch{2}                   % Interlineado de 1.5
+\doublespacing
 \include{Capitulo1/introduccion}            % ~10 páginas - Explicar el propósito de la tesis
 \include{Capitulo2/marco_teorico}           % ~20 páginas - Poner un contexto a la tesis, hacer referencia a trabajos actuales en el tema
 \include{Capitulo3/diseno_experimento}      % ~20 páginas - Explicar el problema en específico que se va a resolver, la metodología y experimentos/métodos utilizados
@@ -130,6 +132,10 @@ Doctor Ingeniero Industrial \url{http://personales.unican.es/rodrigma/PDFs/Trafo
 \bibitem{CERN}Multiplicador de voltaje utilizado en CERN en el año 1964. \url{http://cds.cern.ch/record/43889}
 
 \bibitem{ibt}Esquematico de control BTN7970. \url{https://www.elecrow.com/download/IBT-2\%20Schematic.pdf}
+
+\bibitem{settime}Función de velocidad para comunicación serial. \url{https://www.arduino.cc/en/Reference/StreamSetTimeout}
+
+\bibitem{acelerado}ACELERADORES DE PARTICULAS. Dr. EDUARDO ANDRADE \url{http://www.nucleares.unam.mx/\~bijker/emfn/Andrade.pdf}
 \end{thebibliography}
 
 
