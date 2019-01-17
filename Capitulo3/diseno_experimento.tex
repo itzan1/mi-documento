@@ -28,6 +28,39 @@ Por otro lado el firmware consiste en los programas que realizan el control comp
 
 
 
+\section{Materiales utilizados}
+
+La medición y comprobación del alto voltaje no es tan sencilla si no se tienen las herramientas necesarias para ello. La utilización de osciloscopios (figura 3.2), voltimetros (figura 3.3) y sistemas de medición se ve afectado debido a que en su mayoría los voltajes soportados por los equipos son apenas de unos cuantos miles de volts. Es por ello que en este proyecto se han requerido herramientas como lo son las sondas divisoras de voltaje, similar a la que se aprecia en la figura 3.1, permitiendo así la utilización de las herramientas antes comentadas aquí.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/sonda.png}
+\caption{Sonda de alto voltaje}
+\end{figure}
+
+Con esta herramienta se ha logrado utilizar el osciloscopio y analizar la señal para presentar resultados mas claros. Podemos observar el osciloscopio utilizado para las mediciones y un multimetro fluke, los cuales son suficientes para determinar la eficiencia de nuestra fuente de voltaje. Teniendo en cuenta siempre la seguridad requerida para la operación de estos instrumentos.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4cm]{Capitulo3/figs/multim.png}
+\caption{Multimetro utilizado en experimento}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/oscilo.png}
+\caption{Osciloscopio utilizado en experimento}
+\end{figure}
+
+Para la fabricación de los PCB se utilizo una herramienta LPKF, router computarizado. El cual, una vez hecho el diseño en el programa EAGLE se prosiguió a la generación de los archivos gerber para su posterior maquinación. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/proto.png}
+\caption{Router CNC}
+\end{figure}
+\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,12 +94,12 @@ cm]{Capitulo3/figs/pantalla0.jpg}
 Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.2 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de regulación positiva.\\
 
 Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en la figura 3.4, en este punto se busca el menor riso posible en nuestra salida final, ya que, en este punto el ruido sera amplificado cientos de veces. Podemos observar en la figura 3.5 que nuestra simulación se acerca bastante a lo buscado, una señal de 12v en corriente directa, teniendo una señal estabilizada en un tiempo de 24ms, suficientemente pequeño para la inicialización de nuestro proyecto. El diseño del PCB se encuentra en la figura 3.6, el cual fue diseñado en el programa EAGLE.\\
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm]{Capitulo3/figs/fuente.png}
-\caption{Topologia de fuente de alto voltaje}
+\caption{Simulación en LTSPICE fuente 180w}
 \end{figure}
-
 
 \begin{figure}[H]
 \centering
@@ -88,6 +121,10 @@ Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en 
 \includegraphics[width=12cm]{Capitulo3/figs/pcb.png}
 \caption{Diseño placa de fuente de regulable de 180w}
 \end{figure}
+
+
+
+
 
 \newpage
 
@@ -174,6 +211,7 @@ El microcontrolador cuenta con múltiples salidas que permiten una comunicación
 \begin{verbatim}
 
 void setup(){
+
   myGLCD.InitLCD();
   myGLCD.clrScr();
   myTouch.InitTouch();
@@ -198,7 +236,7 @@ const char separator = ',';
 const int dataLength = 2;
 int data[dataLength];
 char vin[20];
-      char current[20];
+char current[20];
 
 \end{verbatim}
 
@@ -215,6 +253,7 @@ void botones1(){
   myGLCD.setFont(BigFont); 
   for (x=0; x<3; x++)
   {
+  
     myGLCD.setColor(0, 0, 255);
     myGLCD.fillRoundRect (200, 10+(x*55), 310, 60+(x*55));
     myGLCD.setColor(255, 255, 255);
@@ -222,11 +261,13 @@ void botones1(){
   }
 for (x=0; x<2; x++)
   {
+  
     myGLCD.setColor(0, 0, 255);
     myGLCD.fillRoundRect (10+(x*155), 175, 155+(x*155), 225);
     myGLCD.setColor(255, 255, 255);
     myGLCD.drawRoundRect (10+(x*155), 175, 155+(x*155), 225);
   }
+  
   myGLCD.setBackColor(0, 0, 255);
   myGLCD.print("ON 2", 220 , 30);
   myGLCD.print("ON 3", 220 , 85);
@@ -237,8 +278,10 @@ for (x=0; x<2; x++)
   }
   
 void marco1(int x1, int y1, int x2, int y2){ 
+
   myGLCD.setColor(255, 0, 0);
   myGLCD.drawRoundRect (x1, y1, x2, y2);
+  
   while (myTouch.dataAvailable())
   myTouch.read();
   myGLCD.setColor(255, 255, 255);
@@ -250,7 +293,7 @@ Mediante el código anterior podemos, con ciertas variables, dibujar nuestra ár
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{Capitulo3/figs/pantalla1.jpg}
+\includegraphics[width=9cm]{Capitulo3/figs/pantalla1.jpg}
 \caption{Pantalla 1}
 \end{figure}
 
@@ -266,21 +309,26 @@ void touch1(){
         if((y>=10) && (y<=60)){ //boton ON 2
           marco1(200,10,310,60);
         }
+        
         if((y>=65) && (y<=115)){ //boton ON 3
           marco1(200,65,310,115);
         }
+        
         if((y>=120) && (y<=170)){ //boton ON 1
           marco1(200,120,310,170);
         }
       }
+      
       if((y>=175) && (y<=225))
       {
         if((x>=10) && (x<=155)){ //boton V SET
+        
           marco1(10,175,155,225);
           pantalla =2;
         }
       
         if((x>=165) && (x<=310)){ //boton config
+        
           marco1(165,175,310,225);
         }
 }
@@ -298,16 +346,16 @@ void botones2(){
   myGLCD.setBackColor(0,0,255);
   for (x=0; x<4; x++) //botones +
   {
+  
     myGLCD.setColor(0, 0, 255);
     myGLCD.fillRoundRect (10+(x*60), 10, 60+(x*60), 60);
     myGLCD.setColor(255, 255, 255);
     myGLCD.drawRoundRect (10+(x*60), 10, 60+(x*60), 60);
     myGLCD.print("+", 27+(x*60), 27);
   }
-
-
   for (x=0; x<4; x++) //botones -
   {
+  
     myGLCD.setColor(0, 0, 255);
     myGLCD.fillRoundRect (10+(x*60), 170, 60+(x*60), 220);
     myGLCD.setColor(255, 255, 255);
@@ -317,11 +365,11 @@ void botones2(){
 
   for (x=0; x<4; x++) //blanco 
   {
+  
     myGLCD.setColor(255, 255, 255);
     myGLCD.fillRoundRect (10+(x*60), 70, 60+(x*60), 160);
     myGLCD.setColor(255, 0, 0);
     myGLCD.drawRoundRect (10+(x*60), 70, 60+(x*60), 160);
-  //  myGLCD.print(p, 27+(x*60), 170);
   }
 
   myGLCD.setColor(0, 0, 255); /// boton set
@@ -336,62 +384,62 @@ Podemos observar el resultado del dibujo en la figura 3.14.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{Capitulo3/figs/pantalla2.jpg}
+\includegraphics[width=9cm]{Capitulo3/figs/pantalla2.jpg}
 \caption{Pantalla 2}
 \end{figure}
 
  Funciones TOUCH pantalla 2:
 \begin{verbatim}
 void touch2(){
-    myTouch.read();
+      myTouch.read();
       x=myTouch.getX();
       y=myTouch.getY();
 
       if((y>=10) && (y<=60)){ /////////////botones +
         if((x>=10) && (x<=60)){ //boton + kilos
+        
           marco1(10,10,60,60);
-          
           myGLCD.setFont(SevenSegNumFont); 
           suma(1,0,0,0,0,0);
         }
-
         if((x>=70) && (x<=120)){ //boton + centena
+        
           marco1(70,10,120,60);
           suma(0,1,0,0,0,0);
-          
-          
         }
-
         if((x>=130) && (x<=180)){ //boton + decena
+        
           marco1(130,10,180,60); 
           suma(0,0,1,0,0,0);
           
         }
-
         if((x>=190) && (x<=240)){ //boton + unidad
+        
           marco1(190,10,240,60);
           suma(0,0,0,1,0,0);
-          
         }
         }
         if((y>=170) && (y<=220)){ ////////////botones -
-          
         if((x>=10) && (x<=60)){ //boton + kilos
+        
           marco1(10,170,60,220);
           suma(1,0,0,0,0,1);
+          
         }
-
         if((x>=70) && (x<=120)){ //boton + centena
+        
           marco1(70,170,120,220);
           suma(0,1,0,0,0,1);
+          
         }
-
         if((x>=130) && (x<=180)){ //boton + decena
+        
           marco1(130,170,180,220);
           suma(0,0,1,0,0,1);
+          
         }
-
         if((x>=190) && (x<=240)){ //boton + unidad
+        
           marco1(190,170,240,220);
           suma(0,0,0,1,0,1);
         }
@@ -400,81 +448,104 @@ void touch2(){
         if((x>=250) && (x<=310)){ // boton SET
 
           if((y>=70) && (y<=160)){
+          
             marco1(250,70,310,160);
             pantalla =1;
+            
             if(vout >=0 && vout <=1000){
+            
             Serial.println(vout);
             }
             }    
         }
     }
+    
 \end{verbatim}
 
 Una vez que definimos las funciones a utilizar para estas dos primeras pantallas proseguimos a las funciones de cálculos y procesamiento de datos. Para ello hemos creado una función capaz de configurar el voltaje de salida, manteniendo una comunicación UART hacia un micro-controlador. 
 
 \begin{verbatim}
 void suma(int x1,int x2,int x3,int x4, int k, int w){ 
+
           myGLCD.setFont(SevenSegNumFont);
           myGLCD.setColor(0, 0, 0);
           myGLCD.setBackColor(255,255,255);
           int q;  
+          
           if(x1 == 1){//algoritmo kilos
+          
             if(w==0 && p<9){
+            
             vout=vout+1000;
             p=p+1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
-            sprintf(dato,"%d",q);
+            sprintf(dato,"%d",q)
             }
+            
             if(w==1 && p>0){
+            
             vout=vout-1000;
             p=p-1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
             sprintf(dato,"%d",q);
-              
               }
+              
             myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
           }
-          if(x2 == 1){//algoritmo centena
+          
+          if(x2 == 1){ //algoritmo centena
+          
             if(w==0 && p1<9){
+            
             vout=vout+100;
             p1=p1+1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
             sprintf(dato,"%d",q);
             }
+            
             if(w==1 && p1>0){
+            
             vout=vout-100;
             p1=p1-1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
             sprintf(dato,"%d",q);
-              
               }
+              
             myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
           }
+          
           if(x3 == 1){//algoritmo decenas
             if(w==0 && p2<9){
+            
             vout=vout+10;
             p2=p2+1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
             sprintf(dato,"%d",q);
             }
+           
             if(w==1 && p2>0){
+            
             vout=vout-10;
             p2=p2-1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
             sprintf(dato,"%d",q);
-              
               }
             myGLCD.print(dato,20*x1+80*x2+140*x3+200*x4,90);
             //Serial.println(vout);
+            
           }
+          
           if(x4 == 1){//algoritmo unidades
             if(w==0 && p3<9){
+            
             vout=vout+1;
             p3=p3+1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
             sprintf(dato,"%d",q);
+            
             }
             if(w==1 && p3>0){
+            
             vout=vout-1;
             p3=p3-1;
             q=p*x1+p1*x2+p2*x3+p3*x4;
@@ -485,7 +556,9 @@ void suma(int x1,int x2,int x3,int x4, int k, int w){
           }
           
           if(k==1){
+          
             for(x=0 ; x<4 ; x++){
+            
               sprintf(dato,"%d",p);
               myGLCD.print(dato,20,90);
               sprintf(dato,"%d",p1);
@@ -494,6 +567,7 @@ void suma(int x1,int x2,int x3,int x4, int k, int w){
               myGLCD.print(dato,140,90);
               sprintf(dato,"%d",p3);
               myGLCD.print(dato,200,90);
+              
               }
             }
     }
@@ -503,8 +577,8 @@ Una segunda función es la encargada de recibir los datos procedentes del segund
 
 \begin{verbatim}
 void vinput(){
-  
       str = Serial.readStringUntil('\n');
+      
       for (int i = 0; i < dataLength ; i++)
       {
          int index = str.indexOf(separator);
@@ -514,7 +588,8 @@ void vinput(){
       
       for (int i = 0; i < sizeof(data) / sizeof(data[0]); i++)    
       {
-        Serial.print(data[i]); 
+      
+      Serial.print(data[i]); 
       Serial.print('\t');} 
       Serial.println();
       
@@ -534,9 +609,9 @@ Mediante las funciones anteriores podemos mantener una comunicacion INPUT y OUTP
 
 \begin{verbatim}
 void loop(){
-
 //pantalla 1
 if(pantalla == 1){
+
     myGLCD.fillScr(VGA_BLACK);
     botones1();
     myGLCD.setFont(BigFont); 
@@ -549,34 +624,35 @@ if(pantalla == 1){
     myGLCD.print("mA out" ,100,70);
     myGLCD.print(vin ,10,50);
     myGLCD.print(current ,10,70);
+    
     while(true)
          {
-          if(myTouch.dataAvailable())touch1();
-          if(pantalla == 2 )break;
-
-      if (Serial.available()>0){vinput();}
+         
+        if(myTouch.dataAvailable())touch1();
+        if(pantalla == 2 )break;
+      	if (Serial.available()>0){vinput();}
+      
             }
             }
-          
         
 //pantalla 2
 if(pantalla == 2){
+
   myGLCD.fillScr(VGA_BLACK);
-  
   botones2();
-  
   suma(0,0,0,0,1,0);
+  
   while(true)
     {
+    
       if(myTouch.dataAvailable())touch2();
       if(pantalla == 1)break;
+      
     }
-  }
-
-
-  }
+    }
+    }
 \end{verbatim}
-
+\newpage
 \section{Implementación del Hardware}
 
 Una vez obtenido el diseño de todas las etapas, así como también la programación del firmware se prosigue a la fabricación de los PCB de la fuente de corriente directa a 180W, el acondicionamiento de la parte digital a la etapa de potencia. Se aisló mediante una caja que solo da acceso al usuario a la parte de salidas y entradas como vemos en la imagen 3.15 Evitando así riesgos al usuario. \\
@@ -584,7 +660,7 @@ Una vez obtenido el diseño de todas las etapas, así como también la programac
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=9cm]{Capitulo3/figs/noimagen.png}
+\includegraphics[width=12cm]{Capitulo3/figs/noimagen.png}
 \caption{Multiplicador de voltaje sin carga}
 \end{figure}
 
@@ -602,40 +678,33 @@ Se ha terminado la maquinación de la fuente de voltaje en el router LPKF y real
 
 Se ha optado hacer pruebas a 12V y cargas de 7.5 OHMS, 15 OHMS y una prueba sin carga, esperando obtener el menor ruido posible. La configuración para el experimento se puede observar en la figura 3.17. Mediante estos resultados se ha echo una gráfica gaussiana para determinar el voltaje RMS en cada experimento. 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=9cm]{Capitulo3/figs/exfuente.png}
-\caption{Arreglo para experimento de fuente de 12V}
-\end{figure}
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=9cm]{Capitulo3/figs/sincarga.png}
+\includegraphics[width=12cm]{Capitulo3/figs/sincarga.png}
 \caption{Fuente 12V sin carga}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=9cm]{Capitulo3/figs/75ohms.png}
+\includegraphics[width=12cm]{Capitulo3/figs/75ohms.png}
 \caption{Fuente 12V con carga a 7.5 OHMS}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=9cm]{Capitulo3/figs/15ohms.png}
+\includegraphics[width=12cm]{Capitulo3/figs/15ohms.png}
 \caption{Fuente 12V con carga a 15 OHMS}
 \end{figure}
 
+Como observamos nuestro RMS se mantiene desde 0.0471v sin carga a 0.0546V con una carga de 7.5 ohms o 90w, obteniendo una regulación de voltaje de $\%VR=0.0627$ que significa una eficiencia del 99.93\% cuando la fuente es sometida a una carga resistiva de 90w, eficiencia bastante buena para los experimentos siguientes. 
 
 \subsection{Inversor de voltaje}
 
-Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (figura XXX) debido a los riesgos que conlleva si no se tiene el cuidado pertinente. Ahora implementando la fuente desarrollada por nosotros se alimenta al inversor y se hace un arreglo similar al experimento anterior, analizando en el osciloscopio la salida sin carga, con cargas de 15 OHMS y de 7.5 OHMS, variando en este caso la frecuencia de salida.
+Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (figura 3.21), debido a los riesgos que conlleva si no se tiene el cuidado pertinente. Ahora implementando la fuente desarrollada se alimenta al inversor y se hace un arreglo similar al experimento anterior, analizando en el osciloscopio la salida sin carga, con cargas de 15 OHMS y de 7.5 OHMS, variando en este caso la frecuencia de salida en 60 HZ, 1 KHZ y 6 khz.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
-\caption{Implementación inversor.}
-\end{figure}
+
 
 \begin{figure}[H]
 \centering
@@ -643,15 +712,21 @@ Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (
 \caption{Implementacion experimento inversor.}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/pwm1.jpg}
+\caption{Implementación inversor salida con carga inductiva.}
+\end{figure}
+
 Mediante estas configuraciones se obtuvieron las mediciones que se pueden ver en las figuras XXX para cada configuración respectivamente. 
 
 \subsection{Multiplicador de voltaje}
 
-Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar el circuito desarrollado (figura XXX) y mediante mediciones sin carga se observa el voltaje de salida con el osciloscopio (figura XXX)
+Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar el circuito desarrollado (figura 3.23) y mediante mediciones sin carga se observa el voltaje de salida con el osciloscopio (figura 3.24)
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
+\includegraphics[width=9cm]{Capitulo3/figs/fotomulti.png}
 \caption{Implementación inversor}
 \end{figure}
 
@@ -660,4 +735,3 @@ Existen aspectos claves para este apartado que definirán la calidad de nuestra 
 \includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
 \caption{Implementación inversor}
 \end{figure}
-

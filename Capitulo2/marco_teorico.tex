@@ -71,6 +71,7 @@ de 1 eV es el cambio de energía cinética que experimenta una partícula con ca
 en valor absoluto igual a la del electrón, después de pasar por una diferencia de
 potencial de un volt. \cite{acelerado}
 
+\newpage
 \section{Calculo de capacidad de corriente en pistas de circuitos impresos}
 
 
@@ -79,7 +80,7 @@ Antes de comenzar con la fabricación de un diseño de PCBs se debe de considera
 
 En la actualidad los desarrolladores llevan a reducir el ancho de las pistas y espacios, debido a que se desarrollan componentes cada vez más pequeños y sistemas igualmente más compactos, esto obliga a adaptarse a estos nuevos requerimientos.\\
 
-Para encontrar una solución a esta eventualidad es necesario recurrir a estudios en estos temas que nos permita acercarnos al límite y para ello debemos de considerar todos los parámetros que influyan en nuestro sistema, obteniendo así resultados más precisos. En nuestro caso nos basaremos en los gráficos publicados en el IPC2152 \cite{IPC 2152} ``Standard for Determining Current Carry Capacity in Printed Board Design'' en 2009, este estándar es ampliamente utilizado en muchos proyectos que requieran este tipo de análisis. \\
+Para encontrar una solución a esta eventualidad es necesario recurrir a estudios en estos temas que nos permita acercarnos al límite y para ello debemos de considerar todos los parámetros que influyan en nuestro sistema, obteniendo así resultados más precisos. En nuestro caso nos basaremos en los gráficos publicados en el IPC2152 \cite{IPC 2152} ``Standard for Determining Current Carry Capacity in Printed Board Design'' en 2009, este estándar es ampliamente utilizado en muchos proyectos que requieran este tipo de análisis. \\  
 
 Para el correcto entendimiento de los procesos que influyen en las pistas por el paso de la corriente debemos de recordar que el paso de la corriente por un conductor produce en este una caída de potencial que esta gobernada por la ley de OHM (R=V/I), esta caída de potencial se disipa en forma de calor por el efecto Joule $Q=I^{2}Rt$. En nuestro el conductor es nuestra pista, su resistencia depende de varios factores, pero lo principal es su sección (ancho x espesor) y su longitud. El efecto térmico es en realidad el que nos interesa conocer al momento del dimensionamiento de la PCB. Por esta razón, para poder calcular una capacidad de transporte de corriente, hay que analizarlo en términos de incremento de temperatura. Fijando como un incremento maxico admisible.\\
 
@@ -135,6 +136,7 @@ La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el c
  \end{figure}
  
  De manera independiente podemos analizar cada aspecto presentado en la imagen, el cual, de uno en uno se va realizando un análisis para definir los valores y topologias que satisfacen las necesidades requeridas. Tomando en cuenta lo mencionado podemos comenzar a definir las ecuaciones y modelos existentes.
+ \newpage
 
 \subsection{Etapa de transformador monofasico}
 
@@ -179,6 +181,7 @@ m=\dfrac{V_{1N}}{V_{2N}}
 \end{equation}
 
 Estudiando superficialmente los aspectos de construcción de un transformador, mediante estas ecuaciones podemos comenzar con la construcción y diseño. Debemos de considerar las potencias necesarias para nuestro proyecto y mediante ellas calcular el ancho del cobre y el tamaño del entre-hierro.\cite{transformador}
+\newpage
 
 \subsection{Rectificador monofasico de onda completa}
 
@@ -198,7 +201,7 @@ Para calcular el voltaje de D.C. que obtendremos podemos utilizar la siguiente e
 V_{cd}=2*0.636V_{m}
 \end{equation}
 
-
+\newpage
 \subsection{Filtros}
 El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectificado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de riso o variación de voltaje de CA.\\
 
@@ -231,6 +234,7 @@ Con la ecuación 2.4 podemos intuir y definir la expresion para el \textbf{rizo}
 \begin{equation}
 r=\dfrac{V_{r}I_{cd}}{CV_{cd}}*100\%=\dfrac{2.4}{R_{L}C}
 \end{equation}
+\newpage
 \subsection{Regulador}
 
 Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto a la salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de DC cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
@@ -300,10 +304,9 @@ Distorsion armonica total (THD). La distorsion armonica total, que mide la cerca
 THD=\dfrac{1}{V_{O1}}\left( \sum_{n=2,3,...}^{\infty }V_{on}^{2}\right)
 \end{equation}
 
-Factor de distorsión (DF). 
-\section{Fuentes de alto voltaje mas comunes}
-
-
+Factor de distorsión (DF).
+ 
+\newpage
 \section{Multiplicador de voltaje Cockcroft-Walton}
 Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares \cite{CERN}. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en corriente directa (CD) mediante una entrada de de voltaje en corriente alterna (CA). El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 1.  
 
@@ -330,3 +333,81 @@ V\approx 2nV-\frac{2n^{3}}{3fC}
 
 Es por ello que mediante un análisis matemático debemos de hacer el calculo de la respectiva $\delta$ del mismo.\\
 No solamente la calidad de la salida depende de lo antes mencionado, ya que, para un correcto funcionamiento necesitamos realizar un sistema de entrada estable y constante. De aquí el siguiente estudio.
+\newpage
+\section{Transformadores de alto voltaje.}
+
+Los transformadores de alto voltaje son utilizados ampliamente en sistemas tanto industriales, médicos como de investigación. Una de estas tantas aplicaciones son los sistemas de ignición, ya que, por el alto voltaje que tenemos en el secundario se producen arcos eléctricos en situaciones controladas, que pueden servir para ignición de combustoleos. En el área de la medicina también se utiliza de manera importante en sistemas de generación de ozono, rayos X, entre tantas otras cosas mas.  \\
+
+\subsection{Sistemas de encendido.}
+
+Cuando las líneas de fuerza de un campo magnético son
+interrumpidas por un conductor (alambre) en movimiento, se crea en éste
+una corriente eléctrica. Este fenómeno es conocido con el nombre de
+inducción electromagnética.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{capitulo3/figs/induc.png}
+\caption{ Inducción electromagnética.}
+\end{figure}
+
+``Este fenómeno se manifiesta de igual manera ya sea que se
+mueva el campo magnético, el conductor o ambos. Obviamente, el voltaje
+inducido en el conductor variará según la intensidad del campo magnético
+pero también tendrá que ver la velocidad con que se mueva el conductor o el campo magnético. Asimismo, si enrollamos el conductor formando una
+bobina y con ella interrumpimos las líneas de fuerza, el voltaje en el
+conductor se multiplicará tantas veces como vueltas del alambre pasen a
+través del campo.''\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{capitulo3/figs/trans2.png}
+\caption{ Inducción electromagnética 2.}
+\end{figure}
+
+En la figura 2.14 se aprecia la estructura básica de un transformador
+de encendido. La corriente de la batería (12V) fluye por el arrollamiento
+primario y crea un potente campo magnético que se concentra en el
+núcleo y envuelve al arrollamiento secundario. AI interrumpirse la corriente
+por medio del sistema electrónico de encendido, el campo se colapsa
+hacia el núcleo férrico atravesando en su camino al arrollamiento
+secundario donde se induce un elevado voltaje (35 000 V aprox.) Este
+proceso de carga y descarga del transformador se repite tan rápido como
+lo requiera el régimen del motor para el encendido de las bujías
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{capitulo3/figs/trans3.png}
+\caption{ Estructura básica transformador de encendido.}
+\end{figure}
+
+El encendido electrónico es un concepto muy amplio pues existen
+tantos sistemas diferentes como recursos tecnológicos. Algunos sistemas
+a base de transistores; otros con sistema Hall y algunos más que utilizan
+un reluctor, todos realizan, a un nivel de alta tecnología, lo que el sistema
+mecánico de platinos desempeñó durante muchos años para lograr el
+mismo objetivo.\\
+
+Sobre estas líneas se encuentra un esquema muy simplificado de
+un sistema de encendido electrónico donde la Unidad de Control se
+encarga de abrir y cerrar el circuito primario, con base en la información
+que le Ilega de los sensores indicándole las condiciones de
+funcionamiento del motor. \cite{ignicion}
+
+\subsection{Generación de rayos X}
+
+El sistema de funcionamiento de un generador de rayos X tiene un funcionamiento relativamente básico.  El equipo recibe electricidad desde la corriente domestica, esta corriente puede ser de 220 V a 440 V, es recibido por un transformador de baja tension que es reductor y que baja el voltaje a 5 o 10 v, lo cual va a producir incandescencia del filamento, generando liberación de electrones. Estos electrones son centralizados por la copa centralizadora de Molibdeno, y que se quedan ahí, en el filamento de tungsteno, esperando. \\
+
+Cuando el equipo se dispara, con el cronorruptor, se activa el circuito de alta tensión que tiene un transformador amplificador, lo que genera un aumento de voltaje a 70Kv. Al ser tan grande la diferencia de potencial entre en ánodo y el cátodo va a generar una gran diferencia de potencial y los electrones salen disparados al ánodo. 
+
+Los electrones se dirigen al ánodo y chocan contra una barra de tungsteno. Cuando se activa el circuito de baja tension, no se liberan los electrones; quedan en el filamento de tungsteno.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{capitulo3/figs/rayos.png}
+\caption{ Tubo de rayos x}
+\end{figure}
+
+Las aplicaciones de estos tubos de rayos x son bastas y han sido un gran avance tecnológico para la humanidad. La generación de rayos x mediante voltaje tiene sus pros y sus contras respecto a generación de rayos x por isotopos radiactivos, ya que los tubos de rayos x pueden ser apagados cuando el equipo no esta operando, en cambio el isotopo radiactivo estará permanentemente irradiando, perdiendo intensidad con el pasar del tiempo.  \\
+
