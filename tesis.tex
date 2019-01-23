@@ -1,5 +1,5 @@
 
-\documentclass[twoside,16pt]{Latex/Classes/thesisUMSNH}
+\documentclass[twoside,22pt]{Latex/Classes/thesisUMSNH}
 %         PUEDEN INCLUIR EN ESTE ESPACIO LOS PAQUETES EXTRA, O BIEN, EN EL ARCHIVO "PhDthesisPSnPDF.cls" EN "./Latex/Classes/"
 \usepackage{blindtext}                        % Para insertar texto dummy, de ejemplo, pues.
 \usepackage{setspace}
@@ -11,14 +11,16 @@
 % writing thesis content.
 \include{Latex/Macros/MacroFile1}           % Archivo con funciones útiles
 
-
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{uarial}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document	
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   DATOS                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{ Fuente digital de alto voltaje, basado en embobinado de ignición y sistema Cockroft-Walton}
+\title{ DESARROLLO DE UN SISTEMA DE ALTO VOLTAJE PARA ACELERADORES DE PARTICULAS}
 \author{Juan Francisco Verdugo Arredondo} 
 \facultad{Facultad de Ciencias Físico Matemáticas}   
 \escudofacultad{Latex/Classes/Escudos/fmed_grande} % Aquí ponen la ruta y nombre del escudo de su facultad, actualmente, la carpeta Latex/Classes/Escudos cuenta con los siguientes escudos:
@@ -61,18 +63,87 @@
 %                   PORTADA                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\begin{center}
+{\Large Universidad Autónoma de Sinaloa}
 
-\maketitle									% Se redefinió este comando en el archivo de la clase para generar automáticamente la portada a partir de los datos
+\begin{Large}
+\setlength{\parskip}{20pt}
+Facultad de ciencias Físico Matemáticas
+\end{Large}
+
+
+\setlength{\parskip}{60pt}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4cm]{logo.png}
+\end{figure}
+\setlength{\parskip}{20pt}
+
+\begin{Large}
+DESARROLLO DE UN SISTEMA DE ALTO VOLTAJE PARA ACELERADORES DE PARTICULAS 
+\end{Large}
+
+\setlength{\parskip}{40pt}
+\begin{Huge}
+T\hspace{1cm}E\hspace{1cm}S\hspace{1cm}I\hspace{1cm}S
+\end{Huge}
+
+\setlength{\parskip}{5pt}
+\begin{normalsize}
+QUE PARA OPTAR POR EL GRADO DE:
+\end{normalsize}
+
+\setlength{\parskip}{5pt}
+\textbf{\begin{large}
+Licenciado en electrónica
+\end{large}}
+
+\setlength{\parskip}{30pt}
+
+\begin{large}
+PRESENTA:
+\end{large}
+
+\setlength{\parskip}{5pt}
+\textbf{\begin{large}
+Juan Francisco Verdugo Arredondo
+\end{large}}
+
+
+\setlength{\parskip}{30pt}
+
+
+\begin{normalsize}
+DIRECTOR:\\
+Carlos Duarte galván\\
+Christian Valerio Lizarraga\\
+\end{normalsize}
+
+
+\setlength{\parskip}{60pt}
+Culiacán, Sinaloa, 2018
+\end{center}
+
+\thispagestyle{empty}
+\newpage
+%\maketitle									% Se redefinió este comando en el archivo de la clase para generar automáticamente la portada a partir de los datos
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                  PRÓLOGO                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\frontmatter
+
+
+
+
+\begin{large}
+
 \include{Agradecimientos/Dedicatoria}       % Comentar línea si no se usa
 \include{Agradecimientos/Agradecimientos}   % Comentar línea si no se usa 
 \include{Declaracion/Declaracion}           % Comentar línea si no se usa
 %\include{Resumen/Resumen}                   % Comentar línea si no se usa
 
+\end{large}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   ÍNDICES                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,12 +163,16 @@
 \mainmatter
 \def\baselinestretch{1.5}                   % Interlineado de 1.5
 \doublespacing
+
+\begin{Large}
+
 \include{Capitulo1/introduccion}            % ~10 páginas - Explicar el propósito de la tesis
 \include{Capitulo2/marco_teorico}           % ~20 páginas - Poner un contexto a la tesis, hacer referencia a trabajos actuales en el tema
 \include{Capitulo3/diseno_experimento}      % ~20 páginas - Explicar el problema en específico que se va a resolver, la metodología y experimentos/métodos utilizados
 \include{Capitulo4/resultados_y_analisis}   % ~20 páginas - Presentar los resultados tal cual son, y analizarlos.
 \include{Capitulo5/conclusiones}            % ~5 páginas - Resumir lo que se hizo y lo que no y comentar trabajos futuros sobre el tema
 
+\end{Large}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   APÉNDICES                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

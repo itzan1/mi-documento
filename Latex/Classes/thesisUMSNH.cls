@@ -25,7 +25,7 @@
 \usepackage{listings}                    % PERMITE AGREGAR CÓDIGO DE LENGUAJES  DE PROGRAMACIÓN (DOCUMENTACIÓN EN GOOGLE)
 \usepackage{emptypage}                   % QUITA LOS ENCABEZADOS Y PIES DE PÁGINA EN LAS HOJAS VACÍAS PRODUCIDAS POR LA IMPRESIÓN A DOS CARAS
 \usepackage{wrapfig}                    % to include figure with text wrapping around it
-\usepackage[margin=10pt,font=small,labelfont=bf]{caption} % for improved layout of figure captions with extra margin, smaller font than text
+\usepackage[margin=12pt,font=large,labelfont=bf]{caption} % for improved layout of figure captions with extra margin, smaller font than text
 \usepackage[bf,SL,BF]{subfigure}         % Permite crear figuras múltiples
 \usepackage{makeidx}                     % Contiene los macros para indexar en un glosario
 %\usepackage[style=list,toc,number=none]{glossary}
@@ -57,7 +57,7 @@
 %{\bfseries\Huge} % por defecto se usarán caracteres de tamaño \Huge en negrita
 {\Huge} % por defecto se usarán caracteres de tamaño \Huge en negrita
 {% contenido de la etiqueta
-\titlerule % línea horizontal
+%\titlerule % línea horizontal
 \filright % texto alineado a la derecha
 \Large\chaptertitlename\ % "Capítulo" o "Apéndice" en tamaño \Large en lugar de \Huge
 \Large\thechapter} % número de capítulo en tamaño \Large
@@ -144,7 +144,7 @@
     \usepackage[ dvips, 
                  bookmarks,
                  bookmarksopen = true,
-                 bookmarksnumbered = true,
+                 bookmarksnumbered = false,
                  breaklinks = true,
                  linktocpage,
                  pagebackref,
@@ -184,7 +184,7 @@
 \setlength{\oddsidemargin}{1.5cm}
 \setlength{\evensidemargin}{0cm}
 \setlength{\topmargin}{1mm}
-\setlength{\headheight}{1.36cm}
+\setlength{\headheight}{0.25cm}
 \setlength{\headsep}{1.00cm}
 \setlength{\textheight}{20.84cm}
 \setlength{\textwidth}{14.5cm}
@@ -219,8 +219,8 @@
 \fancyhead[RO]{\rightmark}
 \fancyhead[LE]{\leftmark}
 \fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0.1pt}
+%\renewcommand{\headrulewidth}{0.5pt}
+%\renewcommand{\footrulewidth}{0.1pt}
 
 
 
