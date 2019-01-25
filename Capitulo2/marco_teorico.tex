@@ -10,35 +10,14 @@ Después de la construcción del primer acelerador, en la misma década de los
 30, se inventaron otros tipos de aceleradores tales como el ciclotrón, los
 aceleradores lineales y los aceleradores tipo Van de Graaff. Debido a que los
 primeros aceleradores de partículas se construyeron con el fin de estudiar
-experimentalmente la estructura del núcleo atómico, por medio de colisiones las que
-podían originar transmutaciones o reacciones nucleares, fue la razón por lo que al
-hablar de un acelerador se asociaba automáticamente con un laboratorio de física
-nuclear. La importancia de estos instrumentos de física nuclear es similar a la del
-telescopio en astronomía o al microscopio en bacteriología.\\
+experimentalmente la estructura del núcleo atómico, por medio de colisiones, las cuales podían originar transmutaciones o reacciones nucleares, esa fue la razón por lo que al hablar de un acelerador se asociaba automáticamente con un laboratorio de física nuclear. La importancia de estos instrumentos de física nuclear es similar a la del telescopio en astronomía o al microscopio en bacteriología.\\
 
- Actualmente el uso de
-los aceleradores se ha extendido a otras áreas de investigación básica como la
-física atómica el mundo de los electrones y en las partículas elementales. Los
-aceleradores en medicina se usan tanto en los departamentos de radiología, para
-destruir tumores malignos, como para producir radioisótopos que se utilizan en el
-diagnóstico de enfermedades (medicina nuclear). El uso de los aceleradores en
-aplicaciones tecnológicas es muy variado y el más conocido es en las industria de
-los semiconductores y de la núcleo-electrónica, las cuales se usan un tipo especial
-de aceleradores conocidos como implantadores con los que es posible producir
-los chips electrónicos, circuitos integrados, etc\\
+Actualmente el uso de los aceleradores se ha extendido a otras áreas de investigación básica como la física atómica el mundo de los electrones y en las partículas elementales. Los aceleradores en medicina se usan tanto en los departamentos de radiología, para destruir tumores malignos, como para producir radioisótopos que se utilizan en el diagnóstico de enfermedades (medicina nuclear). El uso de los aceleradores en aplicaciones tecnológicas es muy variado y el más conocido es en las industria de los semiconductores y de la núcleo-electrónica, las cuales se usan un tipo especial de aceleradores conocidos como implantadores con los que es posible producir los chips electrónicos, circuitos integrados, etc\\
 
-Los aceleradores son instrumentos relativamente complejos y su diseño y
-construcción requiere de alta tecnología e intervienen muchos campos de la
-ingeniería. Una forma de clasificar los aceleradores es por la energía de los
-proyectiles y los de alta energía o superaceleradorores están instalados, por
-ejemplo en algunos laboratorios nacionales de los EUA, tal como, en Los Alamos,
+Los aceleradores son instrumentos relativamente complejos y su diseño y construcción requiere de alta tecnología e intervienen muchos campos de la ingeniería. Una forma de clasificar los aceleradores es por la energía de los proyectiles y los de alta energía o superaceleradorores están instalados, por ejemplo en algunos laboratorios nacionales de los EUA, tal como, en Los Alamos,
 BrookHaven, FermiLab y en Europa en el CERN. \\
 
-Las instalaciones de estos superaceleradores son impresionantes por su gran
-tamaño y los cientos de toneladas de materiales que se requirieron para su
-construcción. Por ejemplo, el acelerador en el FermiLab es circular y tiene un radio de 1 Km. Sin embargo los conceptos sobre los principios de operación de los
-superaceleradores y de los pequeños aceleradores son los mismos y son simples y
-se describen a continuación.\\
+Las instalaciones de estos superaceleradores son impresionantes por su gran tamaño y los cientos de toneladas de materiales que se requirieron para su construcción. Por ejemplo, el acelerador en el FermiLab es circular y tiene un radio de 1 Km. Sin embargo los conceptos sobre los principios de operación de los super-aceleradores y de los pequeños aceleradores son los mismos y son simples y se describen a continuación.\\
 
 Un diagrama simplificado de un acelerador de partículas se muestra
 esquemáticamente en la figura 2.1 y cuyos elementos básicos son:\\
@@ -72,24 +51,22 @@ en valor absoluto igual a la del electrón, después de pasar por una diferencia
 potencial de un volt. \cite{acelerado}
 
 \newpage
-\section{Calculo de capacidad de corriente en pistas de circuitos impresos}
+\section{Cálculo de capacidad de corriente en pistas de circuitos impresos}
 
 
 
-Antes de comenzar con la fabricación de un diseño de PCBs se debe de considerar el tamaño de pistas necesarios para el manejo de corrientes para cada circuito desarrollado, por esa razón mediante un análisis se debe avanzar en el diseño.\\
-
-En la actualidad los desarrolladores llevan a reducir el ancho de las pistas y espacios, debido a que se desarrollan componentes cada vez más pequeños y sistemas igualmente más compactos, esto obliga a adaptarse a estos nuevos requerimientos.\\
+Antes de comenzar con la fabricación de un diseño de PCBs se debe de considerar el tamaño de pistas necesarios para el manejo de corrientes para cada circuito desarrollado, por esa razón mediante un análisis se debe avanzar en el diseño. En la actualidad los desarrolladores llevan a reducir el ancho de las pistas y espacios, debido a que se desarrollan componentes cada vez más pequeños y sistemas igualmente más compactos, esto obliga a adaptarse a estos nuevos requerimientos.\\
 
 Para encontrar una solución a esta eventualidad es necesario recurrir a estudios en estos temas que nos permita acercarnos al límite y para ello debemos de considerar todos los parámetros que influyan en nuestro sistema, obteniendo así resultados más precisos. En nuestro caso nos basaremos en los gráficos publicados en el IPC2152 \cite{IPC 2152} ``Standard for Determining Current Carry Capacity in Printed Board Design'' en 2009, este estándar es ampliamente utilizado en muchos proyectos que requieran este tipo de análisis. \\  
 
 Para el correcto entendimiento de los procesos que influyen en las pistas por el paso de la corriente debemos de recordar que el paso de la corriente por un conductor produce en este una caída de potencial que esta gobernada por la ley de OHM (R=V/I), esta caída de potencial se disipa en forma de calor por el efecto Joule $Q=I^{2}Rt$. En nuestro el conductor es nuestra pista, su resistencia depende de varios factores, pero lo principal es su sección (ancho x espesor) y su longitud. El efecto térmico es en realidad el que nos interesa conocer al momento del dimensionamiento de la PCB. Por esta razón, para poder calcular una capacidad de transporte de corriente, hay que analizarlo en términos de incremento de temperatura. Fijando como un incremento maxico admisible.\\
 
-Existen algunos parámetros que se deben de considerar importantes de conocer, ya que los mismos alteran o modifican el comportamiento termico de la pista, afectando de manera significativa, los mas importantes son:\\
+Existen algunos parámetros que se deben de considerar importantes de conocer, ya que los mismos alteran o modifican el comportamiento térmico de la pista, afectando de manera significativa, los mas importantes son:\\
 
 \begin{itemize}
 \item Corriente eléctrica que circula.
 \item Tipo de material base.
-\item Calculo de corriente de pistas.
+\item Cálculo de corriente de pistas.
 \item Sección de la pista.
 \item Espesor del laminado de cobre.
 \item Espesor de la placa.
@@ -100,7 +77,7 @@ Existen algunos parámetros que se deben de considerar importantes de conocer, y
 Considerar todos estos parámetros en un modelo es bastante complicado, tanto que, en sí, el estándar fue fijado por medio de ensayos y presentando los resultados en forma de curvas. Mediante estos datos empíricos se hace una aproximación que se acerque al límite que deseamos, tomando en cuenta que es importante sobredimensionar dichos límites. \\
 
 El cálculo que se realiza se basa en el fijado de una variación máxima de temperaturas admisibles. La variación térmica se define como un aumento de temperatura por encima de la temperatura inicial que experimenta el conductor. \\
-Para el cálculo se requieren los gráficos ya antes mencionados que son dos. El primer grafico es una de las tres entradas y se trata de una serie de curvas que corresponden a los incrementos de temperatura desde diez a cien grados centígrados. En el eje de las ordenadas se grafica la corriente máxima en amperes y en el de las abscisas obtenemos la sección de la pista en milésimas de pulgada cuadrada. El segundo grafico tiene de igual manera tres entradas y en esta se centra en el espesor del cobre, adoptando los valores típicos en los que se fabrican las PCBs, llegando desde 0.5 hasta 3 Oz/ft2.\\
+Para el cálculo se requieren los gráficos ya antes mencionados que son dos. El primer gráfico es una de las tres entradas y se trata de una serie de curvas que corresponden a los incrementos de temperatura desde diez a cien grados centígrados. En el eje de las ordenadas se gráfica la corriente máxima en amperes y en el de las abscisas obtenemos la sección de la pista en milésimas de pulgada cuadrada. El segundo gráfico tiene de igual manera tres entradas y en esta se centra en el espesor del cobre, adoptando los valores típicos en los que se fabrican las PCBs, llegando desde 0.5 hasta 3 Oz/ft2.\\
 
 Los cálculos necesarios son sencillos y claros de realizar, para ello necesitaremos los siguientes datos:\\
 
@@ -109,23 +86,23 @@ Los cálculos necesarios son sencillos y claros de realizar, para ello necesitar
 \item Incremento máximo de temperatura admisible.
 \item Espesor de cobre del material utilizado.
 \end{itemize}
-Utilizando el valor de corriente nos ubicamos en la figura 2.1 por el eje de las ordenadas y proyectamos el valor en forma paralela al eje de las abscisas hasta interceptar la curva que corresponde a la temperatura máxima admisible, luego en la figura 2.2 tomamos el punto en las ordenadas hasta obtener el valor de las absisas que le corresponde. Ese valor es el valor de la sección cuadrada que debe de tener la pista.
+Utilizando el valor de corriente nos ubicamos en la figura 2.2 por el eje de las ordenadas y proyectamos el valor en forma paralela al eje de las abscisas hasta interceptar la curva que corresponde a la temperatura máxima admisible, luego en la figura 2.3 tomamos el punto en las ordenadas hasta obtener el valor de las absisas que le corresponde. Ese valor es el valor de la sección cuadrada que debe de tener la pista.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{capitulo2/figs/figura1.png}
-\caption{Calculo de ancho de pistas 1}
+\caption{Cálculo de ancho de pistas 1}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{capitulo2/figs/figura2.png}
-\caption{Calculo de ancho de pistas 1}
+\caption{Calculo de ancho de pistas 2}
 \end{figure}
 
 \newpage
 \section{Fuente de voltaje lineal}
-Es común en proyectos de electrónica no especializados la utilización de diferentes tipos de fuentes de voltaje, entre las que se encuentran fuentes lineales, conmutadas, boost o tipo buck y los problemas que puede causar la falta de atención en este punto tan crucial puede afectan los resultados finales de un proyecto. Es por ello que se necesita conocer los principios fundamentales que reinan a este tipo de sistemas que gobernaran el comportamiento de nuestro proyecto al nivel mas básico.\\
+Es común en proyectos de electrónica no especializados la utilización de diferentes tipos de fuentes de voltaje, entre las que se encuentran fuentes lineales, conmutadas, boost o tipo buck y los problemas que puede causar la falta de atención en este punto tan crucial puede afectan los resultados finales de un proyecto. Es por ello que se necesita conocer los principios fundamentales que reinan a este tipo de sistemas, los cuales intervienen directamente en el comportamiento de nuestro proyecto al nivel mas básico.\\
 
 La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el cual se diseña en diferentes configuraciones en cada modulo a partir del tipo de carga que requiere el proyecto. Para ello podemos observar en la figura 2.5 de manera ilustrativa el orden de la estructura básica de una fuente lineal.
 
@@ -136,18 +113,18 @@ La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el c
  \end{figure}
  
  De manera independiente podemos analizar cada aspecto presentado en la imagen, el cual, de uno en uno se va realizando un análisis para definir los valores y topologias que satisfacen las necesidades requeridas. Tomando en cuenta lo mencionado podemos comenzar a definir las ecuaciones y modelos existentes.
- \newpage
 
-\subsection{Etapa de transformador monofasico}
+
+\subsection{Etapa de transformador monofásico}
 
 Esta etapa consta básicamente de un transformador que esta formado por un bobinado primario y uno o varios bobinados secundario, que tiene como función principal
 convertir la energía eléctrica alterna de la red, en energía alterna de otro nivel de voltaje, por medio de la acción de un campo magnético. Ademas provee una aislación galvánica entre la entrada y la salida.\\
 
 Los transformadores son máquinas estáticas con dos devanados, de corriente alterna enrollados sobre un núcleo magnético. El devanado por donde entra energía al transformador se denomina primario y el devanado por donde sale energía hacia las cargas que son alimentadas por el transformador se denomina secundario. El devanado primario tiene $N_{1}$ espiras y el secundario tiene $N_{2}$ espiras. El circuito magnético de esta máquina lo constituye un núcleo magnético sin entrehierros, el cual no está realizado con hierro macizo sino con chapas de acero silicio apiladas y aisladas entre sí. De esta manera se reducen las pérdidas magnéticas del transformador.\\
 
-Al inducir una corriente sobre cualquiera de los dos devanados se genera un flujo alterno en el núcleo magnético. Este flujo magnético se describe mediante la Ley de Faraday y produce una fuerza electromotriz que da lugar a una tensión $V_{2}$ en los bornes de dicho devanado.\\
+Al inducir una corriente sobre cualquiera de los dos devanados se genera un flujo alterno en el núcleo magnético. Este flujo magnético se describe mediante la Ley de Faraday\cite{fara} y produce una fuerza electromotriz que da lugar a una tensión $V_{2}$ en los bornes de dicho devanado.\\
 
-Normalmente, para un transformador reductor o un transformador elevador tienen dos devanados que se denominan de alta tension y de baja tensión, siendo bobina primaria y bobina secundaria respectivamente. Un mismo transformador puede alimentarse por el lado A.T. y funcionar como transformador reductor o alimentarse por el lado de B.T. y actuar como un transformador elevador.
+Normalmente, para un transformador reductor o un transformador elevador tienen dos devanados que se denominan de alta tension y de baja tensión, siendo bobina primaria y bobina secundaria respectivamente. Un mismo transformador puede alimentarse por el lado alta tensión (A.T.) y funcionar como transformador reductor o alimentarse por el lado de baja tensión (B.T.) y actuar como un transformador elevador.
 
 \begin{figure}[H]
 \centering
@@ -155,7 +132,7 @@ Normalmente, para un transformador reductor o un transformador elevador tienen d
 \caption{ Principio de funcionamiento de un transformador monofásico.}
 \end{figure}
 
-En la figura 2.5 podemos observar los símbolos mas comunes que representan al transformador. 
+En la figura 2.6 podemos observar los símbolos mas comunes que representan al transformador. 
 
 \begin{figure}[H]
 \centering
@@ -181,17 +158,16 @@ m=\dfrac{V_{1N}}{V_{2N}}
 \end{equation}
 
 Estudiando superficialmente los aspectos de construcción de un transformador, mediante estas ecuaciones podemos comenzar con la construcción y diseño. Debemos de considerar las potencias necesarias para nuestro proyecto y mediante ellas calcular el ancho del cobre y el tamaño del entre-hierro.\cite{transformador}
-\newpage
 
-\subsection{Rectificador monofasico de onda completa}
+\subsection{Rectificador monofásico de onda completa}
 
-El circuito rectificador de onda completa enera una señal de corriente directa (D.C.) a partir de una señal de corriente alterna
+El circuito rectificador de onda completa genera una señal de corriente directa (D.C.) a partir de una señal de corriente alterna
 (A.C.) con todos los semiciclos de la señal, invirtiendo todos los semiciclos de una misma polaridad, para convertirlos a la otra. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{capitulo3/figs/puente.png}
-\caption{ Simbologia de un transformador monofásico.}
+\caption{ Simbología de un transformador monofásico.}
 \end{figure}
 
 Para calcular el voltaje de D.C. que obtendremos podemos utilizar la siguiente ecuación\cite{rectificador}
@@ -201,29 +177,29 @@ Para calcular el voltaje de D.C. que obtendremos podemos utilizar la siguiente e
 V_{cd}=2*0.636V_{m}
 \end{equation}
 
-\newpage
+
 \subsection{Filtros}
 El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectificado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de riso o variación de voltaje de CA.\\
 
-Para calcular el voltaje de riso podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de cd leerá solo el nivel promedio. El medidor de ca (RMS) leerá solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el riso como:\\
+Para calcular el voltaje de rizo podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de CD leerá solo el nivel promedio. El medidor de CA (RMS) leerá solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el riso como:\\
 
 \begin{equation}
-r=\frac{voltaje\:  de\:  riso\:  (rms)}{voltaje\:  de\:  DC}=V_{cd}\cdot 100\%
+r=\frac{voltaje\:  de\:  rizo\:  (rms)}{voltaje\:  de\:  DC}=V_{cd}\cdot 100\%
 \end{equation}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{capitulo3/figs/risado.png}
-\caption{ Forma de onda de un voltaje filtrado que muestra voltajes de dc y de rizo.}
+\caption{ Forma de onda de un voltaje filtrado que muestra voltajes de DC y de rizo.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{capitulo3/figs/filtro.png}
-\caption{ Forma de onda de un voltaje filtrado que muestra voltajes de dc y de rizo.}
+\caption{ Forma de onda de un voltaje filtrado que muestra voltajes de DC y de rizo.}
 \end{figure}
 
-Para nuestro caso utilizaremos un filtro de capacitor. Se conecta un capacitor en la salida del rectificador y se obtiene un voltaje de dc a través del capacitor como se muestra en la figura 2.7 y 2.8. Podemos calcular el \textbf{voltaje del riso} que obtendremos mediante la ecuación:
+Para nuestro caso utilizaremos un filtro de capacitor. Se conecta un capacitor en la salida del rectificador y se obtiene un voltaje de dc a través del capacitor como se muestra en la figura 2.8 y 2.9. Podemos calcular el \textbf{voltaje del riso} que obtendremos mediante la ecuación:
 
 \begin{equation}
 V_{r}(rms)=\dfrac{I_{cd}}{4\sqrt{3}fC}=\dfrac{2.4V_{cd}}{R_{L}C}
@@ -234,10 +210,10 @@ Con la ecuación 2.4 podemos intuir y definir la expresion para el \textbf{rizo}
 \begin{equation}
 r=\dfrac{V_{r}I_{cd}}{CV_{cd}}*100\%=\dfrac{2.4}{R_{L}C}
 \end{equation}
-\newpage
+
 \subsection{Regulador}
 
-Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de cd a lo largo de la operación de un circuito. El voltaje provisto a la salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de DC cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
+Un factor de importancia en una fuente de alimentación es la cantidad de cambios de voltaje de salida de DC a lo largo de la operación de un circuito. El voltaje provisto a la salida en la condición sin carga (sin que demande corriente de la fuente) se reduce cuando se extrae corriente de carga de la fuente. La cantidad que el voltaje de DC cambia entre las condiciones sin carga y con carga la describe un factor llamado regulación de voltaje, para una fuente ideal la regulación de voltaje seria del 0\%. Entonces podemos definir la regulacion de voltaje como:
  
 
 $$Regulaci\acute{o}n\:de\: voltaje = \dfrac{Voltaje\: sin \:carga \:-\: Voltaje\: con\: carga}{voltaje\: con\: carga}$$
@@ -253,23 +229,24 @@ $$Regulaci\acute{o}n\:de\: voltaje = \dfrac{Voltaje\: sin \:carga \:-\: Voltaje\
 
 \section{Inversores de voltaje}
 
-Los convertidores DC a AC se conocen como inversores. La función de un inversor es cambiar un voltaje de entrada de DC a un voltaje simétrico de salida de AC de magnitud y frecuencia deseada. 
-Los inversores se pueden clasificar ampliamente en dos tipos: inversores monofasicos e inversores trifasicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo transistor de unión bipolar (BJT), transistor de efecto de campo metal-óxido-semiconductor(MOSFET),transistor bipolar de puerta aislada (IGBT), etc. Por lo general estos inversores utilizan señales de control de PWM para producir un voltaje de salida de CA.
+Los convertidores DC a AC se conocen como inversores. La función de un inversor es cambiar un voltaje de entrada de DC a un voltaje simétrico de salida de AC de magnitud y frecuencia deseada. \\
 
-Existen diferentes tipos de inversores, un inversor se conoce como inversor alimentado por voltaje (VFI) si el voltaje de entrada permanece constante; inversor alimentado por corriente (CFI) si el voltaje de entrada permanece constante, e inversor enlazado en cd variable si el voltaje de entrada es controlable. Si al voltaje o a la corriente de salida del inversor se le hace pasar a través de cero al crear un circuito LC resonante, a este tipo de inversores se le conoce como inversor de pulso resonante, y tiene vastas aplicaciones en la electrónica de potencia. \\
+Los inversores se pueden clasificar ampliamente en dos tipos: inversores monofásicos e inversores trifásicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo \textbf{transistor de unión bipolar} (BJT), \textbf{transistor de efecto de campo metal-óxido-semiconductor}(MOSFET),\textbf{transistor bipolar de puerta aislada} (IGBT), etc. Por lo general estos inversores utilizan señales de control de PWM para producir un voltaje de salida de CA.
 
-\subsection{Parametros de desempeño de un inversor}
+Existen diferentes tipos de inversores, un inversor se conoce como \textbf{inversor alimentado por voltaje} (VFI) si el voltaje de entrada permanece constante; \textbf{inversor alimentado por corriente} (CFI) si el voltaje de entrada permanece constante, e \textbf{inversor enlazado en cd variable} si el voltaje de entrada es controlable. Si al voltaje o a la corriente de salida del inversor se le hace pasar a través de cero al crear un circuito LC resonante, a este tipo de inversores se le conoce como \textbf{inversor de pulso resonante}, y tiene vastas aplicaciones en la electrónica de potencia. \\
 
-El voltaje de entrada a un inversor es de DC y el voltaje de salida de AC. Idealmente la salida debe de ser una onda sinusoidal pura, pero contiene armónicos o rizos como se muestra en l figura 2.7. El inversor consume corriente de la fuente de entrada de DC solo cuando se conecta la carga al sistema, afectando la calidad de la señal de salida, es por ello que una medición variara conforme se conecte una carga diferente. Por lo común la calidad de un inversor se evalúa en función de los siguientes parámetros de desempeño:\\
+\subsection{Parámetros de desempeño de un inversor}
 
-La potencia de salida esta dada por \begin{equation}
+El voltaje de entrada a un inversor es de DC y el voltaje de salida de AC. Idealmente la salida debe de ser una onda sinusoidal pura, pero contiene armónicos o rizos como se muestra en l figura 2.8. El inversor consume corriente de la fuente de entrada de DC solo cuando se conecta la carga al sistema, afectando la calidad de la señal de salida, es por ello que una medición variara conforme se conecte una carga diferente. Por lo común la calidad de un inversor se evalúa en función de los siguientes parámetros de desempeño:\\
+
+La potencia de salida esta dada por: \begin{equation}
 P_{ca}=I_{0}V_{0}COS\theta
 \end{equation}
 \begin{equation}
 P_{ca}= I_{0}^{2}R
 \end{equation}
 
-Donde $V_{0}$ e $I_{0}$ son el voltaje y corriente rms de la carga, $\theta$ es en angulo de la impedancia de la carga y R es la resistencia de la carga.\\
+Donde $V_{0}$ e $I_{0}$ son el voltaje y corriente RMS de la carga, $\theta$ es en angulo de la impedancia de la carga y R es la resistencia de la carga.\\
 
 La potencia de entrada de ca del inversor es:\\
 
@@ -294,13 +271,13 @@ RF_{s}=\dfrac{I_{r}}{I_{s}}
 
 La eficiencia de potencia, la cual es la relación de la potencia de salida a la potencia de entrada, dependerá de las perdidas por conmutación, que a su vez dependen de la frecuencia de conmutación del inversor.\\
 
-Factor armonico del n-ésimo armonico (H$F_{n}$). El factor armonico (del n-ésimo armonico) que mide la contibuciónarmonca individual, se define como \begin{equation}
+Factor armónico del n-ésimo armónico (H$F_{n}$). El factor armonico (del n-ésimo armonico) que mide la contibuciónarmonca individual, se define como \begin{equation}
 HF_{n}=\dfrac{V_{on}}{V_{o1}}, \: para\; n>1
 \end{equation}
 
 donde $V_{O1}$ es el valor rms del componente fundamental y $V_{ob}$ es el valor rms del n-ésimo componente armónico.\\
 
-Distorsion armonica total (THD). La distorsion armonica total, que mide la cercaia en cuanto a forma de onda y su componente fundamental, se define como: \begin{equation}
+Distorsión armónica total (THD). La distorsión armónica total, que mide la cercania en cuanto a forma de onda y su componente fundamental, se define como: \begin{equation}
 THD=\dfrac{1}{V_{O1}}\left( \sum_{n=2,3,...}^{\infty }V_{on}^{2}\right)
 \end{equation}
 
@@ -308,7 +285,7 @@ Factor de distorsión (DF).
  
 \newpage
 \section{Multiplicador de voltaje Cockcroft-Walton}
-Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares \cite{CERN}. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en corriente directa (CD) mediante una entrada de de voltaje en corriente alterna (CA). El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 1.  
+Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares \cite{CERN}. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en CD mediante una entrada de de voltaje en CA. El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 2.10.  
 
 \begin{figure}[H]
 \centering
@@ -331,15 +308,15 @@ El sistema multiplicador es bastante sencillo pero existen algunos temas impresc
 V\approx 2nV-\frac{2n^{3}}{3fC}
 \end{equation}
 
-Es por ello que mediante un análisis matemático debemos de hacer el calculo de la respectiva $\delta$ del mismo.\\
+Es por ello que mediante un análisis matemático debemos de hacer el cálculo de la respectiva $\delta$ del mismo.\\
 No solamente la calidad de la salida depende de lo antes mencionado, ya que, para un correcto funcionamiento necesitamos realizar un sistema de entrada estable y constante. De aquí el siguiente estudio.
 \newpage
 \section{Aplicaciones de fuentes de alto voltaje .}
 
-Los transformadores de alto voltaje son utilizados ampliamente en sistemas tanto industriales, médicos como de investigación. Una de estas tantas aplicaciones son los sistemas de ignición, ya que, por el alto voltaje que tenemos en el secundario se producen arcos eléctricos en situaciones controladas, que pueden servir para ignición de combustoleos. En el área de la medicina también se utiliza de manera importante en sistemas de generación de ozono, rayos X, entre tantas otras cosas mas.  \\
+Los transformadores de alto voltaje son utilizados ampliamente en sistemas tanto industriales, médicos como de investigación. Una de estas tantas aplicaciones son los sistemas de ignición, ya que, por el alto voltaje que tenemos en el secundario se producen arcos eléctricos en situaciones controladas, que pueden servir para ignición de combustoleos. En el área de la medicina también se utiliza de manera importante en sistemas de generación de ozono, rayos X, entre tantas otras cosas más.  \\
 \subsection{Fusión nuclear}
 
-Es aquella en la que se unen dos núcleos ligeros para formar otro más pesado. Este proceso genera energía porque el peso del núcleo resultante es menor que la suma de los pesos de los núcleos más ligeros. Esta diferencia en las masas, llamado defecto de masa o energía de amarre, se transforma en energía mediante la fórmula de Einstein , donde m es la diferencia de masa observada en el sistema antes y después de la fusión y es la velocidad de la luz (300.000 km/s). Aunque el defecto de masa es muy pequeño, es una energía muy concentrada ya que en un gramo de materia hay millones de átomos, con lo que una pequeña cantidad de combustible proporcionaría una cantidad grande de energía.\\
+Es aquella en la que se unen dos núcleos ligeros para formar otro más pesado. Este proceso genera energía porque el peso del núcleo resultante es menor que la suma de los pesos de los núcleos más ligeros. Esta diferencia en las masas, llamado defecto de masa o energía de amarre, se transforma en energía mediante la fórmula de Einstein, donde m es la diferencia de masa observada en el sistema antes y después de la fusión y es la velocidad de la luz (300.000 km/s). Aunque el defecto de masa es muy pequeño, es una energía muy concentrada ya que en un gramo de materia hay millones de átomos, con lo que una pequeña cantidad de combustible proporcionaría una cantidad grande de energía.\\
 
 Este tipo de reacciones es la que tiene lugar en el interior de las estrellas, proporcionándoles su brillo y su producción energética. En la escala terrestre, los experimentos realizados sobre fusión nuclear enfrentan un problema de primer orden: la dificultad de controlar las enormes cantidades de energía que se producen en el proceso.
 
@@ -356,9 +333,9 @@ Los combustibles primarios son baratos, abundantes, no radioactivos y repartidos
 
 Sistema intrínsecamente seguro: el reactor sólo contiene el combustible necesario para los diez segundos siguientes de operación. Además el medio ambiente no sufre ninguna agresión: no hay contaminación atmosférica que provoque la “lluvia ácida” o el “efecto invernadero”.\\
 
-La radiactividad de la estructura del reactor, producida por los neutrones emitidos en las reacciones de fusión, puede ser minimizada escogiendo cuidadosamente materiales de baja activación. Por tanto, no es preciso almacenar los elementos del reactor durante cientos o miles de años.\\ \cite{fusion}
+La radiactividad de la estructura del reactor, producida por los neutrones emitidos en las reacciones de fusión, puede ser minimizada escogiendo cuidadosamente materiales de baja activación. Por tanto, no es preciso almacenar los elementos del reactor durante cientos o miles de años. \cite{fusion} \\
 
-Existen diferentes tipos de metodos para lograr fusion nuclear. Uno de los mas utilizados por cientificos afisionados al tema es el llamado Fusor Farnsworth \cite{fusor}, el cual se emplea una técnica denominada confinamiento electrostático. En este aparato se emplean técnicas de vacío, alto voltaje, detección de neutrones y manejo de gases. Su nivel de peligrosidad es grande. Este es uno de los proyectos mas ambiciosos que un aficionado puede acometer ya que supone el dominio de unas técnicas solo accesibles a aficionados bastante experimentados.
+Existen diferentes tipos de métodos para lograr fusión nuclear. Uno de los mas utilizados por científicos afisionados al tema es el llamado Fusor Farnsworth \cite{fusor}, el cual se emplea una técnica denominada confinamiento electrostático. En este aparato se emplean técnicas de vacío, alto voltaje, detección de neutrones y manejo de gases. Su nivel de peligrosidad es grande. Este es uno de los proyectos mas ambiciosos que un aficionado puede acometer ya que supone el dominio de unas técnicas solo accesibles a aficionados bastante experimentados.
 
 
 \begin{figure}[H]
@@ -421,12 +398,12 @@ mismo objetivo.\\
 Sobre estas líneas se encuentra un esquema muy simplificado de
 un sistema de encendido electrónico donde la Unidad de Control se
 encarga de abrir y cerrar el circuito primario, con base en la información
-que le Ilega de los sensores indicándole las condiciones de
+que le llega de los sensores indicándole las condiciones de
 funcionamiento del motor. \cite{ignicion}
 
 \subsection{Generación de rayos X}
 
-El sistema de funcionamiento de un generador de rayos X tiene un funcionamiento relativamente básico.  El equipo recibe electricidad desde la corriente domestica, esta corriente puede ser de 220 V a 440 V, es recibido por un transformador de baja tension que es reductor y que baja el voltaje a 5 o 10 v, lo cual va a producir incandescencia del filamento, generando liberación de electrones. Estos electrones son centralizados por la copa centralizadora de Molibdeno, y que se quedan ahí, en el filamento de tungsteno, esperando. \\
+El sistema de funcionamiento de un generador de rayos X tiene un funcionamiento relativamente básico.  El equipo recibe electricidad desde la corriente domestica, esta corriente puede ser de 220 V a 440 V, es recibido por un transformador de baja tensión que es reductor y que baja el voltaje a 5 o 10 v, lo cual va a producir incandescencia del filamento, generando liberación de electrones. Estos electrones son centralizados por la copa centralizadora de Molibdeno, y que se quedan ahí, en el filamento de tungsteno, esperando. \\
 
 Cuando el equipo se dispara, con el cronorruptor, se activa el circuito de alta tensión que tiene un transformador amplificador, lo que genera un aumento de voltaje a 70Kv. Al ser tan grande la diferencia de potencial entre en ánodo y el cátodo va a generar una gran diferencia de potencial y los electrones salen disparados al ánodo. 
 

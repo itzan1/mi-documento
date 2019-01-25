@@ -52,7 +52,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            REDEFINIENDO EL FORMATO DE LOS CAPITULOS             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\bigrule}{\titlerule[0.5mm]}
+%\newcommand{\bigrule}{\titlerule[0.5mm]}
 \titleformat{\chapter}[display] % CAMBIAMOS EL FORMATO DE LOS CAPÍTULOS
 %{\bfseries\Huge} % por defecto se usarán caracteres de tamaño \Huge en negrita
 {\Huge} % por defecto se usarán caracteres de tamaño \Huge en negrita
@@ -63,7 +63,7 @@
 \Large\thechapter} % número de capítulo en tamaño \Large
 {0mm} % espacio mínimo entre etiqueta y cuerpo
 {\filright} % texto del cuerpo alineado a la derecha
-[\vspace{0.5mm} \bigrule] % después del cuerpo, dejar espacio vertical y trazar línea horizontal gruesa
+%[\vspace{0.5mm} \bigrule] % después del cuerpo, dejar espacio vertical y trazar línea horizontal gruesa
 
 
 %:-------------------------- Glossary/Abbrev./Symbols -----------------------
@@ -357,7 +357,7 @@
 		{\Large \scshape {\@ctutordos}}\\[10mm]
 		{\MakeUppercase {\@lugar}}{, }{\MakeUppercase {\@degreedate}}
 	\else
-		\vspace{20mm}
+		\ {20mm}
 		{\MakeUppercase {\@lugar}}{, }{\MakeUppercase {\@degreedate}}
 	\fi	
 	\end{center}
