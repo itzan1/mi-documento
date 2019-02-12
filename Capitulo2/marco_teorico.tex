@@ -21,7 +21,7 @@ Las instalaciones de estos superaceleradores son impresionantes por su gran tama
 
 Un diagrama simplificado de un acelerador de partículas se muestra
 esquemáticamente en la figura 2.1 y cuyos elementos básicos son:\\
-
+\setlength{\parindent}{0cm}
 1) Fuente de voltaje\\
 2) Fuente de iones (en el esquema es un filamento)\\
 3) Electrodos.
@@ -35,20 +35,15 @@ partículas.}
 
 El principio de funcionamiento del cualquier tipo de acelerador, se basa en la
 interacción de los campos eléctricos producidos por fuentes de voltaje sobre la
-carga eléctrica de las partículas generadas en la fuente de iones y esta es la razón por la que no se pueden acelerar partículas neutras.\\
+carga eléctrica de las partículas generadas en la fuente de iones y esta es la razón por la que no se pueden acelerar partículas neutras mediante este tipo de aceleradores.\\
 
 Otras partes importantes asociadas a un acelerador son equipos periféricos
 tales como: sistemas de vacío, líneas de transporte de haz, cámaras de
-experimentación, etc. Un tubo de rayos X y el cinescopio de una TV doméstica según la definición
+experimentación, etc. Un tubo de rayos X y el cinescopio de una TV  según la definición
 anterior son aceleradores de partículas, sin embargo, en la práctica no se les refiere con este nombre.\\
 
 Como se sabe, las unidades que se usan para la energía en física son los julios
-y/o ergios. Sin embargo, para cuantificar la energía de los proyectiles acelerados se acostumbra usar unidades de electrón-volt (eV) o sus múltiples: el keV= 1 000 eV, el $MeV= 1 000 000 eV$, el TeV= $10^{12} eV$, etc. El uso de estas unidades de energía
-es debido a la relación simple de la ecuación anterior, en la cual la energía es
-numéricamente igual al voltaje. De acuerdo con la ecuación anterior, una energía
-de 1 eV es el cambio de energía cinética que experimenta una partícula con carga
-en valor absoluto igual a la del electrón, después de pasar por una diferencia de
-potencial de un volt. \cite{acelerado}
+y/o ergios. Sin embargo, en el area de aceleradores, para cuantificar la energía de los proyectiles acelerados se acostumbra usar unidades de electrón-volt (eV)  o sus múltiples: el keV= 1 000 eV, el $MeV= 1 000 000 eV$, el TeV= $10^{12} eV$, etc. Una energía de 1 eV es el cambio de energía cinética que experimenta una partícula con carga en valor absoluto igual a la del electrón, después de pasar por una diferencia de potencial de un volt. \cite{const}
 
 \newpage
 \section{Cálculo de capacidad de corriente en pistas de circuitos impresos}
@@ -77,7 +72,7 @@ Existen algunos parámetros que se deben de considerar importantes de conocer, y
 Considerar todos estos parámetros en un modelo es bastante complicado, tanto que, en sí, el estándar fue fijado por medio de ensayos y presentando los resultados en forma de curvas. Mediante estos datos empíricos se hace una aproximación que se acerque al límite que deseamos, tomando en cuenta que es importante sobredimensionar dichos límites. \\
 
 El cálculo que se realiza se basa en el fijado de una variación máxima de temperaturas admisibles. La variación térmica se define como un aumento de temperatura por encima de la temperatura inicial que experimenta el conductor. \\
-Para el cálculo se requieren los gráficos ya antes mencionados que son dos. El primer gráfico es una de las tres entradas y se trata de una serie de curvas que corresponden a los incrementos de temperatura desde diez a cien grados centígrados. En el eje de las ordenadas se gráfica la corriente máxima en amperes y en el de las abscisas obtenemos la sección de la pista en milésimas de pulgada cuadrada. El segundo gráfico tiene de igual manera tres entradas y en esta se centra en el espesor del cobre, adoptando los valores típicos en los que se fabrican las PCBs, llegando desde 0.5 hasta 3 Oz/ft2.\\
+Para el cálculo se requieren los gráficos de las figuras 2.2 y 2.3. El primer gráfico es una de las tres entradas y se trata de una serie de curvas que corresponden a los incrementos de temperatura desde diez a cien grados centígrados. En el eje de las ordenadas se gráfica la corriente máxima en amperes y en el de las abscisas obtenemos la sección de la pista en milésimas de pulgada cuadrada. El segundo gráfico tiene de igual manera tres entradas y en esta se centra en el espesor del cobre, adoptando los valores típicos en los que se fabrican las PCBs, llegando desde 0.5 hasta 3 $Oz/ft^{2}$.\\
 
 Los cálculos necesarios son sencillos y claros de realizar, para ello necesitaremos los siguientes datos:\\
 
@@ -91,45 +86,43 @@ Utilizando el valor de corriente nos ubicamos en la figura 2.2 por el eje de las
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{capitulo2/figs/figura1.png}
-\caption{Cálculo de ancho de pistas 1}
+\caption{Grafico para calcular la sección cuadrada mediante la corriente que pasa a través de la pista y su temperatura máxima permitida.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{capitulo2/figs/figura2.png}
-\caption{Calculo de ancho de pistas 2}
+\caption{Gráfico para identificar el ancho de pista necesario mediante la sección cuadrada del conductor y el grosor de la pista.}
 \end{figure}
 
 \newpage
 \section{Fuente de voltaje lineal}
-Es común en proyectos de electrónica no especializados la utilización de diferentes tipos de fuentes de voltaje, entre las que se encuentran fuentes lineales, conmutadas, boost o tipo buck y los problemas que puede causar la falta de atención en este punto tan crucial puede afectan los resultados finales de un proyecto. Es por ello que se necesita conocer los principios fundamentales que reinan a este tipo de sistemas, los cuales intervienen directamente en el comportamiento de nuestro proyecto al nivel mas básico.\\
-
 La fuente de voltaje lineal consiste en un sistema sencillo y estructurado, el cual se diseña en diferentes configuraciones en cada modulo a partir del tipo de carga que requiere el proyecto. Para ello podemos observar en la figura 2.5 de manera ilustrativa el orden de la estructura básica de una fuente lineal.
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=12cm]{capitulo2/figs/fuentelineal.jpg}
- \caption{Estructura fuente lineal}
+ \caption{Componentes básicos de una fuente de corriente directa lineal}
  \end{figure}
  
- De manera independiente podemos analizar cada aspecto presentado en la imagen, el cual, de uno en uno se va realizando un análisis para definir los valores y topologias que satisfacen las necesidades requeridas. Tomando en cuenta lo mencionado podemos comenzar a definir las ecuaciones y modelos existentes.
+ De manera independiente podemos analizar cada aspecto presentado en la imagen 2.4, el cual, de uno en uno se va realizando un análisis para definir los valores y topologias que satisfacen las necesidades requeridas. Tomando en cuenta lo mencionado podemos comenzar a definir las ecuaciones y modelos existentes.
 
 
 \subsection{Etapa de transformador monofásico}
 
 Esta etapa consta básicamente de un transformador que esta formado por un bobinado primario y uno o varios bobinados secundario, que tiene como función principal
-convertir la energía eléctrica alterna de la red, en energía alterna de otro nivel de voltaje, por medio de la acción de un campo magnético. Ademas provee una aislación galvánica entre la entrada y la salida.\\
+convertir la energía eléctrica alterna de la red, en energía alterna de otro nivel de voltaje, por medio de la acción de un campo magnético.\\
 
-Los transformadores son máquinas estáticas con dos devanados, de corriente alterna enrollados sobre un núcleo magnético. El devanado por donde entra energía al transformador se denomina primario y el devanado por donde sale energía hacia las cargas que son alimentadas por el transformador se denomina secundario. El devanado primario tiene $N_{1}$ espiras y el secundario tiene $N_{2}$ espiras. El circuito magnético de esta máquina lo constituye un núcleo magnético sin entrehierros, el cual no está realizado con hierro macizo sino con chapas de acero silicio apiladas y aisladas entre sí. De esta manera se reducen las pérdidas magnéticas del transformador.\\
+Los transformadores son maquinas eléctricas con dos devanados, en su forma mas básica. El devanado por donde entra energía al transformador se denomina primario y el devanado por donde sale energía hacia las cargas que son alimentadas por el transformador se denomina secundario. El devanado primario tiene $N_{1}$ espiras y el secundario tiene $N_{2}$ espiras. El circuito magnético de esta máquina lo constituye un núcleo magnético sin entrehierros, el cual no está realizado con hierro macizo sino con chapas de acero al silicio apiladas y aisladas entre sí. De esta manera se reducen las pérdidas magnéticas del transformador.\\
 
-Al inducir una corriente sobre cualquiera de los dos devanados se genera un flujo alterno en el núcleo magnético. Este flujo magnético se describe mediante la Ley de Faraday\cite{fara} y produce una fuerza electromotriz que da lugar a una tensión $V_{2}$ en los bornes de dicho devanado.\\
+Al inducir una corriente sobre cualquiera de los dos devanados se genera un flujo alterno en el núcleo magnético. Este flujo magnético se describe mediante la Ley de Faraday\cite{librotra} y produce una fuerza electromotriz que da lugar a una tensión $V_{2}$ en los bornes de dicho devanado.\\
 
 Normalmente, para un transformador reductor o un transformador elevador tienen dos devanados que se denominan de alta tension y de baja tensión, siendo bobina primaria y bobina secundaria respectivamente. Un mismo transformador puede alimentarse por el lado alta tensión (A.T.) y funcionar como transformador reductor o alimentarse por el lado de baja tensión (B.T.) y actuar como un transformador elevador.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=9cm]{capitulo3/figs/trans.png}
-\caption{ Principio de funcionamiento de un transformador monofásico.}
+\caption{ Principio de funcionamiento de un transformador monofásico. \cite{transformador}}
 \end{figure}
 
 En la figura 2.6 podemos observar los símbolos mas comunes que representan al transformador. 

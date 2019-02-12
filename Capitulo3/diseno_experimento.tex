@@ -720,11 +720,11 @@ Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (
 \caption{Implementación inversor salida con carga inductiva.}
 \end{figure}
 
-Mediante estas configuraciones se obtuvieron las mediciones que se pueden ver en las figuras para cada configuración respectivamente. 
+
 
 \subsection{Multiplicador de voltaje}
 
-Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar el circuito desarrollado (figura 3.27) y mediante mediciones sin carga se observa el voltaje de salida con el osciloscopio (figura 3.24)
+Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar un circuito provisional desarrollado (figura 3.27) y mediante mediciones sin carga se observa el voltaje de salida con el osciloscopio (figura 3.24)
 
 \begin{figure}[H]
 \centering
@@ -734,6 +734,39 @@ Existen aspectos claves para este apartado que definirán la calidad de nuestra 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=9cm]{Capitulo3/figs/fotofuente.png}
-\caption{Implementación inversor}
+\includegraphics[width=9cm]{Capitulo3/figs/93V.jpg}
+\caption{Medición sin carga a 93v}
 \end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/200V.jpg}
+\caption{Medición sin carga a 200V}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/600v.jpg}
+\caption{Medición sin carga a 600V}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo3/figs/986V.jpg}
+\caption{Medición sin carga a 986V}
+\end{figure}
+
+A partir de estas mediciones podemos calcular el riso que tiene nuestra medición utilizando la ecuación 2.4 como podemos observar en las figuras 3.28, 3.29, 3.30 y 3.31  respectivamente. \\Para la medicion a $93V$ tenemos: $$r=\frac{4.157V}{94.79V}=0.043$$ Para $200V$: $$r=\frac{0.00027V}{200V}=1.35\mu $$ Para 600v:  $$r=\frac{0.001115V}{600V}=1.85\mu $$ Para 1000V  $$r=\frac{0.002435V}{986V}=2.467\mu $$
+
+El segundo experimento que se realizo fue agregar una carga de $1M\Omega$ para obtener la eficiencia de la misma, valor calculado con la ecuación 2.7. \\
+
+Para $93V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{94.79V-94.77V}{94.77V}= 2.11x10^{-4}$$
+
+Para $200V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{200V-199.96V}{199.96V}= 2x10^{-4}$$
+
+Para $600V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{600V-599.93V}{599.93V}= 1.16x10^{-4}$$
+
+Para $986V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{986.7V-986.6V}{986.6V}= 1.01x10^{-4}$$
+
+Los valores importantes para definir la eficiencia de una fuente son el riso que existe sobre el voltaje de corriente directa y la caida de voltaje con una carga respectiva. 
+
