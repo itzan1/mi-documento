@@ -10,7 +10,7 @@ En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en c
 
 El sistema esta compuesto por dos partes, hardware y firmware, el hardware se compone de tres partes como vemos en la figura 3.5: parte digital de control, inversor de voltaje y rectificador multiplicador. \\
 
-Por otro lado el firmware consiste en los programas que realizan el control completo de la generación de alto voltaje por medio del desarrollo de un ambiente gráfico al que el usuario tiene acceso,  control para el senseo de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un ADC ( Analog to Digital Converter) a la salida de una devanado de baja en el transformador de alto voltaje el cual controla la salida de alto voltaje. Observemos de manera gráfica la topología del sistema en la figura 3.5S. 
+Por otro lado el firmware consiste en los programas que realizan el control completo de la generación de alto voltaje por medio del desarrollo de un ambiente gráfico al que el usuario tiene acceso,  control para la medición de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un ADC ( Analog to Digital Converter) a la salida de una devanado de baja en el transformador de alto voltaje el cual controla la salida de alto voltaje. Observemos de manera gráfica la topología del sistema en la figura 3.5. 
 \newpage
 
 
@@ -53,7 +53,7 @@ Con esta herramienta se ha logrado utilizar el osciloscopio y analizar la señal
 \caption{Osciloscopio utilizado en experimento}
 \end{figure}
 
-Para la fabricación de los PCB se utilizo una herramienta LPKF, router computarizado. El cual, una vez hecho el diseño en el programa EAGLE se prosiguió a la generación de los archivos gerber para su posterior maquinación. 
+Para la fabricación de los PCB se utilizó una herramienta LPKF, router computarizado. El cual, una vez hecho el diseño en el programa EAGLE se prosiguió a la generación de los archivos gerber para su posterior maquinación. 
 
 \begin{figure}[H]
 \centering
@@ -69,7 +69,7 @@ Para la fabricación de los PCB se utilizo una herramienta LPKF, router computar
 \section{Diseño del hardware}
 
 
-La figura 3.1 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también de el control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
+La figura 3.1 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también del control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
 
 \begin{figure}[H]
 \centering
@@ -150,7 +150,7 @@ Para el inversor se ha implementado una topología del tipo puente H, ya que es 
 
 
 \subsection{Multiplicador de voltaje Cockroft Walton}
-Mediante el motor de simulación de LTSPICE se ha realizado el diseño del multiplicador a utilizar. Contando con valores de capacitores de 0.1 $\mu$-Faradios, diodos MUR4100, voltaje de entrada de 1KV y una frecuencia variable de 10KHZ. Podemos observar en la figura 3.9 el diseño planteado, con la finalidad de tener un punto de referencia al momento de realizar el experimento. \\
+Mediante el motor de simulación de LTSPICE se ha realizado el diseño del multiplicador a utilizar. Contando con valores de capacitores de 0.1 $\mu$-Faradios, diodos MUR4100, voltaje de entrada de 1KV y una frecuencia variable de 10KHZ. Podemos observar en la figura 3.9 el diseño planteado, con la finalidad de tener un punto de referencia al momento de realizar el experimento. Se busca tener un riso menor al 1\% del voltaje de salida y tomaremos la simulación como punto de partida para la construcción del multiplicador. \\
 
 \begin{figure}[H]
 \centering
@@ -185,7 +185,9 @@ Para una carga con una exigencia de 10 mA podemos observar la figura 3.16. Tenem
 \caption{Multiplicador de voltaje con 10 mA de carga}
 \end{figure}
 
-Tenemos un voltaje $V_{1mA}=3.9KV$, $V_{10mA}=3.2KV$ y $V_{NL}=4KV$ ahora utilizando la ecuación 2.7 podemos calcular la eficiencia de nuestra fuente y utilizar este punto de referencia para la construcción de nuestro proyecto. Para una carga de 1 mA tenemos $VR_{1mA}=2.5\%$ Y para una carga de 10 mA $VR_{10mA}=20\%$ valor límite para nuestro circuito.
+Tenemos un voltaje $V_{1mA}=3.9KV$, $V_{10mA}=3.2KV$ y $V_{NL}=4KV$ ahora utilizando la ecuación 2.7 podemos calcular la eficiencia de nuestra fuente y utilizar este punto de referencia para la construcción de nuestro proyecto. Para una carga de 1 mA tenemos $VR_{1mA}=2.5\%$ Y para una carga de 10 mA $VR_{10mA}=20\%$ valor límite para nuestro circuito.\\
+
+Hasta aquí podemos capturar los siguientes datos importantes, para una carga de 1 mA tenemos una caída de voltaje de 100V y para una carga de 10 mA se tiene una caída de 800V, estos valores son muy grandes, es por ello que se tendrán que ajustar mediante un circuito de retroalimentación. 
 \newpage
 
 \section{Firmware}
@@ -242,7 +244,7 @@ char current[20];
 
 \end{verbatim}
 
-Como vemos se ha utilizado la función setTimeout, configuración de la comunicación serial, necesaria en el proyecto para mantener un enseo de datos sin riesgos a perdida de informacion debido a los subprocesos que se realizan dentro del firmware diseñado. SetTimeout() establece los milisegundos máximos para esperar los datos de transmisión, por defecto es de 1000 milisegundos. Esta función es parte de la clase Stream y es llamada por cualquier clase que hereda de ella (Wire, Serial, etc.). \cite{settime}\\
+Como vemos se ha utilizado la función setTimeout, configuración de la comunicación serial, necesaria en el proyecto para mantener una medición de datos sin riesgos a perdida de informacion debido a los subprocesos que se realizan dentro del firmware diseñado. SetTimeout() establece los milisegundos máximos para esperar los datos de transmisión, por defecto es de 1000 milisegundos. Esta función es parte de la clase Stream y es llamada por cualquier clase que hereda de ella (Wire, Serial, etc.). \cite{settime}\\
 
 
 Todo el código esta dividido en funciones, las cuales llamamos en nuestro LOOP, tratando siempre de cumplir con las siguientes características: no utilización de la función delay, no utilización de ciclos que dependa de alguna condición externa, utilizar el menor código posible para una acción. Las funciones que se utilizaron para la el despliegue de información de la primera pantalla fue el siguiente:
@@ -704,7 +706,7 @@ Como observamos nuestro RMS se mantiene desde 0.0471v sin carga a 0.0546V con un
 
 \subsection{Inversor de voltaje}
 
-Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (figura 3.21), debido a los riesgos que conlleva si no se tiene el cuidado pertinente. Ahora implementando la fuente desarrollada se alimenta al inversor y se hace un arreglo similar al experimento anterior, analizando en el osciloscopio la salida sin carga, con cargas de 15 OHMS y de 7.5 OHMS, variando en este caso la frecuencia de salida en 60 HZ, 1 KHZ y 6 khz.
+Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (figura 3.21), debido a los riesgos que conlleva si no se tiene el cuidado pertinente. Ahora implementando la fuente desarrollada se alimenta al inversor y se hace un arreglo similar al experimento anterior, analizando en el osciloscopio la salida sin carga, con cargas de 15 OHMS y de 7.5 OHMS, variando en este caso la frecuencia de salida en tres valores diferentes, una medición a 60 Hz, la segunda a 1 KHz y la tercera a 6 kHz.
 
 
 
@@ -756,7 +758,7 @@ Existen aspectos claves para este apartado que definirán la calidad de nuestra 
 \caption{Medición sin carga a 986V}
 \end{figure}
 
-A partir de estas mediciones podemos calcular el riso que tiene nuestra medición utilizando la ecuación 2.4 como podemos observar en las figuras 3.28, 3.29, 3.30 y 3.31  respectivamente. \\Para la medicion a $93V$ tenemos: $$r=\frac{4.157V}{94.79V}=0.043$$ Para $200V$: $$r=\frac{0.00027V}{200V}=1.35\mu $$ Para 600v:  $$r=\frac{0.001115V}{600V}=1.85\mu $$ Para 1000V  $$r=\frac{0.002435V}{986V}=2.467\mu $$
+A partir de estas mediciones podemos calcular el rizo que tiene nuestra medición utilizando la ecuación 2.4 como podemos observar en las figuras 3.28, 3.29, 3.30 y 3.31  respectivamente. \\Para la medicion a $93V$ tenemos: $$r=\frac{4.157V}{94.79V}=0.043$$ Para $200V$: $$r=\frac{0.00027V}{200V}=1.35\mu $$ Para 600v:  $$r=\frac{0.001115V}{600V}=1.85\mu $$ Para 1000V  $$r=\frac{0.002435V}{986V}=2.467\mu $$
 
 El segundo experimento que se realizo fue agregar una carga de $1M\Omega$ para obtener la eficiencia de la misma, valor calculado con la ecuación 2.7. \\
 
@@ -768,5 +770,5 @@ Para $600V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{600V-599.93V}{599.93V}= 1
 
 Para $986V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{986.7V-986.6V}{986.6V}= 1.01x10^{-4}$$
 
-Los valores importantes para definir la eficiencia de una fuente son el riso que existe sobre el voltaje de corriente directa y la caida de voltaje con una carga respectiva. 
+Los valores importantes para definir la eficiencia de una fuente son el rizo que existe sobre el voltaje de corriente directa y la caida de voltaje con una carga respectiva. 
 

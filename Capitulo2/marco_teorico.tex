@@ -170,11 +170,21 @@ Para calcular el voltaje de D.C. que obtendremos podemos utilizar la siguiente e
 V_{cd}=2*0.636V_{m}
 \end{equation}
 
+En este caso se emplean cuatro diodos con la disposición como se ve en la figura XXX. Al igual que antes, sólo son posibles dos estados de conducción, o bien los diodos 1 y 3 están en directa y conducen (tensión positiva) o por el contrario son los diodos 2 y 4 los que se encuentran en directa y conducen (tensión negativa).
+
+A diferencia del caso anterior, ahora la tensión máxima de salida es la del secundario del transformador (el doble de la del caso anterior), la misma que han de soportar los diodos en inversa, al igual que en el rectificador con dos diodos. Esta es la configuración usualmente empleada para la obtención de onda continua , que se rectifica.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm]{capitulo2/figs/Puente_de_diodos.png}
+\caption{Puente de Graetz o Puente Rectificador de doble onda.}
+\end{figure}
+
 
 \subsection{Filtros}
-El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectificado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de riso o variación de voltaje de CA.\\
+El voltaje de CA por lo general se conecta a un transformador, el cual lo reduce al nivel de salida de DC deseado. Un rectificador de diodos proporciona entonces un voltaje rectificado de onda completa, el cual en principio se pasa por un filtro de capacitor sencillo para producir un voltaje de DC. El cual en todos los casos presenta un voltaje de rizo o variación de voltaje de CA. Para este proyecto se ha seleccionado dicho filtro por su facilidad de construcción. \\
 
-Para calcular el voltaje de rizo podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de CD leerá solo el nivel promedio. El medidor de CA (RMS) leerá solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el riso como:\\
+Para calcular el voltaje de rizo podemos utilizar un multimetro con capacidad de medir voltaje en CA (TRUE RMS) y el voltaje de DC. El voltimetro de CD leerá solo el nivel promedio. El medidor de CA (RMS) leerá solo el valor RMS del componente de ca del voltaje de salida. Entonces, definimos el rizo como:\\
 
 \begin{equation}
 r=\frac{voltaje\:  de\:  rizo\:  (rms)}{voltaje\:  de\:  DC}=V_{cd}\cdot 100\%
@@ -192,7 +202,7 @@ r=\frac{voltaje\:  de\:  rizo\:  (rms)}{voltaje\:  de\:  DC}=V_{cd}\cdot 100\%
 \caption{ Forma de onda de un voltaje filtrado que muestra voltajes de DC y de rizo.}
 \end{figure}
 
-Para nuestro caso utilizaremos un filtro de capacitor. Se conecta un capacitor en la salida del rectificador y se obtiene un voltaje de dc a través del capacitor como se muestra en la figura 2.8 y 2.9. Podemos calcular el \textbf{voltaje del riso} que obtendremos mediante la ecuación:
+Para nuestro caso utilizaremos un filtro de capacitor. Se conecta un capacitor en la salida del rectificador y se obtiene un voltaje de dc a través del capacitor como se muestra en la figura 2.8 y 2.9. Podemos calcular el \textbf{voltaje del rizo} que obtendremos mediante la ecuación:
 
 \begin{equation}
 V_{r}(rms)=\dfrac{I_{cd}}{4\sqrt{3}fC}=\dfrac{2.4V_{cd}}{R_{L}C}
@@ -224,13 +234,13 @@ $$Regulaci\acute{o}n\:de\: voltaje = \dfrac{Voltaje\: sin \:carga \:-\: Voltaje\
 
 Los convertidores DC a AC se conocen como inversores. La función de un inversor es cambiar un voltaje de entrada de DC a un voltaje simétrico de salida de AC de magnitud y frecuencia deseada. \\
 
-Los inversores se pueden clasificar ampliamente en dos tipos: inversores monofásicos e inversores trifásicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo \textbf{transistor de unión bipolar} (BJT), \textbf{transistor de efecto de campo metal-óxido-semiconductor}(MOSFET),\textbf{transistor bipolar de puerta aislada} (IGBT), etc. Por lo general estos inversores utilizan señales de control de PWM para producir un voltaje de salida de CA.
+Los inversores se pueden clasificar ampliamente en dos tipos: inversores monofásicos e inversores trifásicos. Cada tipo puede usar dispositivos de encendido y apagado controlados, por ejemplo un \textbf{transistor de unión bipolar} (BJT), \textbf{transistor de efecto de campo metal-óxido-semiconductor}(MOSFET),\textbf{transistor bipolar de puerta aislada} (IGBT), etc. Por lo general estos inversores utilizan señales de control de modulación por ancho de pulso  (PWM) para producir un voltaje de salida de CA.
 
 Existen diferentes tipos de inversores, un inversor se conoce como \textbf{inversor alimentado por voltaje} (VFI) si el voltaje de entrada permanece constante; \textbf{inversor alimentado por corriente} (CFI) si el voltaje de entrada permanece constante, e \textbf{inversor enlazado en cd variable} si el voltaje de entrada es controlable. Si al voltaje o a la corriente de salida del inversor se le hace pasar a través de cero al crear un circuito LC resonante, a este tipo de inversores se le conoce como \textbf{inversor de pulso resonante}, y tiene vastas aplicaciones en la electrónica de potencia. \\
 
 \subsection{Parámetros de desempeño de un inversor}
 
-El voltaje de entrada a un inversor es de DC y el voltaje de salida de AC. Idealmente la salida debe de ser una onda sinusoidal pura, pero contiene armónicos o rizos como se muestra en l figura 2.8. El inversor consume corriente de la fuente de entrada de DC solo cuando se conecta la carga al sistema, afectando la calidad de la señal de salida, es por ello que una medición variara conforme se conecte una carga diferente. Por lo común la calidad de un inversor se evalúa en función de los siguientes parámetros de desempeño:\\
+El voltaje de entrada a un inversor es de DC y el voltaje de salida de AC. Idealmente la salida debe de ser una onda sinusoidal pura, pero contiene armónicos o rizos como se muestra en la figura 2.8. El inversor consume corriente de la fuente de entrada de DC solo cuando se conecta la carga al sistema, afectando la calidad de la señal de salida, es por ello que una medición variara conforme se conecte una carga diferente. Por lo común la calidad de un inversor se evalúa en función de parámetros de desempeño. \\
 
 La potencia de salida esta dada por: \begin{equation}
 P_{ca}=I_{0}V_{0}COS\theta
@@ -249,7 +259,7 @@ P_{S}=I_{S}V_{S}
 
 donde $V_{S}$ e $I_{S}$ son el voltaje y la corriente promedio de entrada.\\
 
-El contenido de riso rms de la corriente de entrada es:
+El contenido de rizo rms de la corriente de entrada es:
 
 \begin{equation}
 I_{R}=\sqrt{I_{I}^{2}-I_{S}^{2}}
@@ -264,21 +274,10 @@ RF_{s}=\dfrac{I_{r}}{I_{s}}
 
 La eficiencia de potencia, la cual es la relación de la potencia de salida a la potencia de entrada, dependerá de las perdidas por conmutación, que a su vez dependen de la frecuencia de conmutación del inversor.\\
 
-Factor armónico del n-ésimo armónico (H$F_{n}$). El factor armonico (del n-ésimo armonico) que mide la contibuciónarmonca individual, se define como \begin{equation}
-HF_{n}=\dfrac{V_{on}}{V_{o1}}, \: para\; n>1
-\end{equation}
-
-donde $V_{O1}$ es el valor rms del componente fundamental y $V_{ob}$ es el valor rms del n-ésimo componente armónico.\\
-
-Distorsión armónica total (THD). La distorsión armónica total, que mide la cercania en cuanto a forma de onda y su componente fundamental, se define como: \begin{equation}
-THD=\dfrac{1}{V_{O1}}\left( \sum_{n=2,3,...}^{\infty }V_{on}^{2}\right)
-\end{equation}
-
-Factor de distorsión (DF).
  
 \newpage
 \section{Multiplicador de voltaje Cockcroft-Walton}
-Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares \cite{CERN}. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en CD mediante una entrada de de voltaje en CA. El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 2.10.  
+Cockroft-Walton es un multiplicador de voltaje desarrollado para fines nucleares \cite{CERN}. Este generador consiste en un arreglo en cascada de diodos y capacitores para generar alto voltaje en CD mediante una entrada de voltaje en CA. El sistema Cockoft-Walton es usado principalmente en aceleradores de partículas, pero también en sistemas láser, tubos CRT, LCDs, fuentes de voltaje y sistemas de rayos X. Podemos observar el sistema en cuestión en la figura 2.10.  
 
 \begin{figure}[H]
 \centering
@@ -290,7 +289,7 @@ El sistema multiplicador es bastante sencillo pero existen algunos temas impresc
 \begin{figure}[H]
 \centering
 \includegraphics[width=9cm]{capitulo2/figs/riso.png}
-\caption{ Reproducción del voltaje $V_{o}$ y el riso $\delta$V en la carga del circuito.}
+\caption{ Reproducción del voltaje $V_{o}$ y el rizo $\delta$V en la carga del circuito.}
 \end{figure}
 
 \begin{equation}
@@ -309,7 +308,7 @@ No solamente la calidad de la salida depende de lo antes mencionado, ya que, par
 Los transformadores de alto voltaje son utilizados ampliamente en sistemas tanto industriales, médicos como de investigación. Una de estas tantas aplicaciones son los sistemas de ignición, ya que, por el alto voltaje que tenemos en el secundario se producen arcos eléctricos en situaciones controladas, que pueden servir para ignición de combustoleos. En el área de la medicina también se utiliza de manera importante en sistemas de generación de ozono, rayos X, entre tantas otras cosas más.  \\
 \subsection{Fusión nuclear}
 
-Es aquella en la que se unen dos núcleos ligeros para formar otro más pesado. Este proceso genera energía porque el peso del núcleo resultante es menor que la suma de los pesos de los núcleos más ligeros. Esta diferencia en las masas, llamado defecto de masa o energía de amarre, se transforma en energía mediante la fórmula de Einstein, donde m es la diferencia de masa observada en el sistema antes y después de la fusión y es la velocidad de la luz (300.000 km/s). Aunque el defecto de masa es muy pequeño, es una energía muy concentrada ya que en un gramo de materia hay millones de átomos, con lo que una pequeña cantidad de combustible proporcionaría una cantidad grande de energía.\\
+Es aquella en la que se unen dos núcleos ligeros para formar otro más pesado. Este proceso genera energía porque el peso del núcleo resultante es menor que la suma de los pesos de los núcleos más ligeros. Esta diferencia en las masas, llamado defecto de masa o energía de amarre, se transforma en energía.\\
 
 Este tipo de reacciones es la que tiene lugar en el interior de las estrellas, proporcionándoles su brillo y su producción energética. En la escala terrestre, los experimentos realizados sobre fusión nuclear enfrentan un problema de primer orden: la dificultad de controlar las enormes cantidades de energía que se producen en el proceso.
 
@@ -340,7 +339,7 @@ Existen diferentes tipos de métodos para lograr fusión nuclear. Uno de los mas
 \subsection{Sistemas de encendido.}
 
 Cuando las líneas de fuerza de un campo magnético son
-interrumpidas por un conductor (alambre) en movimiento, se crea en éste
+atravesadas por un conductor (alambre) en movimiento, se crea en éste
 una corriente eléctrica. Este fenómeno es conocido con el nombre de
 inducción electromagnética.\\
 
@@ -365,11 +364,11 @@ través del campo.''\\
 \end{figure}
 
 En la figura 2.14 se aprecia la estructura básica de un transformador
-de encendido. La corriente de la batería (12V) fluye por el arrollamiento
-primario y crea un potente campo magnético que se concentra en el
-núcleo y envuelve al arrollamiento secundario. AI interrumpirse la corriente
+de encendido. La corriente de la batería (12V) fluye por la bobina
+primaria y crea un campo magnético que se concentra en el
+núcleo y envuelve el secundario. Al interrumpirse la corriente
 por medio del sistema electrónico de encendido, el campo se colapsa
-hacia el núcleo férrico atravesando en su camino al arrollamiento
+hacia el núcleo férrico atravesando en su camino al 
 secundario donde se induce un elevado voltaje (35 000 V aprox.) Este
 proceso de carga y descarga del transformador se repite tan rápido como
 lo requiera el régimen del motor para el encendido de las bujías
@@ -396,7 +395,7 @@ funcionamiento del motor. \cite{ignicion}
 
 \subsection{Generación de rayos X}
 
-El sistema de funcionamiento de un generador de rayos X tiene un funcionamiento relativamente básico.  El equipo recibe electricidad desde la corriente domestica, esta corriente puede ser de 220 V a 440 V, es recibido por un transformador de baja tensión que es reductor y que baja el voltaje a 5 o 10 v, lo cual va a producir incandescencia del filamento, generando liberación de electrones. Estos electrones son centralizados por la copa centralizadora de Molibdeno, y que se quedan ahí, en el filamento de tungsteno, esperando. \\
+El sistema de funcionamiento de un generador de rayos X tiene un funcionamiento relativamente básico.  El equipo recibe electricidad que puede ser de 220 V a 440 V, es recibido por un transformador de baja tensión que es reductor y que baja el voltaje a 5 o 10 v, lo cual va a producir incandescencia del filamento, generando liberación de electrones. Estos electrones son centralizados por la copa centralizadora de Molibdeno, y que se quedan ahí, en el filamento de tungsteno, esperando. \\
 
 Cuando el equipo se dispara, con el cronorruptor, se activa el circuito de alta tensión que tiene un transformador amplificador, lo que genera un aumento de voltaje a 70Kv. Al ser tan grande la diferencia de potencial entre en ánodo y el cátodo va a generar una gran diferencia de potencial y los electrones salen disparados al ánodo. 
 
