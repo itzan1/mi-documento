@@ -1,24 +1,23 @@
 \chapter{Análisis de Resultados}
 \section{Resultados}
 
-Se ha logrado mediante la implementación de un sistema de inversor de voltaje alcanzar voltajes de hasta 2 KV a una potencia de 20w, voltaje controlado digitalmente por un computador. Se ha desarrollado un código en root CERN para encontrar el voltaje RMS de nuestro voltaje de salida. Nuestras mediciones realizadas arrojaron las  distribuciones de las figuras 3.28, 3.29, 3.30 y 3.31 para diferentes voltajes sin carga alguna. \\
-taje sin carga a 600V.
+Se ha logrado mediante la implementación de un sistema de inversor de voltaje alcanzar voltajes de hasta 1 KV a una potencia de 20w, voltaje controlado digitalmente por un computador o de manera manual mediante una interface digital. Se ha desarrollado un código en root CERN para encontrar el voltaje RMS de nuestro voltaje de salida. Nuestras mediciones realizadas arrojaron las  distribuciones de las figuras 3.28, 3.29, 3.30 y 3.31 para diferentes voltajes sin carga alguna. \\.
 
 
-Como observamos se ha obtenido voltajes sin perturbaciones y con relativo bajo rizo asociado a él en el orden micro. Se realizaron cien mil mediciones por cada distribución y a partir de ella podemos observar un voltaje RMS de 4.15V a 93V, este presenta el mayor riso, ya que nuestro transformador esta diseñado para manejar altos voltajes, 0.00027V para 200V, 0.0011V para 600V y 0.0024V para 986V respectivamente. \\
+Como observamos se ha obtenido voltajes sin perturbaciones y con relativo bajo rizo asociado a él en el orden micro. Se realizaron cien mil mediciones por cada distribución y a partir de ella podemos observar un voltaje RMS de 4.3V a 93V, este presenta el mayor rizo, ya que nuestro transformador esta diseñado para manejar altos voltajes, 0.00027V para 200V, 0.0011V para 600V y 0.0024V para 986V respectivamente. \\
 
 Se observa en la tabla los siguientes resultados de nuestras mediciones con sus variables correspondientes. 
 
 \begin{table}[H]
 \begin{tabular}{@{}llll@{}}
 \toprule
-Voltaje   & Frecuencia & Dutty & Riso \\ \midrule
-93  & 4.4 KHz        & 4   & $0.043$\\
-200 & 4.05 KHz        & 4   &   $1.35\mu$ \\
-600 & 4.68 KHz        & 6   &   $1.85\mu$ \\
-986 & 3.14        & 7   &   $2.467 \mu$ \\ \bottomrule
+Voltaje   & Frecuencia & Dutty (\%) & Rizo (\%)\\ \midrule
+93  & 4.4 KHz        & 4   & $0.043\pm 0.38$\\
+200 & 4.05 KHz        & 4   &   $135\mu\pm 0.78$ \\
+600 & 4.68 KHz        & 6   &   $185\mu\pm 2.34$ \\
+986 & 3.14 KHz       & 7   &   $246.7 \mu \pm 3.85$ \\ \bottomrule
 \end{tabular}
 \end{table}
 
 
-Los resultados indican que se ha desarrollado una fuente con requerimientos suficientes para trabajos de laboratorio. 
+Los resultados indican que se ha desarrollado una fuente que ha logrado superar los 1000V de salida, encontrando limitado nuestro trabajo por la resolución de nuestras herramientas de medicion.  
