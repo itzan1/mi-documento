@@ -20,9 +20,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   DATOS                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{ \textsc{DESARROLLO DE UN SISTEMA DE ALTO VOLTAJE PARA ACELERADORES DE PARTICULAS}}
+	\title{ \textsc{DESARROLLO DE UN SISTEMA DE ALTO VOLTAJE PARA ACELERADORES DE PARTICULAS}}
 \author{Juan Francisco Verdugo Arredondo} 
-\facultad{Facultad de Ciencias Físico Matemáticas}   
+\facultad{Facultad de Ciencias Físico-Matemáticas}   
 \escudofacultad{Latex/Classes/Escudos/fmed_grande} % Aquí ponen la ruta y nombre del escudo de su facultad, actualmente, la carpeta Latex/Classes/Escudos cuenta con los siguientes escudos:
 % "fi_azul" Facultad de ingenieria en color azul
 % "fi_negro" Facultad de ingenieria en color negro
@@ -64,11 +64,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \begin{center}
+
 {\Large \textsc{UNIVERSIDAD AUTÓNOMA DE SINALOA}}
+
+
 
 \begin{Large}
 \setlength{\parskip}{20pt}
-FACULTAD DE CIENCIAS FÍSICO MATEMÁTICAS
+FACULTAD DE CIENCIAS FÍSICO-MATEMÁTICAS
+\end{Large}
+
+\begin{Large}
+\setlength{\parskip}{20pt}
+LICENCIATURA EN ELECTRÓNICA.
 \end{Large}
 
 
@@ -85,13 +93,13 @@ DESARROLLO DE UN SISTEMA DE ALTO VOLTAJE PARA ACELERADORES DE PARTÍCULAS
 \end{Large}
 
 \setlength{\parskip}{40pt}
-\begin{Huge}
-T\hspace{1cm}E\hspace{1cm}S\hspace{1cm}I\hspace{1cm}S
-\end{Huge}
+\begin{Large}
+TESIS
+\end{Large}
 
 \setlength{\parskip}{5pt}
 \begin{normalsize}
-QUE PARA OPTAR POR EL GRADO DE:
+QUE COMO REQUISITO PARA OBTENER EL GRADO DE:
 \end{normalsize}
 
 \setlength{\parskip}{5pt}
@@ -117,7 +125,7 @@ Juan Francisco Verdugo Arredondo
 \begin{normalsize}
 DIRECTOR:\\
 Dr. Carlos Duarte Galván\\
-Dr. Cristhian Alfonso Valerio Lizarraga\\
+Dr. Cristhian Alfonso Valerio Lizárraga\\
 \end{normalsize}
 
 
@@ -165,7 +173,6 @@ Culiacán, Sinaloa, 2019
 %\doublespacings
 
 \begin{large}
-
 \include{Capitulo1/introduccion}            % ~10 páginas - Explicar el propósito de la tesis
 \include{Capitulo2/marco_teorico}           % ~20 páginas - Poner un contexto a la tesis, hacer referencia a trabajos actuales en el tema
 \include{Capitulo3/diseno_experimento}      % ~20 páginas - Explicar el problema en específico que se va a resolver, la metodología y experimentos/métodos utilizados
@@ -193,9 +200,39 @@ Culiacán, Sinaloa, 2019
 
 %\include{referencia2}% Archivo .bib
 \begin{thebibliography}{2}
-  \bibitem{ProyectoLNLS5} Aplicación de Microscopia Electrónica y Radiación
-Sincrotrón al Estudio de Materiales y Procesos
+ 
+
+
+\bibitem{Cockcroft}{J. D. Cockcroft and E. T. S. Walton, Proc. R. Soc. Lond. A 137, 229 (1932)}
+
+ \bibitem{ProyectoLNLS5} Aplicación de Microscopia Electrónica y Radiación Sincrotrón al Estudio de Materiales y Procesos
 Avanzados para la Salud y la Estética Dental. \url{http://grupsderecerca.uab.cat/gts/sites/grupsderecerca.uab.cat.gts/files/Tesis\%20POA.pdf}
+ \bibitem{neutrons1} { S. Cierjacks, Ed., Neutron Sources for Basic Physics and Applications (Pergamon Press Ltd., Oxford, 1983)}
+ \bibitem{leonard} {B. E. Leonard, in Proc. Workshop on High Intensity Neutron Generators, 44 (1972).}
+ \bibitem{cobalt}{ Gamma Irradiators For Radiation Processing . IAEA. 2005. }
+ 
+ \bibitem{C1}{ Nénot, J.-C., Radiation accidents over the last 60 years. Journal of Radiological Protection, 2009. 29(3): p. 301. }
+ 
+ 
+ 
+\bibitem{novillo}{Ramos S., de Urquijo Carmona J., Meléndez L., Muñoz A., Barocio S., Chávez E., Balderas E., Godínez E., Valencia R., Diseño del Tokamak Novillo, Revista Mexicana de Física, 29, 551 (1983).}
+
+\bibitem{inin}{https://www.gob.mx/inin/}
+
+
+\bibitem{C2}{Everhart, E. and P. Lorrain, The Cockcroft‐Walton voltage multiplying circuit. Review of Scientific Instruments, 1953. 24(3): p. 221-226.}
+
+
+\bibitem{C3}{Bryant, P., A brief history and review of accelerators. 1994.}
+
+\bibitem{C4}{Hamm, R.W. and M.E. Hamm, Industrial accelerators and their applications. 2012: World Scientific.}
+
+\bibitem{C15}{Almén A., Ahlgren L., Mattsson S. Absorbed Dose to Technicians Due to Induced Activity in Linear Accelerators for Radiation Therapy. Phys Med Biol1991; 36(6):81522.
+.}
+
+
+
+
 
 \bibitem{const}fundamental physical constants. \url{https://physics.nist.gov/cgi-bin/cuu/Value?tevj}
 
@@ -215,8 +252,23 @@ Doctor Ingeniero Industrial \url{http://personales.unican.es/rodrigma/PDFs/Trafo
 
 \bibitem{imfusor}Imagen de fusor nuclear. \url{https://makezine.com/projects/make-36-boards/nuclear-fusor/}
 
+
+\bibitem{C5}Boylestad, R.L. and L. Nashelsky, Electrónica: teoría de circuitos y dispositivos electrónicos. 2009: Pearson Educación de México.
+
 \bibitem{ignicion}ANÁLISIS DE INSTALACIÓN Y OPERACIÓN DE UN
 SISTEMA DE ENCENDIDO SIN DISTRIBUIDOR (DIS) \url{https://repositorio.espe.edu.ec/bitstream/21000/3995/1/T-ESPEL-0212.pdf}
+
+
+\bibitem{c21}High Current PN Half Bridge
+NovalithIC \url{http://www.robotpower.com/downloads/BTS7960_v1.1_2004-12-07.pdf}
+
+
+
+
+
+\bibitem{RADIO}Bushong, S. C. (2005). Manual de radiología para técnicos. Barcelona: Elsevier España.
+
+
 
 
 

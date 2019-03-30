@@ -10,7 +10,7 @@ En este capítulo se expone todo el desarrollo de la fuente de alto voltaje en c
 
 El sistema esta compuesto por dos partes, hardware y firmware, el hardware se compone de tres partes como vemos en la figura 3.5: parte digital de control, inversor de voltaje y rectificador multiplicador. \\
 
-Por otro lado el firmware consiste en los programas que realizan el control completo de la generación de alto voltaje por medio del desarrollo de un ambiente gráfico al que el usuario tiene acceso,  control para la medición de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como también un control para el inversor de voltaje, mediante la implementación de un ADC ( Analog to Digital Converter) a la salida de una devanado de baja en el transformador de alto voltaje el cual controla la salida de alto voltaje.
+Por otro lado el firmware consiste en los programas que realizan el control completo de la generación de alto voltaje por medio del desarrollo de un ambiente gráfico al que el usuario tiene acceso,  control para la medición de voltajes, corrientes y protecciones necesarias para el correcto funcionamiento del sistema en general, así como un control para el inversor de voltaje, mediante la implementación de un ADC ( Analog to Digital Converter) a la salida de una devanado de baja en el transformador de alto voltaje el cual controla la salida de alto voltaje.
 \newpage
 
 
@@ -38,7 +38,7 @@ La medición y comprobación del alto voltaje no es tan sencilla si no se tienen
 \caption{Sonda de alto voltaje}
 \end{figure}
 
-Con esta herramienta se ha logrado utilizar el osciloscopio con una resolución de 8 bits, de la marca TELEDYNE modelo WavePro y analizar la señal para presentar resultados mas claros. Podemos observar el osciloscopio utilizado para las mediciones y un multimetro de la marca fluke, los cuales son suficientes para determinar la eficiencia de nuestra fuente de voltaje. Teniendo en cuenta siempre la seguridad requerida para la operación de estos instrumentos.
+Con esta herramienta se ha logrado utilizar el osciloscopio con una resolución de 8 bits, de la marca TELEDYNE modelo WaveSurfer y analizar la señal para presentar resultados mas claros. Podemos observar el osciloscopio utilizado para las mediciones y un multimetro de la marca fluke, los cuales son suficientes para determinar la eficiencia de nuestra fuente de voltaje. Teniendo en cuenta siempre la seguridad requerida para la operación de estos instrumentos.
 
 
 \begin{figure}[H]
@@ -69,7 +69,7 @@ Para la fabricación de los PCB se utilizó una herramienta LPKF, router computa
 \section{Diseño del hardware}
 
 
-La figura 3.1 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también del control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
+La figura 3.5 muestra un diagrama a bloques de la estructura general del hardware que conforma el sistema de generación de alto voltaje, el cual esta compuesto, desde la parte superior a la inferior, primeramente por bloques relacionados con el control digital del sistema, este bloque se encarga de las interfaces para el usuario así como también del control e instrumentación de los diferentes sensores, el siguiente conjunto de bloques representan la electrónica encargada de la inversión de voltaje y por ultimo tenemos la rectificación.  \\
 
 \begin{figure}[H]
 \centering
@@ -81,23 +81,53 @@ La figura 3.1 muestra un diagrama a bloques de la estructura general del hardwar
 Para el desarrollo de la interface gráfica se a utilizado un microcontrolador ATMEGA2560, implementado por la facilidad de programación y los tiempos cortos para la conclusión de este proyecto, así como también la implementación de una pantalla TFT-LCD ( Pantalla de cristal líquido de transistores de película fina) y comunicación UART como interfaces gráfica al usuario. Se ha utilizado el hardware de dicha placa y ahorrado tiempo de desarrollo. \\
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=9cm]{Capitulo3/figs/pantalla0.jpg}
-\caption{LCD-TFT para interface gráfica}
-\end{figure}
+
+
 \newpage
 \subsection{Hardware de fuente de voltaje a 180w}
 
-Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.7 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 en modalidad fuente de voltaje por modalidad de regulación positiva.\\
 
-Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en la figura 3.8, en este punto se busca el menor rizo posible en nuestra salida final, ya que, en este punto el ruido sera amplificado cientos de veces. Podemos observar en la figura 3.9 que nuestra simulación se acerca bastante a lo buscado, una señal de 12v en corriente directa, teniendo una señal estabilizada en un tiempo de 24ms, suficientemente pequeño para la inicialización de nuestro proyecto. El diseño del PCB se encuentra en la figura 3.10, el cual fue diseñado en el programa EAGLE.\\
+
+Esta sección consiste en varias etapas de desarrollo, para ello primero se ha desarrollado una fuente de voltaje de 180W, que es el primer circuito a analizar. Podemos observar en la figura 3.6 el diseño propuesto. El cual esta conformado por el regulador de voltaje LM723 realizando el arreglo fuente de voltaje por modalidad de regulación positiva, diseño básico propuesto en el datasheet de dicho integrado. Este arreglo no es suficiente para obtener los 180W que buscamos, es por ello que se eligió una configuración a la salida del integrado en modo seguidor de voltaje y amplificador de corriente, como podemos ver en la figura 3.7.\\
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm]{Capitulo3/figs/fuente.png}
-\caption{Simulación en LTSPICE fuente 180w}
+\caption{Diseño esquemático de fuente 180w}
 \end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo4/seguidor.png}
+\caption{Seguidor de voltaje transistor NPN}
+\end{figure}
+
+El colector común no amplifica ningún voltaje (de hecho, el voltaje de salida será 0.6V más bajo que el voltaje de entrada). Por esta razón, el circuito es llamado a veces como seguidor de voltaje.\\
+
+Este circuito tiene gran potencial como amplificador de corriente. Además de esto, la alta ganancia de corriente combinada con la ganancia de voltaje cercano a uno hace que este circuito sea un buen búfer de voltaje. Un búfer de voltaje previene que un circuito de carga interfiera de forma indeseable con el circuito que lo está conduciendo.\cite{C5}\\
+
+La amplificación de voltaje de un solo transistor no es suficiente para llegar a los 15 A, es por ello que se ha optado por la construcción de un arreglo del tipo Darlington, con los transistores 2n3055. La salida de voltaje es casi la misma que el voltaje de entrada (menos 1.2V-1.4V), pero la ganancia de corriente es el producto de dos ganancias de transistores. Podemos ver el arreglo en la figura 3.7. De esta manera podemos hacer una regulación de voltaje con el integrado LM723  y tener una amplificación de corriente a la salida de nuestra etapa de potencia.\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{Capitulo4/darlin.png}
+\caption{Arreglo Darlington de transistores NPN}
+\end{figure}
+
+
+El potenciometro R9 en la figura 3.6 regula la salida de voltaje, R1 y R2 limitan dicha regulación mediante la ecuación 3.1. Los transistores Q1, T1, T2, T3 y T4 están configurados en modo darlington aumentando la corriente que puede pasar a la salida del regulador LM723. Los transistores de T1 a T4 soportan cargas mayores a los 5 Amp. Las resistencias de poder ayudan a compartir la corriente que pasa por la rama de cada transistor. \\
+
+Podemos ver que cuando tenemos una corriente de 15 Amp. con resistencias de 0.1$\Omega$ tenemos una potencia de 18W que se va a disipar en las resistencias de potencia de 5W cada una, los cuales se ven distribuidos entre las 4 ramas de cada transistor. \\
+
+Podemos tener una ecuación del comportamiento de nuestra regulación de voltaje mediante la ecuación 3.1:
+
+\begin{equation}\label{eq:ej}
+V_{out}=V_{ref}X\dfrac{R_{1}+R_{2}}{R_{2}}
+\end{equation}
+
+Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en la figura 3.9, en este punto se busca el menor rizo posible en nuestra salida final, ya que, en este punto el ruido sera amplificado cientos de veces. Podemos observar en la figura 3.10 que nuestra simulación se acerca bastante a lo buscado, una señal de 12v en corriente directa, teniendo una señal estabilizada en un tiempo de 24ms, suficientemente pequeño para la inicialización de nuestro proyecto. El diseño del PCB se encuentra en la figura 3.11, el cual fue diseñado en el programa EAGLE.\\
+
+
 
 \begin{figure}[H]
 \centering
@@ -128,18 +158,25 @@ Se ha simulado esta fuente de voltaje en el programa LTSPICE como se muestra en 
 
 \subsection{Hardware inversor}
 
-Para el inversor se ha implementado una topología del tipo puente H, ya que es una de las mas utilizadas por los desarrolladores. El integrado BTS7960B \cite{databts} es un mosfet de potencia bastante robusto y con una comunidad de desarrollo bastante grande, es por ello que se ha seleccionado este modelo entre los miles que existen en el mercado. Podemos observar el diagrama implementado en la figura 3.12 \cite{ibt} y partiendo de el se ha utilizado la placa de desarrollo IBT2 (figura 3.11) por cuestión de costos. \\
+Para el inversor se ha implementado una topología del tipo puente H, ya que es una de las mas utilizadas por los desarrolladores. El integrado BTS7960B \cite{databts}, de la empresa Infineon, es un mosfet de potencia bastante robusto y con una comunidad de desarrollo bastante grande, es por ello que se ha seleccionado este modelo entre los miles que existen en el mercado. Podemos observar el diagrama implementado en el apendice A.2 \cite{ibt} y partiendo de él se ha utilizado la placa de desarrollo IBT2 (figura 3.13) por cuestión de costos. \\
+
+El integrado BTS7960 es un semipuente H, el cual esta diseñado para trabajar con cargas inductivas de alta potencia. Como PWM, el integrado puede soportar velocidades de conmutación de hasta 25 KHz, 43 Amperes y una protección a temperaturas altas.  Podemos ver un diagrama a bloques del integrado.   
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/bts69.PNG}
+\caption{Placa de desarrollo, puente H IBT-2\cite{c21}}
+\end{figure}
+
+El control de la placa IBT-2 es bastante sencillo, esta diseñada para procesos de automatización de motores. Este semi-puente H se alimenta con hasta 43 V y  para el integrado de control SON 5 V. Se controla mediante los pines R-EN y L-EN, dichos pines son encargados del giro en el caso del motor. También tenemos R-PWM y L-PWM aquí pasamos de un PWM de baja potencia a alta potencia por los pines con la letra M. Podemos apreciar de mejor manera el control de dicha placa en el manual de operación de dicha placa \cite{c21}
+
+
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=6cm]{Capitulo3/figs/bts.jpg}
-\caption{Placa de desarrollo, puente H IBT-2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=6cm]{Capitulo3/figs/ibt2.png}
-\caption{diagrama puente H}
+\caption{Placa de desarrollo, puente H IBT-2\cite{c21}}
 \end{figure}
 
 
@@ -148,7 +185,7 @@ Para el inversor se ha implementado una topología del tipo puente H, ya que es 
 
 
 \subsection{Multiplicador de voltaje Cockroft Walton}
-Mediante el motor de simulación de LTSPICE se ha realizado el diseño del multiplicador a utilizar. Contando con valores de capacitores de 0.1 $\mu$-Faradios, diodos MUR4100, voltaje de entrada de 1KV y una frecuencia variable de 10KHZ. Podemos observar en la figura 3.9 el diseño planteado, con la finalidad de tener un punto de referencia al momento de realizar el experimento. Se busca tener un rizo menor al 1\% del voltaje de salida y tomaremos la simulación como punto de partida para la construcción del multiplicador. \\
+Mediante el motor de simulación de LTSPICE se ha realizado el diseño del multiplicador a utilizar. Contando con valores de capacitores de 0.1 $\mu$F, diodos MUR4100, voltaje de entrada de 1KV y una frecuencia variable de 10KHZ. Podemos observar en la figura 3.14 el diseño planteado, con la finalidad de tener un punto de referencia al momento de realizar el experimento. Se busca tener un rizo menor al 1\% del voltaje de salida y tomaremos la simulación como punto de partida para la construcción del multiplicador. \\
 
 \begin{figure}[H]
 \centering
@@ -156,7 +193,7 @@ Mediante el motor de simulación de LTSPICE se ha realizado el diseño del multi
 \caption{Multiplicador de voltaje 2 niveles}
 \end{figure}
 
-Se han realizado corridas en el simulador con cargas que exigen 1 mA, 10 mA y pruebas sin carga. Podemos observar en la figura 3.14 la salida de CD que se obtiene cuando no tenemos carga alguna, como vemos la salida esta aparentemente libre de rizo y este es el punto de referencia para medir la eficiencia de nuestra fuente. El voltaje en color rojo es la primera etapa de nuestro multiplicador, en color azul tenemos la segunda etapa y en color verde la entrada de corriente alterna. 
+Se han realizado corridas en el simulador con cargas que exigen 1 mA, 10 mA y pruebas sin carga. Podemos observar en la figura 3.15 la salida de CD que se obtiene cuando no tenemos carga alguna, como vemos la salida esta aparentemente libre de rizo y este es el punto de referencia para medir la eficiencia de nuestra fuente. El voltaje en color rojo es la primera etapa de nuestro multiplicador, en color azul tenemos la segunda etapa y en color verde la entrada de corriente alterna. 
 
 \begin{figure}[H]
 \centering
@@ -165,7 +202,7 @@ Se han realizado corridas en el simulador con cargas que exigen 1 mA, 10 mA y pr
 \end{figure}
 
 
-Para una carga con una exigencia de 1 mA podemos observar la figura 3.15. Como vemos ahora el rizo y la caída en el voltaje es perceptible a simple vista.
+Para una carga con una exigencia de 1 mA podemos observar la figura 3.16. Como vemos ahora el rizo y la caída en el voltaje es perceptible a simple vista.
 
 
 \begin{figure}[H]
@@ -174,7 +211,7 @@ Para una carga con una exigencia de 1 mA podemos observar la figura 3.15. Como v
 \caption{Multiplicador de voltaje con 1 mA de carga}
 \end{figure}
 
-Para una carga con una exigencia de 10 mA podemos observar la figura 3.16. Tenemos una caída de voltaje bastante significativa y un rizo bastante pronunciado.
+Para una carga con una exigencia de 10 mA podemos observar la figura 3.17. Tenemos una caída de voltaje bastante significativa y un rizo bastante pronunciado.
 
 
 \begin{figure}[H]
@@ -185,12 +222,12 @@ Para una carga con una exigencia de 10 mA podemos observar la figura 3.16. Tenem
 
 Tenemos un voltaje $V_{1mA}=3.9KV$, $V_{10mA}=3.2KV$ y $V_{NL}=4KV$ ahora utilizando la ecuación 2.7 podemos calcular la eficiencia de nuestra fuente y utilizar este punto de referencia para la construcción de nuestro proyecto. Para una carga de 1 mA tenemos $VR_{1mA}=2.5\%$ Y para una carga de 10 mA $VR_{10mA}=20\%$ valor límite para nuestro circuito. Caidas de voltaje aceptables para nuestros propósitos.\\
 
-Hasta aquí podemos capturar los siguientes datos importantes, para una carga de 1 mA tenemos una caída de voltaje de 100V y para una carga de 10 mA se tiene una caída de 800V, estos valores son muy grandes, es por ello que se tendrán que ajustar mediante un circuito de retroalimentación. 
+Hasta aquí podemos capturar los siguientes datos importantes, para una carga de 1 mA tenemos una caída de voltaje de 100V y para una carga de 10 mA se tiene una caída de 800V, estos valores son muy grandes, es por ello que se tendrán que ajustar mediante un circuito de retroalimentación. Dicha retroalimentacion consiste en un sistema de lazo cerrado que mida constantemente la salida, la compare con el nivel de referencia deseado y según el error, realice automáticamente acciones correctivas para mantener el valor deseado. 
 \newpage
 
 \section{Firmware}
 \subsection{Interface gráfica}
-Para el desarrollo de la interface gráfica se ha realizado en el ambiente de programación de Arduino, intentando la utilización de la menor cantidad de librerías de autoría no propia y siguiendo algunas reglas de programación básicas para micro-controladores como lo es la no utilización de los comando delay. Dicho código se divide en varias secciones, para el cual solo se utilizaron las siguientes librerías:
+Para el desarrollo de la interface gráfica se ha realizado en el ambiente de programación de Arduino, intentando la utilización de la menor cantidad de librerías de autoría no propia y siguiendo algunas reglas de programación básicas para microcontroladores como lo es la no utilización de los comando delay. Dicho código se divide en varias secciones, para el cual solo se utilizaron las siguientes librerías:
 
 \begin{verbatim}
 
@@ -208,7 +245,7 @@ En la siguiente figura podemos observar la topología del firmware que se ha des
 \end{figure}
 
 
-El microcontrolador cuenta con múltiples salidas que permiten una comunicación con el Hardware desarrollado, se han definido las siguientes variables, salidas y entradas del micro controlador.
+El microcontrolador cuenta con múltiples salidas que permiten una comunicación con el Hardware desarrollado, se han definido las siguientes variables, salidas y entradas del microcontrolador.
 
 \begin{verbatim}
 
@@ -242,10 +279,10 @@ char current[20];
 
 \end{verbatim}
 
-Como vemos se ha utilizado la función setTimeout, configuración de la comunicación serial, necesaria en el proyecto para mantener una medición de datos sin riesgos a perdida de informacion debido a los subprocesos que se realizan dentro del firmware diseñado. SetTimeout() establece los milisegundos máximos para esperar los datos de transmisión, por defecto es de 1000 milisegundos. Esta función es parte de la clase Stream y es llamada por cualquier clase que hereda de ella (Wire, Serial, etc.). \cite{settime}\\
+Como vemos se ha utilizado la función setTimeout, configuración de la comunicación serial, necesaria en el proyecto para mantener una medición de datos sin riesgos a pérdida de información debido a los subprocesos que se realizan dentro del firmware diseñado. SetTimeout() establece los milisegundos máximos para esperar los datos de transmisión, por defecto es de 1000 milisegundos. Esta función es parte de la clase Stream y es llamada por cualquier clase que hereda de ella (Wire, Serial, etc.) \cite{settime}.\\
 
 
-Todo el código esta dividido en funciones, las cuales llamamos en nuestro LOOP, tratando siempre de cumplir con las siguientes características: no utilización de la función delay, no utilización de ciclos que dependa de alguna condición externa, utilizar el menor código posible para una acción. podemos observar el resultado de nuestro desarrollo en las imagenes 3.18 y 3.19.\\
+Todo el código esta dividido en funciones, las cuales llamamos en nuestro LOOP, tratando siempre de cumplir con las siguientes características: no utilización de la función delay, no utilización de ciclos que dependa de alguna condición externa, utilizar el menor código posible para una acción. Podemos observar el resultado de nuestro desarrollo en las imágenes 3.19 y 3.20.\\
 
 \begin{figure}[H]
 \centering
@@ -259,16 +296,16 @@ Todo el código esta dividido en funciones, las cuales llamamos en nuestro LOOP,
 \caption{Pantalla 2}
 \end{figure}
 
-Una vez que definimos las funciones a utilizar para estas dos primeras pantallas proseguimos a las funciones de cálculos y procesamiento de datos. Para ello hemos creado una función capaz de configurar el voltaje de salida, manteniendo una comunicación UART hacia un micro-controlador. \\
+Una vez que definimos las funciones a utilizar para estas dos primeras pantallas proseguimos a las funciones de cálculos y procesamiento de datos. Para ello hemos creado una función capaz de configurar el voltaje de salida, manteniendo una comunicación UART hacia un microcontrolador. \\
 
-Una segunda función es la encargada de recibir los datos procedentes del segundo micro-controlador, encargado de leer los datos de sensores y preparar el funcionamiento del inversor. \\
+Una segunda función es la encargada de recibir los datos procedentes del segundo microcontrolador, encargado de leer los datos de sensores y preparar el funcionamiento del inversor. \\
 
 
-Mediante las funciones anteriores podemos mantener una comunicacion INPUT y OUTPUT mediante UART, con el segundo micro-controlador, y mantener un senseo de las variables necesarias para el correcto funcionamiento de la fuente de alto voltaje. Ahora mostramos en cuerpo del programa principal, encargado del control de cada una de las funciones anteriores.
+Mediante las funciones anteriores podemos mantener una comunicacion INPUT y OUTPUT mediante UART, con el segundo microcontrolador, y mantener un senseo de las variables necesarias para el correcto funcionamiento de la fuente de alto voltaje. 
 
 \section{Implementación del Hardware}
 
-Una vez obtenido el diseño de todas las etapas, así como también la programación del firmware se prosigue a la fabricación de los PCB de la fuente de corriente directa a 180W, el acondicionamiento de la parte digital a la etapa de potencia. Se aisló mediante una caja que solo da acceso al usuario a la parte de salidas y entradas como vemos en la imagen 3.20 Evitando así riesgos al usuario. \\
+Una vez obtenido el diseño de todas las etapas, así como también la programación del firmware se prosigue a la fabricación de los PCB de la fuente de corriente directa a 180W, el acondicionamiento de la parte digital a la etapa de potencia. Se aisló mediante una caja que solo da acceso al usuario a la parte de salidas y entradas como vemos en la imagen 3.21 Evitando así riesgos al usuario. \\
 
 
 \begin{figure}[H]
@@ -277,11 +314,11 @@ Una vez obtenido el diseño de todas las etapas, así como también la programac
 \caption{Foto del sistema en general}
 \end{figure}
 
-Una vez terminado el Hardware se hicieron pruebas de cada modulo desarrollado, con la finalidad de indicar las condiciones optimas para el sistema en general, haciendo pruebas con diferentes cargas y observando el ruido obtenido de ellos. 
+Una vez terminado el Hardware se hicieron pruebas de cada módulo desarrollado, con la finalidad de indicar las condiciones óptimas para el sistema en general, haciendo pruebas con diferentes cargas y observando el ruido obtenido de ellos. 
 
 \subsection{Fuente de 180W}
 
-Se ha terminado la maquinación de la fuente de voltaje en el router LPKF y realizado el ensamble. Se tienen 180 W que pueden ser peligrosos si no se tiene el cuidado necesario, es por ello que se ha optado por aislar el circuito y dejar solamente las salidas y entradas necesarias como podemos ver en la imagen 3.21.
+Se ha terminado maquinar la fuente de voltaje en el router LPKF y realizado el ensamble. Se tienen 180 W que pueden ser peligrosos si no se tiene el cuidado necesario, es por ello que se ha optado por aislar el circuito y dejar solamente las salidas y entradas necesarias como podemos ver en la imagen 3.22.
 
 \begin{figure}[H]
 \centering
@@ -289,7 +326,7 @@ Se ha terminado la maquinación de la fuente de voltaje en el router LPKF y real
 \caption{Multiplicador de voltaje sin carga}
 \end{figure}
 
-Se ha optado por hacer pruebas a 12V y cargas de 7.5 OHMS, 15 OHMS y una prueba sin carga, esperando obtener el menor ruido posible. La configuración para el experimento se puede observar en la figura 3.17. Mediante estos resultados se ha creado una gráfica gaussiana para determinar el voltaje RMS en cada experimento. Para ello se implemento el siguiente codigo desarrollado en ''ROOT CERN":\\
+Se ha optado por hacer pruebas a 12V y cargas de 7.5 OHMS, 15 OHMS y una prueba sin carga, esperando obtener el menor ruido posible. Mediante estos resultados se ha creado una gráfica gaussiana para determinar el voltaje RMS en cada experimento. Para ello se implemento el siguiente codigo desarrollado en ''ROOT CERN":\\
 
  
 
@@ -367,9 +404,9 @@ Utilizando la ecuación 2.6 obtenemos los siguientes resultados en rizo:\\
 
 \subsection{Inversor de voltaje}
 
-Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (Fig. 3.21), debido a los riesgos que conlleva al usuario si no se tiene el cuidado pertinente. Ahora, utilizando la fuente de 180W y corriente directa se alimenta nuestro inversor. Nuestro inversor tiene dos variables que pueden ajustarse de manera manual o automática; la frecuencia y el ciclo de trabajo. Mediante estas variables de voltaje, incidentes en nuestro primario de la bobina de alto voltaje, podemos variar la salida de alto voltaje y tener un ajuste fino de nos cuantos volts por paso.\\
+Este modulo ha sido aislado de la misma manera que se aisló la fuente de 180W (Fig. 3.21), debido a los riesgos que conlleva al usuario si no se tiene el cuidado pertinente. Ahora, utilizando la fuente de 180W y corriente directa se alimenta nuestro inversor. Nuestro inversor tiene dos variables que pueden ajustarse de manera manual o automática; la frecuencia y el ciclo de trabajo.  Mediante estas variables, incidentes en nuestro primario de la bobina, podemos variar la salida del embobinado de alto voltaje y tener un ajuste fino de unos cuantos volts por paso.\\
 
-Tener cargas inductivas muchas veces puede volver mas complicado la implementación de nuestros circuitos, agregando armónicos y corrientes que pueden comportarse de manera no esperada. Podemos observar en la figura 3.26 la salida de nuestro inversor agregando una carga inductiva, un ciclo de trabajo del 5\% y una frecuencia de 5 KHz. Podemos observar que nuestra señal AC mantiene su forma.
+Tener cargas inductivas muchas veces puede volver mas complicado la implementación de nuestros circuitos, agregando armónicos y corrientes que pueden comportarse de manera no esperada. Podemos observar en la figura 3.27 la salida de nuestro inversor agregando una carga inductiva, un ciclo de trabajo del 5\% y una frecuencia de 5 KHz. Podemos observar que nuestra señal AC mantiene su forma.
 
 \begin{figure}[H]
 \centering
@@ -387,15 +424,24 @@ Tener cargas inductivas muchas veces puede volver mas complicado la implementaci
 
 \subsection{Multiplicador de voltaje}
 
-Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar un circuito provisional desarrollado (figura 3.27) y mediante mediciones sin carga se han obtenido principalmente dos valores, el voltaje medio y el voltaje RMS, para obtener el rizo sobre dicha señal.
-
-
+Existen aspectos claves para este apartado que definirán la calidad de nuestra salida, es por ello que se han realizado pruebas variando algunos aspectos como lo son la frecuencia y el ciclo de trabajo incidente en la bobina primaria del transformador de alto voltaje. Podemos observar un circuito provisional desarrollado (figura 3.28) y mediante mediciones se han obtenido principalmente dos valores, el voltaje medio y el voltaje RMS, para obtener el rizo sobre dicha señal.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=9cm]{Capitulo3/figs/fotomulti.png}
 \caption{Implementación inversor}
 \end{figure}
+
+Podemos ver en la figura 3.29 el arreglo que se desarrollo para tomar las mediciones con el osciloscopio. Se tomaron cien mil mediciones por corrida, y a partir de ellas se creo el histograma.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{Capitulo3/figs/experi.png}
+\caption{Implementación inversor}
+\end{figure}
+
+
 
 \begin{figure}[H]
 \centering
@@ -421,7 +467,7 @@ Existen aspectos claves para este apartado que definirán la calidad de nuestra 
 \caption{Medición sin carga a 986V con un error de 3.85V}
 \end{figure}
 
-A partir de estas mediciones podemos calcular el rizo que tiene nuestra medición utilizando la ecuación 2.4 como podemos observar en las figuras 3.28, 3.29, 3.30 y 3.31  respectivamente. \\
+A partir de estas mediciones podemos calcular el rizo que tiene nuestra medición utilizando la ecuación 2.4 como podemos observar en las figuras 3.30, 3.31, 3.32 y 3.31  respectivamente. \\
 
 Para la medición a $93V$ tenemos:
 
@@ -433,10 +479,11 @@ Para la medición a $93V$ tenemos:
  
  Para $1000V$  $$r=\frac{0.002435V}{986V}X100=246.7\mu \% $$
 
-El segundo experimento que se realizo fue agregar una carga de $4M\Omega$ para obtener la eficiencia de la misma, valor calculado con la ecuación 2.7. \\
+El segundo experimento que se realizó fue agregar una carga de $4M\Omega$ para obtener la eficiencia de la misma, valor calculado con la ecuación 2.7. \\
 
 Para $93V$ $V_{NL}=186V$ y $V_{FL}=100V$: $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}=\frac{186V-100V}{186V}X100= 86 \% $$
 
 Para $300V$ $V_{NL}=577V$ y $V_{FL}=300V$ : $$\%VR=\frac{V_{NL}-V_{FL}}{V_{FL}}X100=\frac{577V-300V}{300V}X100= 92\% $$
 
-Los valores importantes para definir la eficiencia de una fuente son el rizo que existe sobre el voltaje de corriente directa y la caída de voltaje con una carga respectiva. En nuestro caso se tienen caídas de voltaje de hasta el 92\%, debido a que no se cuenta con una retroalimentación necesaria. 
+Los valores importantes para definir la eficiencia de una fuente son el rizo que existe sobre el voltaje de corriente directa y la caída de voltaje con una carga respectiva. En nuestro caso se tienen caídas de voltaje de hasta el 92\%, debido a que no se cuenta con una retroalimentación necesaria.
+
